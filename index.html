@@ -195,7 +195,7 @@
 
           <a
             class="button button-light"
-            href="puppies.html"
+            href="#puppies"
           >
             Meet the Puppies
           </a>
@@ -219,12 +219,12 @@
 
       <a
         class="hero-scroll"
-        href="#about"
-        aria-label="Continue to learn about Clearview Kennels"
+        href="#puppies"
+        aria-label="Continue to meet the available puppies"
       >
 
         <span>
-          Discover Clearview
+          Meet the Puppies
         </span>
 
         <span
@@ -233,6 +233,69 @@
         ></span>
 
       </a>
+
+    </section>
+
+
+    <!-- =====================================
+         FEATURED PUPPIES
+         ===================================== -->
+
+    <section
+      class="section featured-puppies-section"
+      id="puppies"
+    >
+
+      <div class="section-heading split-heading">
+
+        <div>
+
+          <p class="eyebrow">
+            Looking for Their Families
+          </p>
+
+
+          <h2>
+            Meet the puppies.
+          </h2>
+
+        </div>
+
+
+        <div class="section-heading-side">
+
+          <p>
+            See the puppies currently
+            available from Clearview.
+          </p>
+
+
+          <a
+            class="text-link"
+            href="puppies.html"
+          >
+            View All Puppies
+
+            <span aria-hidden="true">
+              →
+            </span>
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!--
+        Populated automatically by:
+        data/puppies.js
+        data/puppy-system.js
+      -->
+
+      <div
+        class="puppy-grid"
+        id="featuredPuppies"
+      ></div>
 
     </section>
 
@@ -285,66 +348,6 @@
         </div>
 
       </div>
-
-    </section>
-
-
-    <!-- =====================================
-         FEATURED PUPPIES
-         ===================================== -->
-
-    <section class="featured-puppies-section">
-
-      <div class="section-heading split-heading">
-
-        <div>
-
-          <p class="eyebrow">
-            Looking for Their Families
-          </p>
-
-
-          <h2>
-            Meet the puppies.
-          </h2>
-
-        </div>
-
-
-        <div class="section-heading-side">
-
-          <p>
-            See the puppies currently
-            available from Clearview.
-          </p>
-
-
-          <a
-            class="text-link"
-            href="puppies.html"
-          >
-            View All Puppies
-
-            <span aria-hidden="true">
-              →
-            </span>
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <!--
-        Populated automatically by:
-        data/puppies.js
-        data/puppy-system.js
-      -->
-
-      <div
-        class="puppy-grid"
-        id="featuredPuppies"
-      ></div>
 
     </section>
 
@@ -409,10 +412,10 @@
          BREEDS
          ===================================== -->
 
-   <section
-  class="section breeds-section"
-  id="breeds"
->
+    <section
+      class="section breeds-section"
+      id="breeds"
+    >
 
       <div class="section-heading">
 
@@ -903,6 +906,92 @@
     </div>
 
   </footer>
+
+
+  <!-- =====================================
+       PUPPY MATCHING PROMPT
+       ===================================== -->
+
+  <div
+    class="puppy-match-overlay"
+    id="puppyMatchOverlay"
+    aria-hidden="true"
+  >
+
+    <section
+      class="puppy-match-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="puppyMatchTitle"
+    >
+
+      <button
+        class="puppy-match-close"
+        id="puppyMatchClose"
+        type="button"
+        aria-label="Close puppy matching prompt"
+      >
+        ×
+      </button>
+
+
+      <div
+        class="puppy-match-mark"
+        aria-hidden="true"
+      >
+        <span></span>
+      </div>
+
+
+      <p class="eyebrow">
+        Finding the Right Fit
+      </p>
+
+
+      <h2 id="puppyMatchTitle">
+        Not sure which puppy
+        fits your family?
+      </h2>
+
+
+      <p>
+        A photograph is only the beginning.
+        Tell us a little about your home,
+        your family, and what you're looking
+        for, and we'll help you find the
+        puppy that feels like the right fit.
+      </p>
+
+
+      <div class="puppy-match-actions">
+
+        <a
+          class="button button-dark"
+          href="apply.html"
+        >
+          Tell Us About Your Family
+        </a>
+
+
+        <button
+          class="puppy-match-browse"
+          id="puppyMatchBrowse"
+          type="button"
+        >
+          Keep Looking
+        </button>
+
+      </div>
+
+
+      <p class="puppy-match-note">
+        No pressure. No commitment.
+        Just a conversation.
+      </p>
+
+    </section>
+
+  </div>
 
 
   <!-- =====================================
