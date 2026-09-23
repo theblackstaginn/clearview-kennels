@@ -91,7 +91,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-body.nav-open {
+body.nav-open,
+body.puppy-modal-open {
   overflow: hidden;
 }
 
@@ -1569,6 +1570,388 @@ main::before {
 
 
 /* ========================================
+   PUPPY WELCOME MODAL
+   ======================================== */
+
+.puppy-welcome-modal {
+  position: fixed;
+
+  z-index: 5000;
+
+  inset: 0;
+
+  display: grid;
+
+  padding:
+    clamp(
+      28px,
+      5vw,
+      70px
+    );
+
+  place-items: center;
+
+  visibility: hidden;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    visibility .35s ease,
+    opacity .35s ease;
+}
+
+.puppy-welcome-modal.open {
+  visibility: visible;
+
+  opacity: 1;
+
+  pointer-events: auto;
+}
+
+.puppy-welcome-backdrop {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    rgba(
+      24,
+      29,
+      22,
+      .72
+    );
+
+  -webkit-backdrop-filter:
+    blur(5px);
+
+  backdrop-filter:
+    blur(5px);
+}
+
+.puppy-welcome-dialog {
+  position: relative;
+
+  z-index: 1;
+
+  width:
+    min(
+      92vw,
+      760px
+    );
+
+  min-height: 540px;
+
+  max-height:
+    calc(
+      100svh - 70px
+    );
+
+  padding:
+    clamp(
+      62px,
+      7vw,
+      88px
+    )
+    clamp(
+      58px,
+      8vw,
+      100px
+    )
+    clamp(
+      58px,
+      7vw,
+      82px
+    );
+
+  overflow-y: auto;
+
+  color: var(--ink);
+
+  background-color: #e9dfcb;
+
+  background-image:
+    linear-gradient(
+      rgba(244, 237, 221, .12),
+      rgba(244, 237, 221, .12)
+    ),
+    url("ck-assets/ck-modal-card.webp");
+
+  background-repeat: no-repeat;
+
+  background-position: center;
+
+  background-size: 100% 100%;
+
+  box-shadow:
+    0 32px 90px
+    rgba(
+      14,
+      17,
+      13,
+      .38
+    );
+
+  opacity: 0;
+
+  transform:
+    translateY(22px)
+    scale(.985);
+
+  transition:
+    opacity .38s ease,
+    transform .38s ease;
+}
+
+.puppy-welcome-modal.open
+.puppy-welcome-dialog {
+  opacity: 1;
+
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+.puppy-welcome-content {
+  position: relative;
+
+  z-index: 1;
+
+  max-width: 535px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.puppy-welcome-eyebrow {
+  margin-bottom: 18px;
+
+  color: var(--gold);
+
+  font-size: .64rem;
+
+  font-weight: 600;
+
+  letter-spacing: .18em;
+
+  text-transform: uppercase;
+}
+
+.puppy-welcome-content h2 {
+  max-width: 520px;
+
+  margin:
+    0 auto
+    25px;
+
+  color: var(--ink);
+
+  font-size:
+    clamp(
+      2rem,
+      4vw,
+      3.45rem
+    );
+
+  letter-spacing: -.045em;
+
+  line-height: 1.08;
+}
+
+.puppy-welcome-copy {
+  max-width: 470px;
+
+  margin: 0 auto;
+}
+
+.puppy-welcome-copy p {
+  margin-bottom: 14px;
+
+  color: var(--ink-soft);
+
+  font-size: .9rem;
+
+  line-height: 1.72;
+}
+
+.puppy-welcome-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.puppy-welcome-actions {
+  display: flex;
+
+  margin-top: 30px;
+
+  flex-direction: column;
+  align-items: center;
+
+  gap: 17px;
+}
+
+.puppy-welcome-actions
+.button {
+  min-width: 235px;
+}
+
+.puppy-welcome-link {
+  display: inline-flex;
+
+  padding-bottom: 3px;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: var(--forest);
+
+  border-bottom:
+    1px solid
+    rgba(
+      53,
+      71,
+      53,
+      .35
+    );
+
+  font-size: .7rem;
+
+  font-weight: 600;
+
+  letter-spacing: .035em;
+
+  transition:
+    gap .2s ease,
+    border-color .2s ease;
+}
+
+.puppy-welcome-link:hover {
+  gap: 13px;
+
+  border-bottom-color:
+    var(--forest);
+}
+
+.puppy-welcome-note {
+  max-width: 370px;
+
+  margin:
+    25px auto 0;
+
+  color:
+    rgba(
+      69,
+      69,
+      56,
+      .7
+    );
+
+  font-family: var(--serif);
+
+  font-size: .78rem;
+
+  font-style: italic;
+
+  line-height: 1.65;
+}
+
+.puppy-welcome-close {
+  position: absolute;
+
+  z-index: 3;
+
+  top: 25px;
+  right: 27px;
+
+  display: grid;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  place-items: center;
+
+  color: var(--ink-soft);
+
+  border:
+    1px solid
+    rgba(
+      41,
+      41,
+      31,
+      .2
+    );
+
+  border-radius: 50%;
+
+  background:
+    rgba(
+      250,
+      247,
+      240,
+      .55
+    );
+
+  cursor: pointer;
+
+  transition:
+    color .2s ease,
+    background .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+.puppy-welcome-close span {
+  display: block;
+
+  margin-top: -3px;
+
+  font-family: Georgia, serif;
+
+  font-size: 1.65rem;
+
+  font-weight: 400;
+
+  line-height: 1;
+}
+
+.puppy-welcome-close:hover {
+  color: var(--forest-deep);
+
+  background:
+    rgba(
+      255,
+      253,
+      248,
+      .86
+    );
+
+  border-color:
+    rgba(
+      53,
+      71,
+      53,
+      .35
+    );
+
+  transform: rotate(4deg);
+}
+
+.puppy-welcome-close:focus-visible,
+.puppy-welcome-link:focus-visible,
+.puppy-welcome-actions
+.button:focus-visible {
+  outline:
+    2px solid var(--forest);
+
+  outline-offset: 4px;
+}
+
+
+/* ========================================
    STORY
    ======================================== */
 
@@ -1802,7 +2185,7 @@ main::before {
 .process-list::before {
   position: absolute;
 
-  top: 7px;
+  top: 4px;
   right: 0;
   left: 0;
 
@@ -1826,7 +2209,7 @@ main::before {
 
   min-height: 0;
 
-  padding: 34px 0 0;
+  padding: 38px 0 0;
 
   border: 0;
 }
@@ -1845,24 +2228,24 @@ main::before {
 
   display: block;
 
-  width: 15px;
-  height: 15px;
+  width: 23px;
+  height: 9px;
 
-  border:
-    4px solid var(--cream);
+  margin: 0;
 
-  border-radius: 50%;
+  border: 0;
+  border-radius:
+    100% 0
+    100% 0;
 
-  background: var(--forest);
+  background: var(--gold);
 
-  box-shadow:
-    0 0 0 1px
-    rgba(
-      53,
-      71,
-      53,
-      .22
-    );
+  box-shadow: none;
+
+  opacity: .72;
+
+  transform:
+    rotate(-13deg);
 }
 
 .process-step h3 {
@@ -2359,9 +2742,9 @@ main::before {
 .inventory-group {
   margin-bottom:
     clamp(
-      75px,
-      9vw,
-      115px
+      90px,
+      12vw,
+      150px
     );
 }
 
@@ -2370,26 +2753,70 @@ main::before {
 }
 
 .inventory-group-heading {
-  margin-bottom: 38px;
+  display: flex;
+
+  margin-bottom:
+    clamp(
+      38px,
+      5vw,
+      58px
+    );
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 40px;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.inventory-group-heading > div {
+  width: 100%;
+}
+
+.inventory-group-heading .eyebrow {
+  margin-bottom: 13px;
 }
 
 .inventory-group-heading h2 {
-  margin-bottom: 0;
+  max-width: 760px;
+
+  margin-bottom:
+    clamp(
+      25px,
+      3vw,
+      36px
+    );
 
   font-size:
     clamp(
-      2rem,
-      3.5vw,
-      3.2rem
+      2.4rem,
+      4.5vw,
+      4.2rem
     );
 }
 
 .inventory-empty {
-  max-width: 620px;
+  max-width: 700px;
 
   padding:
-    30px 0
-    70px;
+    20px 0
+    clamp(
+      50px,
+      7vw,
+      90px
+    );
+}
+
+.inventory-empty h2 {
+  max-width: 650px;
+}
+
+.inventory-empty > p:not(.eyebrow) {
+  max-width: 540px;
+
+  margin-bottom: 30px;
 }
 
 
@@ -2461,6 +2888,221 @@ main::before {
   background: var(--forest);
 
   border-color: var(--forest);
+}
+
+
+/* ========================================
+   PUPPIES PAGE FILTERS
+   ======================================== */
+
+.puppy-filters {
+  display: flex;
+
+  margin:
+    -18px 0
+    clamp(
+      70px,
+      9vw,
+      110px
+    );
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.puppy-filter {
+  display: inline-flex;
+
+  min-height: 42px;
+
+  padding:
+    10px 17px;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--muted);
+
+  border:
+    1px solid var(--line);
+
+  border-radius: 999px;
+
+  background:
+    rgba(
+      255,
+      253,
+      248,
+      .2
+    );
+
+  font-size: .66rem;
+
+  font-weight: 600;
+
+  letter-spacing: .055em;
+
+  transition:
+    color .2s ease,
+    background .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+.puppy-filter:hover {
+  color: var(--forest);
+
+  border-color:
+    rgba(
+      53,
+      71,
+      53,
+      .38
+    );
+
+  transform:
+    translateY(-1px);
+}
+
+.puppy-filter.active,
+.puppy-filter[aria-current="page"] {
+  color: var(--white);
+
+  background: var(--forest);
+
+  border-color: var(--forest);
+}
+
+.puppy-inventory {
+  width: 100%;
+}
+
+
+/* ========================================
+   INVENTORY CONTACT
+   ======================================== */
+
+.inventory-contact {
+  border-top:
+    1px solid var(--line);
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.inventory-contact-inner {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(320px, .85fr);
+
+  gap:
+    clamp(
+      60px,
+      10vw,
+      150px
+    );
+
+  align-items: start;
+}
+
+.inventory-contact-inner h2 {
+  max-width: 650px;
+
+  margin-bottom: 0;
+}
+
+.inventory-contact-inner
+> div:last-child {
+  padding-top: 34px;
+}
+
+.inventory-contact-inner
+.button {
+  margin-top: 10px;
+}
+
+
+/* ========================================
+   INVENTORY PROCESS
+   ======================================== */
+
+.inventory-process {
+  border-bottom:
+    1px solid var(--line);
+}
+
+.inventory-process
+.process-step h3 {
+  font-size:
+    clamp(
+      1.5rem,
+      2.4vw,
+      2.1rem
+    );
+}
+
+
+/* ========================================
+   INVENTORY CARDS
+   ======================================== */
+
+.inventory-page
+.puppy-card {
+  position: relative;
+}
+
+.inventory-page
+.puppy-card-photo {
+  box-shadow:
+    0 16px 40px
+    rgba(
+      48,
+      43,
+      32,
+      .055
+    );
+}
+
+.inventory-page
+.puppy-card-copy {
+  padding:
+    0 7px;
+}
+
+.inventory-page
+.puppy-card h3 {
+  margin-bottom: 8px;
+}
+
+.inventory-page
+.puppy-price {
+  margin-top: 4px;
+}
+
+.inventory-page
+.puppy-card-link {
+  border-bottom-color:
+    rgba(
+      53,
+      71,
+      53,
+      .22
+    );
+}
+
+.puppy-inventory
+.puppy-loading {
+  width: 100%;
+
+  min-height: 320px;
+
+  padding:
+    70px 0;
 }
 
 
@@ -3018,17 +3660,23 @@ main::before {
 }
 
 .transport-mark {
-  position: absolute;
-
-  top: -4px;
-  left: 0;
-
   display: block;
 
-  width: 28px;
-  height: 7px;
+  width: 23px;
+  height: 9px;
 
-  background: var(--forest);
+  margin-bottom: 44px;
+
+  border-radius:
+    100% 0
+    100% 0;
+
+  background: var(--gold);
+
+  opacity: .72;
+
+  transform:
+    rotate(-13deg);
 }
 
 .transport-option h3 {
@@ -3042,9 +3690,6 @@ main::before {
 
   font-size: .86rem;
 }
-
-
-/* Old numbered markup safety */
 
 .transport-number,
 .process-number,
@@ -3103,6 +3748,608 @@ main::before {
 
 
 /* ========================================
+   APPLICATION / FAQ / CONTACT
+   ======================================== */
+
+.application-hero {
+  width:
+    min(
+      calc(100% - 64px),
+      var(--max)
+    );
+
+  margin: 0 auto;
+
+  padding:
+    clamp(
+      105px,
+      14vw,
+      185px
+    )
+    0
+    clamp(
+      80px,
+      10vw,
+      125px
+    );
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.application-hero-inner {
+  max-width: 900px;
+}
+
+.application-hero h1 {
+  max-width: 850px;
+
+  margin-bottom: 34px;
+
+  color: var(--ink);
+
+  font-size:
+    clamp(
+      4rem,
+      8vw,
+      7.5rem
+    );
+
+  letter-spacing: -.06em;
+}
+
+.application-hero .lead {
+  max-width: 650px;
+
+  margin-bottom: 0;
+}
+
+.application-section {
+  border-bottom:
+    1px solid var(--line);
+}
+
+.application-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(260px, .7fr)
+    minmax(0, 1.3fr);
+
+  gap:
+    clamp(
+      65px,
+      10vw,
+      145px
+    );
+
+  align-items: start;
+}
+
+.application-intro {
+  position: sticky;
+
+  top: 120px;
+}
+
+.application-intro h2 {
+  max-width: 540px;
+}
+
+.application-intro > p:not(.eyebrow) {
+  max-width: 430px;
+}
+
+
+/* ========================================
+   FORM
+   ======================================== */
+
+.clearview-form {
+  width: 100%;
+}
+
+.form-section {
+  padding:
+    0 0
+    clamp(
+      65px,
+      8vw,
+      90px
+    );
+
+  margin-bottom:
+    clamp(
+      65px,
+      8vw,
+      90px
+    );
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.form-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.form-section-heading {
+  margin-bottom:
+    clamp(
+      35px,
+      5vw,
+      50px
+    );
+}
+
+.form-kicker {
+  margin-bottom: 11px;
+
+  color: var(--gold);
+
+  font-size: .64rem;
+
+  font-weight: 600;
+
+  letter-spacing: .16em;
+
+  text-transform: uppercase;
+}
+
+.form-section-heading h3 {
+  max-width: 600px;
+
+  margin-bottom: 0;
+
+  font-size:
+    clamp(
+      1.8rem,
+      3.2vw,
+      2.8rem
+    );
+}
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    34px
+    30px;
+}
+
+.form-field {
+  position: relative;
+
+  display: flex;
+
+  min-width: 0;
+
+  flex-direction: column;
+}
+
+.form-field-full {
+  margin-top: 34px;
+}
+
+.form-field label {
+  margin-bottom: 10px;
+
+  color: var(--ink-soft);
+
+  font-size: .67rem;
+
+  font-weight: 600;
+
+  letter-spacing: .055em;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+
+  margin: 0;
+
+  padding:
+    13px 0
+    14px;
+
+  color: var(--ink);
+
+  border: 0;
+
+  border-bottom:
+    1px solid
+    rgba(
+      41,
+      41,
+      31,
+      .28
+    );
+
+  border-radius: 0;
+
+  outline: none;
+
+  background: transparent;
+
+  box-shadow: none;
+
+  font-family: var(--sans);
+
+  font-size: .95rem;
+
+  line-height: 1.55;
+
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.form-field textarea {
+  min-height: 130px;
+
+  padding-top: 15px;
+
+  resize: vertical;
+}
+
+.form-field select {
+  min-height: 52px;
+
+  padding-right: 30px;
+
+  cursor: pointer;
+
+  -webkit-appearance: none;
+  appearance: none;
+
+  background-image:
+    linear-gradient(
+      45deg,
+      transparent 50%,
+      var(--muted) 50%
+    ),
+    linear-gradient(
+      135deg,
+      var(--muted) 50%,
+      transparent 50%
+    );
+
+  background-position:
+    calc(100% - 8px)
+    calc(50% - 2px),
+
+    calc(100% - 3px)
+    calc(50% - 2px);
+
+  background-size:
+    5px 5px,
+    5px 5px;
+
+  background-repeat:
+    no-repeat;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color:
+    rgba(
+      116,
+      114,
+      101,
+      .64
+    );
+}
+
+.form-field input:hover,
+.form-field select:hover,
+.form-field textarea:hover {
+  border-bottom-color:
+    rgba(
+      53,
+      71,
+      53,
+      .55
+    );
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-bottom-color:
+    var(--forest);
+
+  box-shadow:
+    0 1px 0
+    var(--forest);
+}
+
+.form-field input:-webkit-autofill,
+.form-field input:-webkit-autofill:hover,
+.form-field input:-webkit-autofill:focus,
+.form-field textarea:-webkit-autofill,
+.form-field select:-webkit-autofill {
+  -webkit-text-fill-color:
+    var(--ink);
+
+  -webkit-box-shadow:
+    0 0 0 1000px
+    transparent
+    inset;
+
+  transition:
+    background-color
+    9999s ease-in-out
+    0s;
+}
+
+.selected-puppy-note {
+  position: relative;
+
+  margin:
+    -8px 0
+    38px;
+
+  padding:
+    18px 0
+    18px 22px;
+
+  border-left:
+    2px solid var(--gold);
+}
+
+.selected-puppy-note[hidden] {
+  display: none;
+}
+
+.selected-puppy-note span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: var(--muted);
+
+  font-size: .64rem;
+
+  font-weight: 600;
+
+  letter-spacing: .07em;
+
+  text-transform: uppercase;
+}
+
+.selected-puppy-note strong {
+  color: var(--ink);
+
+  font-family: var(--serif);
+
+  font-size: 1.25rem;
+
+  font-weight: 400;
+}
+
+.form-submit {
+  display: flex;
+
+  padding-top: 42px;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 35px;
+}
+
+.form-submit p {
+  max-width: 390px;
+
+  margin-bottom: 0;
+
+  font-size: .8rem;
+}
+
+.form-submit .button {
+  flex: 0 0 auto;
+}
+
+
+/* ========================================
+   FAQ
+   ======================================== */
+
+.faq-section {
+  display: grid;
+
+  grid-template-columns:
+    minmax(260px, .72fr)
+    minmax(0, 1.28fr);
+
+  gap:
+    clamp(
+      65px,
+      10vw,
+      145px
+    );
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.faq-heading {
+  align-self: start;
+}
+
+.faq-heading h2 {
+  max-width: 520px;
+}
+
+.faq-heading > p:last-child {
+  max-width: 420px;
+}
+
+.faq-list {
+  border-top:
+    1px solid var(--line);
+}
+
+.faq-item {
+  border-bottom:
+    1px solid var(--line);
+}
+
+.faq-item summary {
+  position: relative;
+
+  padding:
+    28px
+    46px
+    28px
+    0;
+
+  color: var(--ink);
+
+  cursor: pointer;
+
+  list-style: none;
+
+  font-family: var(--serif);
+
+  font-size:
+    clamp(
+      1.05rem,
+      1.8vw,
+      1.3rem
+    );
+
+  line-height: 1.45;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  position: absolute;
+
+  top: 50%;
+  right: 3px;
+
+  width: 17px;
+  height: 17px;
+
+  content: "";
+
+  background:
+    linear-gradient(
+      var(--forest),
+      var(--forest)
+    )
+    center / 17px 1px
+    no-repeat,
+
+    linear-gradient(
+      var(--forest),
+      var(--forest)
+    )
+    center / 1px 17px
+    no-repeat;
+
+  opacity: .72;
+
+  transform:
+    translateY(-50%);
+
+  transition:
+    transform .25s ease,
+    opacity .25s ease;
+}
+
+.faq-item[open]
+summary::after {
+  transform:
+    translateY(-50%)
+    rotate(45deg);
+
+  opacity: 1;
+}
+
+.faq-answer {
+  max-width: 650px;
+
+  padding:
+    0 45px
+    27px 0;
+}
+
+.faq-answer p {
+  margin-bottom: 0;
+}
+
+
+/* ========================================
+   CONTACT
+   ======================================== */
+
+.contact-section {
+  border-bottom:
+    1px solid var(--line);
+}
+
+.contact-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(260px, .8fr)
+    minmax(0, 1.2fr);
+
+  gap:
+    clamp(
+      65px,
+      10vw,
+      145px
+    );
+
+  align-items: start;
+}
+
+.contact-heading h2 {
+  max-width: 600px;
+}
+
+.contact-heading .lead {
+  margin-bottom: 13px;
+}
+
+.contact-heading > p:last-child {
+  max-width: 430px;
+}
+
+.contact-form {
+  max-width: 680px;
+}
+
+.contact-form .form-field {
+  margin-bottom: 31px;
+}
+
+.contact-form .form-field:last-of-type {
+  margin-bottom: 0;
+}
+
+.contact-submit {
+  justify-content: flex-end;
+
+  padding-top: 12px;
+}
+
+
+/* ========================================
    TABLET
    ======================================== */
 
@@ -3142,7 +4389,9 @@ main::before {
     display: none;
   }
 
-  .process-step {
+  .process-step,
+  .process-step:first-child,
+  .process-step:last-child {
     padding-top: 25px;
 
     border-top:
@@ -3156,7 +4405,7 @@ main::before {
   }
 
   .process-mark {
-    top: -7px;
+    top: -5px;
   }
 
   .puppy-detail-top {
@@ -3509,30 +4758,7 @@ main::before {
 
 
   /* -------------------------
-     INTRO
-     ------------------------- */
-
-  .home-intro {
-    width:
-      calc(100% - 40px);
-
-    padding:
-      68px 0;
-  }
-
-  .home-intro-grid {
-    grid-template-columns: 1fr;
-
-    gap: 22px;
-  }
-
-  .home-intro-copy {
-    padding-top: 0;
-  }
-
-
-  /* -------------------------
-     PUPPIES
+     FEATURED PUPPIES
      ------------------------- */
 
   .featured-puppies-section {
@@ -3558,6 +4784,170 @@ main::before {
 
   .puppy-card-photo {
     margin-bottom: 18px;
+  }
+
+
+  /* -------------------------
+     PUPPY WELCOME MODAL
+     ------------------------- */
+
+  .puppy-welcome-modal {
+    padding:
+      max(
+        14px,
+        env(safe-area-inset-top)
+      )
+      12px
+      max(
+        14px,
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  .puppy-welcome-backdrop {
+    background:
+      rgba(
+        24,
+        29,
+        22,
+        .78
+      );
+
+    -webkit-backdrop-filter:
+      blur(4px);
+
+    backdrop-filter:
+      blur(4px);
+  }
+
+  .puppy-welcome-dialog {
+    width: 100%;
+
+    min-height: 0;
+
+    max-height:
+      calc(
+        100svh - 28px
+      );
+
+    padding:
+      58px
+      30px
+      45px;
+
+    background-position: center;
+
+    background-size: 100% 100%;
+
+    box-shadow:
+      0 24px 65px
+      rgba(
+        14,
+        17,
+        13,
+        .42
+      );
+
+    transform:
+      translateY(18px)
+      scale(.99);
+  }
+
+  .puppy-welcome-content {
+    max-width: 420px;
+  }
+
+  .puppy-welcome-eyebrow {
+    margin-bottom: 14px;
+
+    font-size: .58rem;
+
+    letter-spacing: .16em;
+  }
+
+  .puppy-welcome-content h2 {
+    max-width: 360px;
+
+    margin-bottom: 20px;
+
+    font-size:
+      clamp(
+        1.85rem,
+        8.5vw,
+        2.75rem
+      );
+
+    line-height: 1.09;
+  }
+
+  .puppy-welcome-copy {
+    max-width: 360px;
+  }
+
+  .puppy-welcome-copy p {
+    margin-bottom: 12px;
+
+    font-size: .84rem;
+
+    line-height: 1.62;
+  }
+
+  .puppy-welcome-actions {
+    width: 100%;
+
+    margin-top: 25px;
+
+    gap: 16px;
+  }
+
+  .puppy-welcome-actions
+  .button {
+    width: 100%;
+
+    min-width: 0;
+  }
+
+  .puppy-welcome-link {
+    font-size: .67rem;
+  }
+
+  .puppy-welcome-note {
+    max-width: 310px;
+
+    margin-top: 21px;
+
+    font-size: .72rem;
+  }
+
+  .puppy-welcome-close {
+    top: 17px;
+    right: 18px;
+
+    width: 38px;
+    height: 38px;
+  }
+
+
+  /* -------------------------
+     INTRO
+     ------------------------- */
+
+  .home-intro {
+    width:
+      calc(100% - 40px);
+
+    padding:
+      68px 0;
+  }
+
+  .home-intro-grid {
+    grid-template-columns: 1fr;
+
+    gap: 22px;
+  }
+
+  .home-intro-copy {
+    padding-top: 0;
   }
 
 
@@ -3663,7 +5053,7 @@ main::before {
   }
 
   .process-mark {
-    top: -7px;
+    top: -5px;
   }
 
   .process-step p {
@@ -3696,7 +5086,7 @@ main::before {
 
 
   /* -------------------------
-     FAQ
+     FAQ TEASER
      ------------------------- */
 
   .faq-teaser {
@@ -3812,12 +5202,62 @@ main::before {
     gap: 17px;
   }
 
+  .puppy-filters {
+    margin:
+      -5px 0
+      65px;
+
+    gap: 8px;
+  }
+
+  .puppy-filter {
+    min-height: 39px;
+
+    padding:
+      9px 14px;
+
+    font-size: .61rem;
+  }
+
   .inventory-group {
-    margin-bottom: 72px;
+    margin-bottom: 90px;
   }
 
   .inventory-group-heading {
-    margin-bottom: 30px;
+    margin-bottom: 35px;
+  }
+
+  .inventory-group-heading h2 {
+    margin-bottom: 25px;
+
+    font-size:
+      clamp(
+        2.25rem,
+        11vw,
+        3.3rem
+      );
+  }
+
+  .inventory-contact-inner {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+  }
+
+  .inventory-contact-inner
+  > div:last-child {
+    padding-top: 0;
+  }
+
+  .inventory-process
+  .section-heading {
+    margin-bottom: 35px;
+  }
+
+  .inventory-page
+  .puppy-card-copy {
+    padding:
+      0 3px;
   }
 
 
@@ -3951,1276 +5391,18 @@ main::before {
       24px 0 0;
   }
 
+  .transport-mark {
+    margin-bottom: 20px;
+  }
+
   .transport-option p {
     max-width: 430px;
   }
 
 
   /* -------------------------
-     NOT FOUND
+     APPLICATION
      ------------------------- */
-
-  .puppy-not-found {
-    width:
-      calc(100% - 40px);
-  }
-
-}
-
-
-/* ========================================
-   SMALL MOBILE
-   ======================================== */
-
-@media (
-  max-width: 420px
-) {
-
-  .hero h1 {
-    font-size:
-      clamp(
-        3.25rem,
-        16.5vw,
-        4.35rem
-      );
-  }
-
-  .button {
-    min-height: 48px;
-
-    padding:
-      12px 20px;
-  }
-
-}
-
-/* ========================================
-   PUPPIES PAGE
-   ======================================== */
-
-
-/* ========================================
-   FILTERS
-   ======================================== */
-
-.puppy-filters {
-  display: flex;
-
-  margin:
-    -18px 0
-    clamp(
-      70px,
-      9vw,
-      110px
-    );
-
-  flex-wrap: wrap;
-
-  align-items: center;
-
-  gap:
-    10px;
-}
-
-
-.puppy-filter {
-  display: inline-flex;
-
-  min-height: 42px;
-
-  padding:
-    10px 17px;
-
-  align-items: center;
-  justify-content: center;
-
-  color: var(--muted);
-
-  border:
-    1px solid var(--line);
-
-  border-radius: 999px;
-
-  background:
-    rgba(
-      255,
-      253,
-      248,
-      .2
-    );
-
-  font-size: .66rem;
-
-  font-weight: 600;
-
-  letter-spacing: .055em;
-
-  transition:
-    color .2s ease,
-    background .2s ease,
-    border-color .2s ease,
-    transform .2s ease;
-}
-
-
-.puppy-filter:hover {
-  color: var(--forest);
-
-  border-color:
-    rgba(
-      53,
-      71,
-      53,
-      .38
-    );
-
-  transform:
-    translateY(-1px);
-}
-
-
-.puppy-filter.active,
-.puppy-filter[aria-current="page"] {
-  color: var(--white);
-
-  background: var(--forest);
-
-  border-color: var(--forest);
-}
-
-
-/* ========================================
-   INVENTORY CONTAINER
-   ======================================== */
-
-.puppy-inventory {
-  width: 100%;
-}
-
-
-.inventory-group {
-  margin-bottom:
-    clamp(
-      90px,
-      12vw,
-      150px
-    );
-}
-
-
-.inventory-group:last-child {
-  margin-bottom: 0;
-}
-
-
-.inventory-group-heading {
-  display: flex;
-
-  margin-bottom:
-    clamp(
-      38px,
-      5vw,
-      58px
-    );
-
-  align-items: flex-end;
-  justify-content: space-between;
-
-  gap: 40px;
-
-  border-bottom:
-    1px solid var(--line);
-}
-
-
-.inventory-group-heading > div {
-  width: 100%;
-}
-
-
-.inventory-group-heading .eyebrow {
-  margin-bottom: 13px;
-}
-
-
-.inventory-group-heading h2 {
-  max-width: 760px;
-
-  margin-bottom:
-    clamp(
-      25px,
-      3vw,
-      36px
-    );
-
-  font-size:
-    clamp(
-      2.4rem,
-      4.5vw,
-      4.2rem
-    );
-}
-
-
-/* ========================================
-   INVENTORY EMPTY STATE
-   ======================================== */
-
-.inventory-empty {
-  max-width: 700px;
-
-  padding:
-    20px 0
-    clamp(
-      50px,
-      7vw,
-      90px
-    );
-}
-
-
-.inventory-empty h2 {
-  max-width: 650px;
-}
-
-
-.inventory-empty > p:not(.eyebrow) {
-  max-width: 540px;
-
-  margin-bottom: 30px;
-}
-
-
-/* ========================================
-   BETWEEN LITTERS / CONTACT
-   ======================================== */
-
-.inventory-contact {
-  border-top:
-    1px solid var(--line);
-
-  border-bottom:
-    1px solid var(--line);
-}
-
-
-.inventory-contact-inner {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(320px, .85fr);
-
-  gap:
-    clamp(
-      60px,
-      10vw,
-      150px
-    );
-
-  align-items: start;
-}
-
-
-.inventory-contact-inner h2 {
-  max-width: 650px;
-
-  margin-bottom: 0;
-}
-
-
-.inventory-contact-inner
-> div:last-child {
-  padding-top: 34px;
-}
-
-
-.inventory-contact-inner
-.button {
-  margin-top: 10px;
-}
-
-
-/* ========================================
-   INVENTORY PROCESS
-   ======================================== */
-
-.inventory-process {
-  border-bottom:
-    1px solid var(--line);
-}
-
-
-/*
-  These replace the numbered template-like
-  process labels with a tiny organic mark.
-*/
-
-.process-mark {
-  display: block;
-
-  width: 23px;
-  height: 9px;
-
-  margin-bottom: 52px;
-
-  border-radius:
-    100% 0
-    100% 0;
-
-  background: var(--gold);
-
-  opacity: .72;
-
-  transform:
-    rotate(-13deg);
-}
-
-
-.inventory-process
-.process-step {
-  position: relative;
-}
-
-
-.inventory-process
-.process-step h3 {
-  font-size:
-    clamp(
-      1.5rem,
-      2.4vw,
-      2.1rem
-    );
-}
-
-
-/* ========================================
-   SOFTEN THE INVENTORY CARDS
-   ======================================== */
-
-/*
-  The cards should feel like photographs
-  laid into the site rather than UI cards.
-*/
-
-.inventory-page
-.puppy-card {
-  position: relative;
-}
-
-
-.inventory-page
-.puppy-card-photo {
-  box-shadow:
-    0 16px 40px
-    rgba(
-      48,
-      43,
-      32,
-      .055
-    );
-}
-
-
-.inventory-page
-.puppy-card-copy {
-  padding:
-    0 7px;
-}
-
-
-.inventory-page
-.puppy-card h3 {
-  margin-bottom: 8px;
-}
-
-
-.inventory-page
-.puppy-price {
-  margin-top: 4px;
-}
-
-
-.inventory-page
-.puppy-card-link {
-  border-bottom-color:
-    rgba(
-      53,
-      71,
-      53,
-      .22
-    );
-}
-
-
-/* ========================================
-   INVENTORY LOADING
-   ======================================== */
-
-.puppy-inventory
-.puppy-loading {
-  width: 100%;
-
-  min-height: 320px;
-
-  padding:
-    70px 0;
-}
-
-
-/* ========================================
-   REMOVE OLD NUMBERED VISUAL LANGUAGE
-   ======================================== */
-
-/*
-  This also removes the numbered treatment
-  from the homepage process and breed
-  sections without requiring us to rebuild
-  their HTML immediately.
-*/
-
-.breed-number,
-.process-number,
-.transport-number {
-  display: none;
-}
-
-
-.breed-row {
-  grid-template-columns:
-    minmax(0, 1fr)
-    80px;
-}
-
-
-.process-step {
-  position: relative;
-}
-
-
-.process-step::before {
-  display: block;
-
-  width: 23px;
-  height: 9px;
-
-  margin-bottom: 52px;
-
-  border-radius:
-    100% 0
-    100% 0;
-
-  content: "";
-
-  background: var(--gold);
-
-  opacity: .72;
-
-  transform:
-    rotate(-13deg);
-}
-
-
-/*
-  The inventory process already contains
-  a real .process-mark, so don't duplicate it.
-*/
-
-.inventory-process
-.process-step::before {
-  display: none;
-}
-
-
-/* ========================================
-   TRANSPORT MARKS
-   ======================================== */
-
-.transport-option {
-  position: relative;
-}
-
-
-.transport-mark {
-  display: block;
-
-  width: 23px;
-  height: 9px;
-
-  margin-bottom: 44px;
-
-  border-radius:
-    100% 0
-    100% 0;
-
-  background: var(--gold);
-
-  opacity: .72;
-
-  transform:
-    rotate(-13deg);
-}
-
-
-/* ========================================
-   MOBILE — PUPPIES PAGE
-   ======================================== */
-
-@media (
-  max-width: 760px
-) {
-
-  .puppy-filters {
-    margin:
-      -5px 0
-      65px;
-
-    gap: 8px;
-  }
-
-
-  .puppy-filter {
-    min-height: 39px;
-
-    padding:
-      9px 14px;
-
-    font-size: .61rem;
-  }
-
-
-  .inventory-group {
-    margin-bottom: 90px;
-  }
-
-
-  .inventory-group-heading {
-    margin-bottom: 35px;
-  }
-
-
-  .inventory-group-heading h2 {
-    margin-bottom: 25px;
-
-    font-size:
-      clamp(
-        2.25rem,
-        11vw,
-        3.3rem
-      );
-  }
-
-
-  .inventory-contact-inner {
-    grid-template-columns: 1fr;
-
-    gap: 25px;
-  }
-
-
-  .inventory-contact-inner
-  > div:last-child {
-    padding-top: 0;
-  }
-
-
-  .inventory-process
-  .section-heading {
-    margin-bottom: 35px;
-  }
-
-
-  .process-mark,
-  .process-step::before,
-  .transport-mark {
-    margin-bottom: 20px;
-  }
-
-
-  .breed-row {
-    grid-template-columns:
-      minmax(0, 1fr)
-      48px;
-  }
-
-
-  .breed-copy {
-    padding-right: 12px;
-  }
-
-}
-
-
-/* ========================================
-   SMALL MOBILE
-   ======================================== */
-
-@media (
-  max-width: 420px
-) {
-
-  .puppy-filters {
-    align-items: stretch;
-  }
-
-
-  .puppy-filter {
-    flex:
-      1 1 auto;
-  }
-
-
-  .inventory-page
-  .puppy-card-copy {
-    padding:
-      0 3px;
-  }
-
-}
-/* ========================================
-   APPLICATION / FAQ / CONTACT
-   ======================================== */
-
-
-/* ========================================
-   APPLICATION HERO
-   ======================================== */
-
-.application-hero {
-  width:
-    min(
-      calc(100% - 64px),
-      var(--max)
-    );
-
-  margin: 0 auto;
-
-  padding:
-    clamp(
-      105px,
-      14vw,
-      185px
-    )
-    0
-    clamp(
-      80px,
-      10vw,
-      125px
-    );
-
-  border-bottom:
-    1px solid var(--line);
-}
-
-.application-hero-inner {
-  max-width: 900px;
-}
-
-.application-hero h1 {
-  max-width: 850px;
-
-  margin-bottom: 34px;
-
-  color: var(--ink);
-
-  font-size:
-    clamp(
-      4rem,
-      8vw,
-      7.5rem
-    );
-
-  letter-spacing: -.06em;
-}
-
-.application-hero .lead {
-  max-width: 650px;
-
-  margin-bottom: 0;
-}
-
-
-/* ========================================
-   APPLICATION LAYOUT
-   ======================================== */
-
-.application-section {
-  border-bottom:
-    1px solid var(--line);
-}
-
-.application-layout {
-  display: grid;
-
-  grid-template-columns:
-    minmax(260px, .7fr)
-    minmax(0, 1.3fr);
-
-  gap:
-    clamp(
-      65px,
-      10vw,
-      145px
-    );
-
-  align-items: start;
-}
-
-.application-intro {
-  position: sticky;
-
-  top: 120px;
-}
-
-.application-intro h2 {
-  max-width: 540px;
-}
-
-.application-intro > p:not(.eyebrow) {
-  max-width: 430px;
-}
-
-
-/* ========================================
-   FORM
-   ======================================== */
-
-.clearview-form {
-  width: 100%;
-}
-
-.form-section {
-  padding:
-    0 0
-    clamp(
-      65px,
-      8vw,
-      90px
-    );
-
-  margin-bottom:
-    clamp(
-      65px,
-      8vw,
-      90px
-    );
-
-  border-bottom:
-    1px solid var(--line);
-}
-
-.form-section:last-of-type {
-  margin-bottom: 0;
-}
-
-.form-section-heading {
-  margin-bottom:
-    clamp(
-      35px,
-      5vw,
-      50px
-    );
-}
-
-.form-kicker {
-  margin-bottom: 11px;
-
-  color: var(--gold);
-
-  font-size: .64rem;
-
-  font-weight: 600;
-
-  letter-spacing: .16em;
-
-  text-transform: uppercase;
-}
-
-.form-section-heading h3 {
-  max-width: 600px;
-
-  margin-bottom: 0;
-
-  font-size:
-    clamp(
-      1.8rem,
-      3.2vw,
-      2.8rem
-    );
-}
-
-
-/* ========================================
-   FIELD GRID
-   ======================================== */
-
-.form-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(
-      2,
-      minmax(0, 1fr)
-    );
-
-  gap:
-    34px
-    30px;
-}
-
-.form-field {
-  position: relative;
-
-  display: flex;
-
-  min-width: 0;
-
-  flex-direction: column;
-}
-
-.form-field-full {
-  margin-top: 34px;
-}
-
-.form-field label {
-  margin-bottom: 10px;
-
-  color: var(--ink-soft);
-
-  font-size: .67rem;
-
-  font-weight: 600;
-
-  letter-spacing: .055em;
-}
-
-
-/* ========================================
-   INPUTS
-   ======================================== */
-
-.form-field input,
-.form-field select,
-.form-field textarea {
-  width: 100%;
-
-  margin: 0;
-
-  padding:
-    13px 0
-    14px;
-
-  color: var(--ink);
-
-  border: 0;
-
-  border-bottom:
-    1px solid
-    rgba(
-      41,
-      41,
-      31,
-      .28
-    );
-
-  border-radius: 0;
-
-  outline: none;
-
-  background: transparent;
-
-  box-shadow: none;
-
-  font-family: var(--sans);
-
-  font-size: .95rem;
-
-  line-height: 1.55;
-
-  transition:
-    border-color .2s ease,
-    box-shadow .2s ease;
-}
-
-.form-field textarea {
-  min-height: 130px;
-
-  padding-top: 15px;
-
-  resize: vertical;
-}
-
-.form-field select {
-  min-height: 52px;
-
-  padding-right: 30px;
-
-  cursor: pointer;
-
-  -webkit-appearance: none;
-  appearance: none;
-
-  background-image:
-    linear-gradient(
-      45deg,
-      transparent 50%,
-      var(--muted) 50%
-    ),
-    linear-gradient(
-      135deg,
-      var(--muted) 50%,
-      transparent 50%
-    );
-
-  background-position:
-    calc(100% - 8px)
-    calc(50% - 2px),
-
-    calc(100% - 3px)
-    calc(50% - 2px);
-
-  background-size:
-    5px 5px,
-    5px 5px;
-
-  background-repeat:
-    no-repeat;
-}
-
-.form-field input::placeholder,
-.form-field textarea::placeholder {
-  color:
-    rgba(
-      116,
-      114,
-      101,
-      .64
-    );
-}
-
-.form-field input:hover,
-.form-field select:hover,
-.form-field textarea:hover {
-  border-bottom-color:
-    rgba(
-      53,
-      71,
-      53,
-      .55
-    );
-}
-
-.form-field input:focus,
-.form-field select:focus,
-.form-field textarea:focus {
-  border-bottom-color:
-    var(--forest);
-
-  box-shadow:
-    0 1px 0
-    var(--forest);
-}
-
-
-/* ========================================
-   AUTOFILL
-   ======================================== */
-
-.form-field input:-webkit-autofill,
-.form-field input:-webkit-autofill:hover,
-.form-field input:-webkit-autofill:focus,
-.form-field textarea:-webkit-autofill,
-.form-field select:-webkit-autofill {
-  -webkit-text-fill-color:
-    var(--ink);
-
-  -webkit-box-shadow:
-    0 0 0 1000px
-    transparent
-    inset;
-
-  transition:
-    background-color
-    9999s ease-in-out
-    0s;
-}
-
-
-/* ========================================
-   SELECTED PUPPY
-   ======================================== */
-
-.selected-puppy-note {
-  position: relative;
-
-  margin:
-    -8px 0
-    38px;
-
-  padding:
-    18px 0
-    18px 22px;
-
-  border-left:
-    2px solid var(--gold);
-}
-
-.selected-puppy-note[hidden] {
-  display: none;
-}
-
-.selected-puppy-note span {
-  display: block;
-
-  margin-bottom: 3px;
-
-  color: var(--muted);
-
-  font-size: .64rem;
-
-  font-weight: 600;
-
-  letter-spacing: .07em;
-
-  text-transform: uppercase;
-}
-
-.selected-puppy-note strong {
-  color: var(--ink);
-
-  font-family: var(--serif);
-
-  font-size: 1.25rem;
-
-  font-weight: 400;
-}
-
-
-/* ========================================
-   FORM SUBMIT
-   ======================================== */
-
-.form-submit {
-  display: flex;
-
-  padding-top: 42px;
-
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 35px;
-}
-
-.form-submit p {
-  max-width: 390px;
-
-  margin-bottom: 0;
-
-  font-size: .8rem;
-}
-
-.form-submit .button {
-  flex: 0 0 auto;
-}
-
-
-/* ========================================
-   FAQ
-   ======================================== */
-
-.faq-section {
-  display: grid;
-
-  grid-template-columns:
-    minmax(260px, .72fr)
-    minmax(0, 1.28fr);
-
-  gap:
-    clamp(
-      65px,
-      10vw,
-      145px
-    );
-
-  border-bottom:
-    1px solid var(--line);
-}
-
-.faq-heading {
-  align-self: start;
-}
-
-.faq-heading h2 {
-  max-width: 520px;
-}
-
-.faq-heading > p:last-child {
-  max-width: 420px;
-}
-
-.faq-list {
-  border-top:
-    1px solid var(--line);
-}
-
-.faq-item {
-  border-bottom:
-    1px solid var(--line);
-}
-
-.faq-item summary {
-  position: relative;
-
-  padding:
-    28px
-    46px
-    28px
-    0;
-
-  color: var(--ink);
-
-  cursor: pointer;
-
-  list-style: none;
-
-  font-family: var(--serif);
-
-  font-size:
-    clamp(
-      1.05rem,
-      1.8vw,
-      1.3rem
-    );
-
-  line-height: 1.45;
-}
-
-.faq-item summary::-webkit-details-marker {
-  display: none;
-}
-
-.faq-item summary::after {
-  position: absolute;
-
-  top: 50%;
-  right: 3px;
-
-  width: 17px;
-  height: 17px;
-
-  content: "";
-
-  background:
-    linear-gradient(
-      var(--forest),
-      var(--forest)
-    )
-    center / 17px 1px
-    no-repeat,
-
-    linear-gradient(
-      var(--forest),
-      var(--forest)
-    )
-    center / 1px 17px
-    no-repeat;
-
-  opacity: .72;
-
-  transform:
-    translateY(-50%);
-
-  transition:
-    transform .25s ease,
-    opacity .25s ease;
-}
-
-.faq-item[open]
-summary::after {
-  transform:
-    translateY(-50%)
-    rotate(45deg);
-
-  opacity: 1;
-}
-
-.faq-answer {
-  max-width: 650px;
-
-  padding:
-    0 45px
-    27px 0;
-}
-
-.faq-answer p {
-  margin-bottom: 0;
-}
-
-
-/* ========================================
-   CONTACT
-   ======================================== */
-
-.contact-section {
-  border-bottom:
-    1px solid var(--line);
-}
-
-.contact-layout {
-  display: grid;
-
-  grid-template-columns:
-    minmax(260px, .8fr)
-    minmax(0, 1.2fr);
-
-  gap:
-    clamp(
-      65px,
-      10vw,
-      145px
-    );
-
-  align-items: start;
-}
-
-.contact-heading h2 {
-  max-width: 600px;
-}
-
-.contact-heading .lead {
-  margin-bottom: 13px;
-}
-
-.contact-heading > p:last-child {
-  max-width: 430px;
-}
-
-.contact-form {
-  max-width: 680px;
-}
-
-.contact-form .form-field {
-  margin-bottom: 31px;
-}
-
-.contact-form .form-field:last-of-type {
-  margin-bottom: 0;
-}
-
-.contact-submit {
-  justify-content: flex-end;
-
-  padding-top: 12px;
-}
-
-
-/* ========================================
-   MOBILE APPLICATION
-   ======================================== */
-
-@media (
-  max-width: 760px
-) {
 
   .application-hero {
     width:
@@ -5338,16 +5520,51 @@ summary::after {
     padding-top: 10px;
   }
 
+
+  /* -------------------------
+     NOT FOUND
+     ------------------------- */
+
+  .puppy-not-found {
+    width:
+      calc(100% - 40px);
+  }
+
 }
 
 
 /* ========================================
-   SMALL MOBILE APPLICATION
+   SMALL MOBILE
    ======================================== */
 
 @media (
   max-width: 420px
 ) {
+
+  .hero h1 {
+    font-size:
+      clamp(
+        3.25rem,
+        16.5vw,
+        4.35rem
+      );
+  }
+
+  .button {
+    min-height: 48px;
+
+    padding:
+      12px 20px;
+  }
+
+  .puppy-filters {
+    align-items: stretch;
+  }
+
+  .puppy-filter {
+    flex:
+      1 1 auto;
+  }
 
   .application-hero h1 {
     font-size:
@@ -5366,7 +5583,81 @@ summary::after {
     font-size: 1rem;
   }
 
+  .puppy-welcome-dialog {
+    padding:
+      54px
+      23px
+      38px;
+  }
+
+  .puppy-welcome-content h2 {
+    font-size:
+      clamp(
+        1.7rem,
+        8.7vw,
+        2.35rem
+      );
+  }
+
+  .puppy-welcome-copy p {
+    font-size: .8rem;
+  }
+
+  .puppy-welcome-close {
+    top: 14px;
+    right: 14px;
+
+    width: 36px;
+    height: 36px;
+  }
+
 }
+
+
+/* ========================================
+   SHORT MOBILE SCREENS
+   ======================================== */
+
+@media (
+  max-width: 760px
+) and (
+  max-height: 700px
+) {
+
+  .puppy-welcome-dialog {
+    padding:
+      50px
+      26px
+      32px;
+  }
+
+  .puppy-welcome-content h2 {
+    margin-bottom: 15px;
+
+    font-size: 1.75rem;
+  }
+
+  .puppy-welcome-copy p {
+    margin-bottom: 8px;
+
+    font-size: .76rem;
+
+    line-height: 1.5;
+  }
+
+  .puppy-welcome-actions {
+    margin-top: 18px;
+
+    gap: 12px;
+  }
+
+  .puppy-welcome-note {
+    margin-top: 15px;
+  }
+
+}
+
+
 /* ========================================
    REDUCED MOTION
    ======================================== */
@@ -5383,6 +5674,17 @@ summary::after {
   main::before {
     animation: none !important;
 
+    transform: none;
+  }
+
+  .puppy-welcome-modal,
+  .puppy-welcome-dialog {
+    transition: none !important;
+  }
+
+  .puppy-welcome-dialog,
+  .puppy-welcome-modal.open
+  .puppy-welcome-dialog {
     transform: none;
   }
 
