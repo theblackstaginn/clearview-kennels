@@ -11,43 +11,28 @@
   />
 
   <title>
-    Puppy Application | Clearview Kennels | Marshfield, Missouri
+    Puppy Application | Clearview Kennels
   </title>
 
   <meta
     name="description"
-    content="Apply for a Cavalier King Charles Spaniel or Cavapoo puppy from Clearview Kennels in Marshfield, Missouri. Learn about deposits, transportation, and the puppy process."
+    content="Apply for a Cavalier King Charles Spaniel or Cavapoo puppy from Clearview Kennels in Marshfield, Missouri, or contact Clearview with questions."
   />
 
-  <meta name="theme-color" content="#f4efe5" />
+  <meta
+    name="theme-color"
+    content="#f4efe5"
+  />
 
   <link
     rel="canonical"
     href="https://www.clearviewkennels.com/apply.html"
   />
 
-  <meta
-    property="og:title"
-    content="Puppy Application | Clearview Kennels"
-  />
 
-  <meta
-    property="og:description"
-    content="Begin your puppy application with Clearview Kennels in Marshfield, Missouri."
-  />
-
-  <meta
-    property="og:type"
-    content="website"
-  />
-
-  <meta
-    property="og:url"
-    content="https://www.clearviewkennels.com/apply.html"
-  />
-
-
-  <!-- FONTS -->
+  <!-- =====================================
+       FONTS
+       ===================================== -->
 
   <link
     rel="preconnect"
@@ -66,7 +51,9 @@
   />
 
 
-  <!-- STYLES -->
+  <!-- =====================================
+       STYLES
+       ===================================== -->
 
   <link
     rel="stylesheet"
@@ -76,12 +63,12 @@
 </head>
 
 
-<body class="interior-page application-page">
+<body class="interior-page apply-page">
 
 
-  <!-- ========================================
+  <!-- =====================================
        HEADER
-       ======================================== -->
+       ===================================== -->
 
   <header
     class="site-header scrolled"
@@ -123,34 +110,35 @@
     <nav
       class="site-nav"
       id="siteNav"
-      aria-label="Primary navigation"
+      aria-label="Main navigation"
     >
-
-      <a href="index.html">
-        Home
-      </a>
 
       <a href="puppies.html">
         Puppies
       </a>
 
+      <a href="index.html#breeds">
+        Our Breeds
+      </a>
+
       <a href="index.html#about">
-        Our Story
+        About
       </a>
 
       <a href="index.html#process">
-        The Process
+        How It Works
       </a>
 
-      <a href="#faq">
-        FAQ
+      <a href="#contact">
+        Contact
       </a>
 
       <a
         class="nav-cta"
         href="#application"
+        aria-current="page"
       >
-        Apply
+        Puppy Application
       </a>
 
     </nav>
@@ -158,417 +146,392 @@
   </header>
 
 
+  <!-- =====================================
+       MAIN
+       ===================================== -->
+
   <main>
 
 
-    <!-- ========================================
-         APPLICATION HERO
-         ======================================== -->
+    <!-- =====================================
+         INTRO
+         ===================================== -->
 
     <section class="application-hero">
 
-      <div class="application-hero-heading">
+      <div class="application-hero-inner">
 
         <p class="eyebrow">
-          Clearview Kennels
+          Puppy Application
         </p>
+
 
         <h1>
-          Let's find out
-          if it feels
-          <em>right.</em>
+          Tell us about
+          your family.
         </h1>
 
-      </div>
-
-
-      <div class="application-hero-copy">
 
         <p class="lead">
-          Bringing home a puppy is a
-          commitment, and finding the right
-          family matters just as much as
-          finding the right puppy.
+          Finding the right home matters.
+          This gives Clearview a chance to
+          get to know you before talking
+          through the next step.
         </p>
-
-        <p>
-          Tell Clearview a little about
-          yourself, your household, and
-          what you're looking for. If you
-          already have a puppy in mind,
-          you can include them below.
-        </p>
-
-        <a
-          class="text-link"
-          href="#application"
-        >
-          Begin the Application
-
-          <span aria-hidden="true">
-            ↓
-          </span>
-        </a>
 
       </div>
 
     </section>
 
 
-    <!-- ========================================
-         APPLICATION
-         ======================================== -->
+    <!-- =====================================
+         APPLICATION INTRO
+         ===================================== -->
 
     <section
       class="section application-section"
       id="application"
     >
 
-      <div class="application-heading">
-
-        <p class="eyebrow">
-          Puppy Application
-        </p>
-
-        <h2>
-          Tell us about
-          your family.
-        </h2>
-
-        <p>
-          There are no perfect answers.
-          Clearview simply wants to understand
-          the home, lifestyle, and family a
-          puppy may be joining.
-        </p>
-
-      </div>
+      <div class="application-layout">
 
 
-      <!--
-        IMPORTANT:
+        <div class="application-intro">
 
-        The form is intentionally plain HTML
-        for now.
-
-        Once Clearview decides where
-        applications should be delivered,
-        wire the form to Formspree or the
-        preferred form service.
-
-        Replace YOUR_FORM_ID below.
-      -->
-
-      <form
-        class="application-form"
-        action="https://formspree.io/f/YOUR_FORM_ID"
-        method="POST"
-      >
+          <p class="eyebrow">
+            A Little About You
+          </p>
 
 
-        <!-- CONTACT -->
-
-        <fieldset class="form-section">
-
-          <legend>
-            About You
-          </legend>
+          <h2>
+            Start the
+            conversation.
+          </h2>
 
 
-          <div class="form-grid">
+          <p>
+            You don't need to have every
+            detail figured out. Tell
+            Clearview about your household,
+            what you're looking for, and
+            whether a particular puppy has
+            already caught your eye.
+          </p>
 
 
-            <div class="form-field">
+          <p>
+            Submitting an application
+            doesn't automatically reserve
+            a puppy. Clearview will follow
+            up with you about availability
+            and the next steps.
+          </p>
 
-              <label for="firstName">
-                First Name
-              </label>
-
-              <input
-                id="firstName"
-                name="first_name"
-                type="text"
-                autocomplete="given-name"
-                required
-              />
-
-            </div>
+        </div>
 
 
-            <div class="form-field">
+        <!-- =================================
+             APPLICATION FORM
+             ================================= -->
 
-              <label for="lastName">
-                Last Name
-              </label>
+        <form
+          class="clearview-form application-form"
+          id="puppyApplication"
+          method="post"
+        >
 
-              <input
-                id="lastName"
-                name="last_name"
-                type="text"
-                autocomplete="family-name"
-                required
-              />
+          <!--
+            We can connect the action to
+            Clearview's preferred form
+            service once that destination
+            is confirmed.
+          -->
+
+
+          <input
+            type="hidden"
+            id="selectedPuppy"
+            name="puppy"
+            value=""
+          />
+
+
+          <div class="form-section">
+
+            <div class="form-section-heading">
+
+              <p class="form-kicker">
+                Your Information
+              </p>
+
+              <h3>
+                Who are we talking to?
+              </h3>
 
             </div>
 
 
-            <div class="form-field">
+            <div class="form-grid">
 
-              <label for="email">
-                Email
-              </label>
+              <div class="form-field">
 
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                required
-              />
+                <label for="firstName">
+                  First name
+                </label>
+
+                <input
+                  type="text"
+                  id="firstName"
+                  name="first_name"
+                  autocomplete="given-name"
+                  required
+                />
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="lastName">
+                  Last name
+                </label>
+
+                <input
+                  type="text"
+                  id="lastName"
+                  name="last_name"
+                  autocomplete="family-name"
+                  required
+                />
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="email">
+                  Email
+                </label>
+
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  autocomplete="email"
+                  required
+                />
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="phone">
+                  Phone
+                </label>
+
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  autocomplete="tel"
+                  required
+                />
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="city">
+                  City
+                </label>
+
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  autocomplete="address-level2"
+                  required
+                />
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="state">
+                  State
+                </label>
+
+                <input
+                  type="text"
+                  id="state"
+                  name="state"
+                  autocomplete="address-level1"
+                  required
+                />
+
+              </div>
 
             </div>
-
-
-            <div class="form-field">
-
-              <label for="phone">
-                Phone
-              </label>
-
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                autocomplete="tel"
-                required
-              />
-
-            </div>
-
-
-            <div class="form-field form-field-wide">
-
-              <label for="location">
-                City &amp; State
-              </label>
-
-              <input
-                id="location"
-                name="location"
-                type="text"
-                autocomplete="address-level2"
-                required
-              />
-
-            </div>
-
 
           </div>
 
-        </fieldset>
+
+          <div class="form-section">
+
+            <div class="form-section-heading">
+
+              <p class="form-kicker">
+                The Puppy
+              </p>
+
+              <h3>
+                What are you looking for?
+              </h3>
+
+            </div>
 
 
-        <!-- PUPPY -->
+            <div
+              class="selected-puppy-note"
+              id="selectedPuppyNote"
+              hidden
+            >
 
-        <fieldset class="form-section">
+              <span>
+                You're asking about
+              </span>
 
-          <legend>
-            The Puppy You're Looking For
-          </legend>
+              <strong id="selectedPuppyName">
+              </strong>
+
+            </div>
 
 
-          <div class="form-grid">
+            <div class="form-grid">
+
+              <div class="form-field">
+
+                <label for="breedInterest">
+                  Breed
+                </label>
+
+                <select
+                  id="breedInterest"
+                  name="breed_interest"
+                  required
+                >
+
+                  <option
+                    value=""
+                    selected
+                    disabled
+                  >
+                    Choose a breed
+                  </option>
+
+                  <option value="cavalier">
+                    Cavalier King Charles Spaniel
+                  </option>
+
+                  <option value="cavapoo">
+                    Cavapoo
+                  </option>
+
+                  <option value="either">
+                    Open to either
+                  </option>
+
+                </select>
+
+              </div>
 
 
-            <div class="form-field form-field-wide">
+              <div class="form-field">
 
-              <label for="puppy">
-                Puppy
+                <label for="sexPreference">
+                  Sex preference
+                </label>
+
+                <select
+                  id="sexPreference"
+                  name="sex_preference"
+                >
+
+                  <option value="">
+                    No preference
+                  </option>
+
+                  <option value="female">
+                    Female
+                  </option>
+
+                  <option value="male">
+                    Male
+                  </option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+
+            <div class="form-field form-field-full">
+
+              <label for="puppyInterest">
+                Is there a particular puppy
+                you're interested in?
               </label>
 
               <input
-                id="puppy"
-                name="puppy"
                 type="text"
-                placeholder="Name of puppy, if you already have one in mind"
+                id="puppyInterest"
+                name="puppy_interest"
+                placeholder="Puppy's name, if applicable"
               />
 
             </div>
 
 
-            <div class="form-field">
+            <div class="form-field form-field-full">
 
-              <label for="breed">
-                Breed Preference
-              </label>
-
-              <select
-                id="breed"
-                name="breed"
-              >
-
-                <option value="">
-                  No preference yet
-                </option>
-
-                <option value="Cavalier King Charles Spaniel">
-                  Cavalier King Charles Spaniel
-                </option>
-
-                <option value="Cavapoo">
-                  Cavapoo
-                </option>
-
-              </select>
-
-            </div>
-
-
-            <div class="form-field">
-
-              <label for="sexPreference">
-                Sex Preference
-              </label>
-
-              <select
-                id="sexPreference"
-                name="sex_preference"
-              >
-
-                <option value="">
-                  No preference
-                </option>
-
-                <option value="Female">
-                  Female
-                </option>
-
-                <option value="Male">
-                  Male
-                </option>
-
-              </select>
-
-            </div>
-
-
-            <div class="form-field form-field-wide">
-
-              <label for="puppyNotes">
-                What are you hoping for
-                in your puppy?
+              <label for="lookingFor">
+                What are you hoping for in
+                your puppy?
               </label>
 
               <textarea
-                id="puppyNotes"
-                name="puppy_preferences"
+                id="lookingFor"
+                name="looking_for"
                 rows="5"
-                placeholder="Temperament, lifestyle, breed preference, or anything else you'd like Clearview to know."
+                placeholder="Temperament, lifestyle, companion needs, or anything else you'd like Clearview to know."
               ></textarea>
 
             </div>
 
-
           </div>
 
-        </fieldset>
 
+          <div class="form-section">
 
-        <!-- HOME -->
+            <div class="form-section-heading">
 
-        <fieldset class="form-section">
+              <p class="form-kicker">
+                Home Life
+              </p>
 
-          <legend>
-            Your Home
-          </legend>
-
-
-          <div class="form-grid">
-
-
-            <div class="form-field">
-
-              <label for="homeType">
-                Home Type
-              </label>
-
-              <select
-                id="homeType"
-                name="home_type"
-                required
-              >
-
-                <option
-                  value=""
-                  disabled
-                  selected
-                >
-                  Select one
-                </option>
-
-                <option value="House">
-                  House
-                </option>
-
-                <option value="Apartment">
-                  Apartment
-                </option>
-
-                <option value="Townhome">
-                  Townhome
-                </option>
-
-                <option value="Farm or acreage">
-                  Farm or acreage
-                </option>
-
-                <option value="Other">
-                  Other
-                </option>
-
-              </select>
+              <h3>
+                Tell us where
+                they'll be going.
+              </h3>
 
             </div>
 
 
-            <div class="form-field">
-
-              <label for="ownership">
-                Do You Own or Rent?
-              </label>
-
-              <select
-                id="ownership"
-                name="own_or_rent"
-                required
-              >
-
-                <option
-                  value=""
-                  disabled
-                  selected
-                >
-                  Select one
-                </option>
-
-                <option value="Own">
-                  Own
-                </option>
-
-                <option value="Rent">
-                  Rent
-                </option>
-
-                <option value="Other">
-                  Other
-                </option>
-
-              </select>
-
-            </div>
-
-
-            <div class="form-field form-field-wide">
+            <div class="form-field form-field-full">
 
               <label for="household">
                 Who lives in your household?
@@ -578,238 +541,213 @@
                 id="household"
                 name="household"
                 rows="4"
-                placeholder="Adults, children and their ages, or anyone else who lives in the home."
+                placeholder="Adults, children and their ages, or anyone else living in the home."
                 required
               ></textarea>
 
             </div>
 
 
-            <div class="form-field form-field-wide">
+            <div class="form-field form-field-full">
 
               <label for="pets">
-                Tell us about your current pets.
+                Tell us about your current
+                pets.
               </label>
 
               <textarea
                 id="pets"
                 name="current_pets"
                 rows="4"
-                placeholder="Dogs, cats, other animals, or no current pets."
+                placeholder="Dogs, cats, other animals, or simply let us know if there are no other pets."
               ></textarea>
 
             </div>
 
 
+            <div class="form-grid">
+
+              <div class="form-field">
+
+                <label for="homeType">
+                  Home
+                </label>
+
+                <select
+                  id="homeType"
+                  name="home_type"
+                  required
+                >
+
+                  <option
+                    value=""
+                    selected
+                    disabled
+                  >
+                    Choose one
+                  </option>
+
+                  <option value="house">
+                    House
+                  </option>
+
+                  <option value="apartment">
+                    Apartment
+                  </option>
+
+                  <option value="townhome">
+                    Townhome
+                  </option>
+
+                  <option value="farm-rural">
+                    Farm / Rural property
+                  </option>
+
+                  <option value="other">
+                    Other
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="yard">
+                  Yard
+                </label>
+
+                <select
+                  id="yard"
+                  name="yard"
+                >
+
+                  <option value="">
+                    Select
+                  </option>
+
+                  <option value="fenced">
+                    Fenced yard
+                  </option>
+
+                  <option value="unfenced">
+                    Unfenced yard
+                  </option>
+
+                  <option value="none">
+                    No yard
+                  </option>
+
+                  <option value="other">
+                    Other arrangement
+                  </option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+
+            <div class="form-field form-field-full">
+
+              <label for="dailyLife">
+                What would a normal day
+                look like for your puppy?
+              </label>
+
+              <textarea
+                id="dailyLife"
+                name="daily_life"
+                rows="5"
+                placeholder="Work schedule, time at home, exercise, where the puppy will spend the day, and anything else that helps paint the picture."
+                required
+              ></textarea>
+
+            </div>
+
           </div>
 
-        </fieldset>
+
+          <div class="form-section">
+
+            <div class="form-section-heading">
+
+              <p class="form-kicker">
+                Experience
+              </p>
+
+              <h3>
+                A little more context.
+              </h3>
+
+            </div>
 
 
-        <!-- EXPERIENCE -->
+            <div class="form-field form-field-full">
 
-        <fieldset class="form-section">
-
-          <legend>
-            Life With Your Puppy
-          </legend>
-
-
-          <div class="form-grid">
-
-
-            <div class="form-field form-field-wide">
-
-              <label for="experience">
+              <label for="dogExperience">
                 Tell us about your experience
                 with dogs.
               </label>
 
               <textarea
-                id="experience"
+                id="dogExperience"
                 name="dog_experience"
-                rows="5"
-                required
+                rows="4"
+                placeholder="First-time puppy family is perfectly okay—just tell us where you're starting."
               ></textarea>
 
             </div>
 
 
-            <div class="form-field form-field-wide">
+            <div class="form-field form-field-full">
 
-              <label for="daytime">
-                What will a typical day look
-                like for your puppy?
-              </label>
-
-              <textarea
-                id="daytime"
-                name="typical_day"
-                rows="5"
-                placeholder="Work schedules, time at home, exercise, training, and how much time the puppy may spend alone."
-                required
-              ></textarea>
-
-            </div>
-
-
-            <div class="form-field form-field-wide">
-
-              <label for="why">
-                What made you decide this is
-                the right time for a puppy?
-              </label>
-
-              <textarea
-                id="why"
-                name="why_now"
-                rows="5"
-                required
-              ></textarea>
-
-            </div>
-
-
-          </div>
-
-        </fieldset>
-
-
-        <!-- TRANSPORT -->
-
-        <fieldset class="form-section">
-
-          <legend>
-            Bringing Your Puppy Home
-          </legend>
-
-
-          <div class="form-grid">
-
-
-            <div class="form-field form-field-wide">
-
-              <label for="transport">
-                Preferred Transportation
-              </label>
-
-              <select
-                id="transport"
-                name="transportation"
-              >
-
-                <option value="">
-                  Not sure yet
-                </option>
-
-                <option value="Personal pickup">
-                  Personal pickup
-                </option>
-
-                <option value="Ground transportation">
-                  Ground transportation
-                </option>
-
-                <option value="Flight nanny">
-                  Flight nanny
-                </option>
-
-              </select>
-
-            </div>
-
-
-            <div class="form-field form-field-wide">
-
-              <label for="anythingElse">
+              <label for="questions">
                 Anything else you'd like
                 Clearview to know?
               </label>
 
               <textarea
-                id="anythingElse"
+                id="questions"
                 name="additional_information"
-                rows="6"
+                rows="5"
               ></textarea>
 
             </div>
 
+          </div>
+
+
+          <div class="form-submit">
+
+            <p>
+              Clearview will review your
+              application and follow up
+              directly.
+            </p>
+
+
+            <button
+              class="button button-dark"
+              type="submit"
+            >
+              Send Application
+            </button>
 
           </div>
 
-        </fieldset>
+        </form>
 
-
-        <!-- AGREEMENT -->
-
-        <div class="application-agreement">
-
-          <label class="checkbox-field">
-
-            <input
-              type="checkbox"
-              name="deposit_acknowledgement"
-              value="Yes"
-              required
-            />
-
-            <span>
-              I understand that approved
-              families may reserve an
-              available puppy with a
-              $300 deposit.
-            </span>
-
-          </label>
-
-
-          <label class="checkbox-field">
-
-            <input
-              type="checkbox"
-              name="information_confirmation"
-              value="Yes"
-              required
-            />
-
-            <span>
-              I confirm that the information
-              I've provided is accurate to
-              the best of my knowledge.
-            </span>
-
-          </label>
-
-        </div>
-
-
-        <div class="application-submit">
-
-          <button
-            class="button button-dark"
-            type="submit"
-          >
-            Send My Application
-          </button>
-
-          <p>
-            Sending an application does not
-            obligate you to purchase a puppy
-            and does not guarantee approval
-            or availability.
-          </p>
-
-        </div>
-
-
-      </form>
+      </div>
 
     </section>
 
 
-    <!-- ========================================
+    <!-- =====================================
          FAQ
-         ======================================== -->
+         ===================================== -->
 
     <section
       class="section faq-section"
@@ -822,15 +760,16 @@
           Good to Know
         </p>
 
+
         <h2>
-          Before you
-          bring them home.
+          Before you apply.
         </h2>
 
+
         <p>
-          The basics about availability,
-          deposits, transportation, and
-          working with Clearview.
+          A few of the things families
+          commonly want to know before
+          reaching out.
         </p>
 
       </div>
@@ -849,13 +788,35 @@
           <div class="faq-answer">
 
             <p>
-              Puppies listed as available
-              on the website are currently
-              looking for families.
-              Availability can change, so
-              contact Clearview if you're
-              interested in a specific
-              puppy.
+              Puppies shown as available
+              on the Puppies page are
+              currently looking for their
+              families. Availability can
+              change, so Clearview will
+              confirm the puppy's status
+              when speaking with you.
+            </p>
+
+          </div>
+
+        </details>
+
+
+        <details class="faq-item">
+
+          <summary>
+            Does applying reserve a puppy?
+          </summary>
+
+          <div class="faq-answer">
+
+            <p>
+              No. An application starts
+              the conversation. Once an
+              application is approved,
+              Clearview can explain the
+              reservation process for an
+              available puppy.
             </p>
 
           </div>
@@ -872,9 +833,12 @@
           <div class="faq-answer">
 
             <p>
-              Approved families may reserve
-              an available puppy with a
-              $300 deposit.
+              The current reservation
+              deposit shown on the site
+              is $300 for approved
+              families. Clearview will
+              confirm the terms before
+              any payment is made.
             </p>
 
           </div>
@@ -885,103 +849,19 @@
         <details class="faq-item">
 
           <summary>
-            Does submitting an application
-            reserve a puppy?
+            Can I apply if I don't see
+            the right puppy yet?
           </summary>
 
           <div class="faq-answer">
 
             <p>
-              No. An application begins the
-              conversation with Clearview.
-              A puppy is not considered
-              reserved simply because an
-              application has been
-              submitted.
-            </p>
-
-          </div>
-
-        </details>
-
-
-        <details class="faq-item">
-
-          <summary>
-            Where is Clearview Kennels
-            located?
-          </summary>
-
-          <div class="faq-answer">
-
-            <p>
-              Clearview Kennels is located
-              in Marshfield, Missouri.
-            </p>
-
-          </div>
-
-        </details>
-
-
-        <details class="faq-item">
-
-          <summary>
-            What breeds does Clearview
-            raise?
-          </summary>
-
-          <div class="faq-answer">
-
-            <p>
-              Clearview raises Cavalier
-              King Charles Spaniels and
-              Cavapoos.
-            </p>
-
-          </div>
-
-        </details>
-
-
-        <details class="faq-item">
-
-          <summary>
-            Can I get a puppy if I don't
-            live in Missouri?
-          </summary>
-
-          <div class="faq-answer">
-
-            <p>
-              Clearview works with families
-              both locally and farther away.
-              Depending on your location,
-              personal pickup, ground
-              transportation, or a flight
-              nanny may be options.
-            </p>
-
-          </div>
-
-        </details>
-
-
-        <details class="faq-item">
-
-          <summary>
-            Can I ask about an upcoming
-            litter?
-          </summary>
-
-          <div class="faq-answer">
-
-            <p>
-              Yes. If the puppy you're
+              Yes. You can contact
+              Clearview about upcoming
+              puppies and future litters
+              even when the puppy you're
               looking for isn't currently
-              available, contact Clearview
-              and ask about upcoming
-              Cavaliers or Cavapoos.
+              listed.
             </p>
 
           </div>
@@ -992,18 +872,40 @@
         <details class="faq-item">
 
           <summary>
-            Can I ask about pedigree or
-            registration information?
+            What if I live outside Missouri?
           </summary>
 
           <div class="faq-answer">
 
             <p>
-              Yes. Clearview can provide
-              additional information about
-              a puppy's parents, pedigree,
-              and registration when
-              applicable.
+              Clearview works with
+              families both locally and
+              farther away. Depending on
+              the situation, personal
+              pickup, ground transportation,
+              or flight-nanny arrangements
+              may be discussed.
+            </p>
+
+          </div>
+
+        </details>
+
+
+        <details class="faq-item">
+
+          <summary>
+            Can I ask questions before
+            submitting an application?
+          </summary>
+
+          <div class="faq-answer">
+
+            <p>
+              Absolutely. Use the contact
+              section below if you have a
+              question first or aren't
+              ready to apply yet.
             </p>
 
           </div>
@@ -1016,65 +918,145 @@
     </section>
 
 
-    <!-- ========================================
+    <!-- =====================================
          CONTACT
-         ======================================== -->
+         ===================================== -->
 
     <section
       class="section contact-section"
       id="contact"
     >
 
-      <div class="contact-heading">
-
-        <p class="eyebrow">
-          Talk With Clearview
-        </p>
-
-        <h2>
-          Still have
-          a question?
-        </h2>
-
-      </div>
+      <div class="contact-layout">
 
 
-      <div class="contact-copy">
+        <div class="contact-heading">
 
-        <p class="lead">
-          You don't have to have everything
-          figured out before reaching out.
-        </p>
-
-        <p>
-          Ask about a puppy, an upcoming
-          litter, transportation, or anything
-          else you'd like to understand
-          before moving forward.
-        </p>
+          <p class="eyebrow">
+            Contact Clearview
+          </p>
 
 
-        <!--
-          Replace the email address below
-          when Clearview provides the
-          preferred public contact email.
-        -->
+          <h2>
+            Have a question first?
+          </h2>
 
-        <a
-          class="button button-dark"
-          href="mailto:YOUR_EMAIL_HERE"
+
+          <p class="lead">
+            That's welcome too.
+          </p>
+
+
+          <p>
+            Ask about a puppy, an upcoming
+            litter, transportation, or
+            anything else you'd like to
+            understand before applying.
+          </p>
+
+        </div>
+
+
+        <form
+          class="clearview-form contact-form"
+          id="contactForm"
+          method="post"
         >
-          Email Clearview
-        </a>
+
+          <!--
+            Connect the action once the
+            preferred form destination is
+            confirmed.
+          -->
+
+
+          <div class="form-field">
+
+            <label for="contactName">
+              Name
+            </label>
+
+            <input
+              type="text"
+              id="contactName"
+              name="name"
+              autocomplete="name"
+              required
+            />
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label for="contactEmail">
+              Email
+            </label>
+
+            <input
+              type="email"
+              id="contactEmail"
+              name="email"
+              autocomplete="email"
+              required
+            />
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label for="contactPhone">
+              Phone
+            </label>
+
+            <input
+              type="tel"
+              id="contactPhone"
+              name="phone"
+              autocomplete="tel"
+            />
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label for="contactMessage">
+              What can we help with?
+            </label>
+
+            <textarea
+              id="contactMessage"
+              name="message"
+              rows="6"
+              required
+            ></textarea>
+
+          </div>
+
+
+          <div class="form-submit contact-submit">
+
+            <button
+              class="button button-dark"
+              type="submit"
+            >
+              Send Message
+            </button>
+
+          </div>
+
+        </form>
 
       </div>
 
     </section>
 
 
-    <!-- ========================================
+    <!-- =====================================
          FINAL CTA
-         ======================================== -->
+         ===================================== -->
 
     <section class="final-cta">
 
@@ -1082,10 +1064,12 @@
         Clearview Kennels
       </p>
 
+
       <h2>
-        Maybe they're
-        already waiting.
+        Still looking for
+        the right one?
       </h2>
+
 
       <p>
         Meet the Cavaliers and Cavapoos
@@ -1103,14 +1087,15 @@
           Meet the Puppies
         </a>
 
+
         <a
           class="final-cta-link"
-          href="#application"
+          href="index.html#about"
         >
-          Apply
+          Meet Clearview
 
           <span aria-hidden="true">
-            ↑
+            →
           </span>
         </a>
 
@@ -1122,12 +1107,11 @@
   </main>
 
 
-  <!-- ========================================
+  <!-- =====================================
        FOOTER
-       ======================================== -->
+       ===================================== -->
 
   <footer class="site-footer">
-
 
     <div class="footer-top">
 
@@ -1175,8 +1159,11 @@
           FAQ
         </a>
 
-      </nav>
+        <a href="#contact">
+          Contact
+        </a>
 
+      </nav>
 
     </div>
 
@@ -1188,6 +1175,7 @@
         Clearview Kennels
       </span>
 
+
       <a
         href="https://blackstagweb.com/"
         target="_blank"
@@ -1198,57 +1186,16 @@
 
     </div>
 
-
   </footer>
 
 
-  <!-- ========================================
+  <!-- =====================================
        SCRIPTS
-       ======================================== -->
+       ===================================== -->
 
+  <script src="data/puppies.js"></script>
+  <script src="data/puppy-system.js"></script>
   <script src="script.js"></script>
-
-
-  <!-- ========================================
-       APPLICATION PUPPY PREFILL
-       ======================================== -->
-
-  <script>
-
-    (() => {
-
-      const params =
-        new URLSearchParams(
-          window.location.search
-        );
-
-      const puppy =
-        params.get("puppy");
-
-      const field =
-        document.getElementById(
-          "puppy"
-        );
-
-      if (
-        puppy &&
-        field
-      ) {
-
-        field.value =
-          puppy
-            .replace(/-/g, " ")
-            .replace(
-              /\b\w/g,
-              character =>
-                character.toUpperCase()
-            );
-
-      }
-
-    })();
-
-  </script>
 
 
 </body>
