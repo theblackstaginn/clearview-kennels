@@ -1100,15 +1100,43 @@ main::before {
   align-items: center;
   justify-content: space-between;
 
-  color: var(--white);
+  color: var(--ink);
+
+  /*
+    Real Clearview paper texture.
+    No white/translucent wash over it.
+  */
+  background-color: var(--cream);
+
+  background-image:
+    url("ck-assets/ck-paper-web.webp");
+
+  background-repeat: no-repeat;
+
+  background-position: center center;
+
+  background-size: cover;
 
   border-bottom:
-    1px solid transparent;
+    1px solid
+    rgba(
+      41,
+      41,
+      31,
+      .13
+    );
+
+  box-shadow:
+    0 6px 20px
+    rgba(
+      41,
+      41,
+      31,
+      .08
+    );
 
   transition:
     color .3s ease,
-    background .3s ease,
-    border-color .3s ease,
     height .3s ease,
     box-shadow .3s ease;
 }
@@ -1118,13 +1146,16 @@ main::before {
 
   color: var(--ink);
 
-  background:
-    rgba(
-      244,
-      239,
-      229,
-      .91
-    );
+  background-color: var(--cream);
+
+  background-image:
+    url("ck-assets/ck-paper-web.webp");
+
+  background-repeat: no-repeat;
+
+  background-position: center center;
+
+  background-size: cover;
 
   border-bottom:
     1px solid
@@ -1132,20 +1163,22 @@ main::before {
       41,
       41,
       31,
-      .1
+      .13
     );
 
   box-shadow:
     0 7px 24px
-    rgba(41, 41, 31, .04);
+    rgba(
+      41,
+      41,
+      31,
+      .1
+    );
 
-  -webkit-backdrop-filter:
-    blur(14px);
+  -webkit-backdrop-filter: none;
 
-  backdrop-filter:
-    blur(14px);
+  backdrop-filter: none;
 }
-
 
 /* ========================================
    BRAND
