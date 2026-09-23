@@ -3994,7 +3994,589 @@ main::before {
 
 }
 
+/* ========================================
+   PUPPIES PAGE
+   ======================================== */
 
+
+/* ========================================
+   FILTERS
+   ======================================== */
+
+.puppy-filters {
+  display: flex;
+
+  margin:
+    -18px 0
+    clamp(
+      70px,
+      9vw,
+      110px
+    );
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap:
+    10px;
+}
+
+
+.puppy-filter {
+  display: inline-flex;
+
+  min-height: 42px;
+
+  padding:
+    10px 17px;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--muted);
+
+  border:
+    1px solid var(--line);
+
+  border-radius: 999px;
+
+  background:
+    rgba(
+      255,
+      253,
+      248,
+      .2
+    );
+
+  font-size: .66rem;
+
+  font-weight: 600;
+
+  letter-spacing: .055em;
+
+  transition:
+    color .2s ease,
+    background .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+
+.puppy-filter:hover {
+  color: var(--forest);
+
+  border-color:
+    rgba(
+      53,
+      71,
+      53,
+      .38
+    );
+
+  transform:
+    translateY(-1px);
+}
+
+
+.puppy-filter.active,
+.puppy-filter[aria-current="page"] {
+  color: var(--white);
+
+  background: var(--forest);
+
+  border-color: var(--forest);
+}
+
+
+/* ========================================
+   INVENTORY CONTAINER
+   ======================================== */
+
+.puppy-inventory {
+  width: 100%;
+}
+
+
+.inventory-group {
+  margin-bottom:
+    clamp(
+      90px,
+      12vw,
+      150px
+    );
+}
+
+
+.inventory-group:last-child {
+  margin-bottom: 0;
+}
+
+
+.inventory-group-heading {
+  display: flex;
+
+  margin-bottom:
+    clamp(
+      38px,
+      5vw,
+      58px
+    );
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 40px;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+
+.inventory-group-heading > div {
+  width: 100%;
+}
+
+
+.inventory-group-heading .eyebrow {
+  margin-bottom: 13px;
+}
+
+
+.inventory-group-heading h2 {
+  max-width: 760px;
+
+  margin-bottom:
+    clamp(
+      25px,
+      3vw,
+      36px
+    );
+
+  font-size:
+    clamp(
+      2.4rem,
+      4.5vw,
+      4.2rem
+    );
+}
+
+
+/* ========================================
+   INVENTORY EMPTY STATE
+   ======================================== */
+
+.inventory-empty {
+  max-width: 700px;
+
+  padding:
+    20px 0
+    clamp(
+      50px,
+      7vw,
+      90px
+    );
+}
+
+
+.inventory-empty h2 {
+  max-width: 650px;
+}
+
+
+.inventory-empty > p:not(.eyebrow) {
+  max-width: 540px;
+
+  margin-bottom: 30px;
+}
+
+
+/* ========================================
+   BETWEEN LITTERS / CONTACT
+   ======================================== */
+
+.inventory-contact {
+  border-top:
+    1px solid var(--line);
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+
+.inventory-contact-inner {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(320px, .85fr);
+
+  gap:
+    clamp(
+      60px,
+      10vw,
+      150px
+    );
+
+  align-items: start;
+}
+
+
+.inventory-contact-inner h2 {
+  max-width: 650px;
+
+  margin-bottom: 0;
+}
+
+
+.inventory-contact-inner
+> div:last-child {
+  padding-top: 34px;
+}
+
+
+.inventory-contact-inner
+.button {
+  margin-top: 10px;
+}
+
+
+/* ========================================
+   INVENTORY PROCESS
+   ======================================== */
+
+.inventory-process {
+  border-bottom:
+    1px solid var(--line);
+}
+
+
+/*
+  These replace the numbered template-like
+  process labels with a tiny organic mark.
+*/
+
+.process-mark {
+  display: block;
+
+  width: 23px;
+  height: 9px;
+
+  margin-bottom: 52px;
+
+  border-radius:
+    100% 0
+    100% 0;
+
+  background: var(--gold);
+
+  opacity: .72;
+
+  transform:
+    rotate(-13deg);
+}
+
+
+.inventory-process
+.process-step {
+  position: relative;
+}
+
+
+.inventory-process
+.process-step h3 {
+  font-size:
+    clamp(
+      1.5rem,
+      2.4vw,
+      2.1rem
+    );
+}
+
+
+/* ========================================
+   SOFTEN THE INVENTORY CARDS
+   ======================================== */
+
+/*
+  The cards should feel like photographs
+  laid into the site rather than UI cards.
+*/
+
+.inventory-page
+.puppy-card {
+  position: relative;
+}
+
+
+.inventory-page
+.puppy-card-photo {
+  box-shadow:
+    0 16px 40px
+    rgba(
+      48,
+      43,
+      32,
+      .055
+    );
+}
+
+
+.inventory-page
+.puppy-card-copy {
+  padding:
+    0 7px;
+}
+
+
+.inventory-page
+.puppy-card h3 {
+  margin-bottom: 8px;
+}
+
+
+.inventory-page
+.puppy-price {
+  margin-top: 4px;
+}
+
+
+.inventory-page
+.puppy-card-link {
+  border-bottom-color:
+    rgba(
+      53,
+      71,
+      53,
+      .22
+    );
+}
+
+
+/* ========================================
+   INVENTORY LOADING
+   ======================================== */
+
+.puppy-inventory
+.puppy-loading {
+  width: 100%;
+
+  min-height: 320px;
+
+  padding:
+    70px 0;
+}
+
+
+/* ========================================
+   REMOVE OLD NUMBERED VISUAL LANGUAGE
+   ======================================== */
+
+/*
+  This also removes the numbered treatment
+  from the homepage process and breed
+  sections without requiring us to rebuild
+  their HTML immediately.
+*/
+
+.breed-number,
+.process-number,
+.transport-number {
+  display: none;
+}
+
+
+.breed-row {
+  grid-template-columns:
+    minmax(0, 1fr)
+    80px;
+}
+
+
+.process-step {
+  position: relative;
+}
+
+
+.process-step::before {
+  display: block;
+
+  width: 23px;
+  height: 9px;
+
+  margin-bottom: 52px;
+
+  border-radius:
+    100% 0
+    100% 0;
+
+  content: "";
+
+  background: var(--gold);
+
+  opacity: .72;
+
+  transform:
+    rotate(-13deg);
+}
+
+
+/*
+  The inventory process already contains
+  a real .process-mark, so don't duplicate it.
+*/
+
+.inventory-process
+.process-step::before {
+  display: none;
+}
+
+
+/* ========================================
+   TRANSPORT MARKS
+   ======================================== */
+
+.transport-option {
+  position: relative;
+}
+
+
+.transport-mark {
+  display: block;
+
+  width: 23px;
+  height: 9px;
+
+  margin-bottom: 44px;
+
+  border-radius:
+    100% 0
+    100% 0;
+
+  background: var(--gold);
+
+  opacity: .72;
+
+  transform:
+    rotate(-13deg);
+}
+
+
+/* ========================================
+   MOBILE — PUPPIES PAGE
+   ======================================== */
+
+@media (
+  max-width: 760px
+) {
+
+  .puppy-filters {
+    margin:
+      -5px 0
+      65px;
+
+    gap: 8px;
+  }
+
+
+  .puppy-filter {
+    min-height: 39px;
+
+    padding:
+      9px 14px;
+
+    font-size: .61rem;
+  }
+
+
+  .inventory-group {
+    margin-bottom: 90px;
+  }
+
+
+  .inventory-group-heading {
+    margin-bottom: 35px;
+  }
+
+
+  .inventory-group-heading h2 {
+    margin-bottom: 25px;
+
+    font-size:
+      clamp(
+        2.25rem,
+        11vw,
+        3.3rem
+      );
+  }
+
+
+  .inventory-contact-inner {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+  }
+
+
+  .inventory-contact-inner
+  > div:last-child {
+    padding-top: 0;
+  }
+
+
+  .inventory-process
+  .section-heading {
+    margin-bottom: 35px;
+  }
+
+
+  .process-mark,
+  .process-step::before,
+  .transport-mark {
+    margin-bottom: 20px;
+  }
+
+
+  .breed-row {
+    grid-template-columns:
+      minmax(0, 1fr)
+      48px;
+  }
+
+
+  .breed-copy {
+    padding-right: 12px;
+  }
+
+}
+
+
+/* ========================================
+   SMALL MOBILE
+   ======================================== */
+
+@media (
+  max-width: 420px
+) {
+
+  .puppy-filters {
+    align-items: stretch;
+  }
+
+
+  .puppy-filter {
+    flex:
+      1 1 auto;
+  }
+
+
+  .inventory-page
+  .puppy-card-copy {
+    padding:
+      0 3px;
+  }
+
+}
 /* ========================================
    REDUCED MOTION
    ======================================== */
