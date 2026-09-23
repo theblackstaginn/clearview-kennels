@@ -103,36 +103,98 @@
 
 
     <nav
-      class="site-nav"
+      class="site-nav sticker-nav"
       id="siteNav"
       aria-label="Main navigation"
     >
 
-      <a href="puppies.html">
-        Puppies
+      <a
+        class="sticker-button sticker-nav-button"
+        href="puppies.html"
+        aria-label="Puppies"
+      >
+        <img
+          src="ck-buttons/puppies-btn.webp"
+          alt=""
+        />
+        <span class="visually-hidden">
+          Puppies
+        </span>
       </a>
 
-      <a href="#breeds">
-        Our Breeds
-      </a>
-
-      <a href="#about">
-        About
-      </a>
-
-      <a href="#process">
-        How It Works
-      </a>
-
-      <a href="apply.html#contact">
-        Contact
-      </a>
 
       <a
-        class="nav-cta"
-        href="apply.html"
+        class="sticker-button sticker-nav-button"
+        href="#breeds"
+        aria-label="Our Breeds"
       >
-        Puppy Application
+        <img
+          src="ck-buttons/our-breeds-btn.webp"
+          alt=""
+        />
+        <span class="visually-hidden">
+          Our Breeds
+        </span>
+      </a>
+
+
+      <a
+        class="sticker-button sticker-nav-button"
+        href="#about"
+        aria-label="About"
+      >
+        <img
+          src="ck-buttons/about-btn.webp"
+          alt=""
+        />
+        <span class="visually-hidden">
+          About
+        </span>
+      </a>
+
+
+      <a
+        class="sticker-button sticker-nav-button"
+        href="#process"
+        aria-label="How It Works"
+      >
+        <img
+          src="ck-buttons/how-it-works-btn.webp"
+          alt=""
+        />
+        <span class="visually-hidden">
+          How It Works
+        </span>
+      </a>
+
+
+      <a
+        class="sticker-button sticker-nav-button"
+        href="apply.html#contact"
+        aria-label="Contact"
+      >
+        <img
+          src="ck-buttons/contact-btn.webp"
+          alt=""
+        />
+        <span class="visually-hidden">
+          Contact
+        </span>
+      </a>
+
+
+      <a
+        class="sticker-button sticker-nav-button sticker-nav-cta"
+        href="apply.html"
+        aria-label="Puppy Application"
+      >
+        <img
+          src="ck-buttons/puppy-app-btn.webp"
+          alt=""
+        />
+        <span class="visually-hidden">
+          Puppy Application
+        </span>
       </a>
 
     </nav>
@@ -186,24 +248,34 @@
         </p>
 
 
-        <div class="hero-actions">
+        <div class="hero-actions sticker-actions">
 
           <a
-            class="button button-light"
+            class="sticker-button sticker-button-large"
             href="#puppies"
+            aria-label="Meet the Puppies"
           >
-            Meet the Puppies
+            <img
+              src="ck-buttons/meet-the-pups-btn.webp"
+              alt=""
+            />
+            <span class="visually-hidden">
+              Meet the Puppies
+            </span>
           </a>
 
 
           <a
-            class="hero-text-link"
+            class="sticker-button sticker-button-large"
             href="#about"
+            aria-label="Our Story"
           >
-            Our Story
-
-            <span aria-hidden="true">
-              →
+            <img
+              src="ck-buttons/our-story-btn.webp"
+              alt=""
+            />
+            <span class="visually-hidden">
+              Our Story
             </span>
           </a>
 
@@ -234,19 +306,6 @@
 
     <!-- =====================================
          FEATURED PUPPIES
-
-         Intentionally placed directly
-         beneath the hero so the puppies
-         are the first thing visitors
-         encounter after scrolling.
-
-         Puppy cards are populated by:
-         data/puppies.js
-         data/puppy-system.js
-
-         The field-journal welcome card
-         is triggered from this section
-         by script.js.
          ===================================== -->
 
     <section
@@ -279,13 +338,16 @@
 
 
           <a
-            class="text-link"
+            class="sticker-button sticker-button-inline"
             href="puppies.html"
+            aria-label="View All Puppies"
           >
-            View All Puppies
-
-            <span aria-hidden="true">
-              →
+            <img
+              src="ck-buttons/view-all-pups-btn.webp"
+              alt=""
+            />
+            <span class="visually-hidden">
+              View All Puppies
             </span>
           </a>
 
@@ -395,13 +457,16 @@
 
 
         <a
-          class="text-link"
+          class="sticker-button sticker-button-inline"
           href="apply.html#contact"
+          aria-label="Talk With Clearview"
         >
-          Talk With Clearview
-
-          <span aria-hidden="true">
-            →
+          <img
+            src="ck-buttons/talk-with-clearview-btn.webp"
+            alt=""
+          />
+          <span class="visually-hidden">
+            Talk With Clearview
           </span>
         </a>
 
@@ -472,13 +537,16 @@
 
 
             <a
-              class="text-link"
+              class="sticker-button sticker-button-inline"
               href="puppies.html?breed=cavalier"
+              aria-label="View Cavaliers"
             >
-              View Cavaliers
-
-              <span aria-hidden="true">
-                →
+              <img
+                src="ck-buttons/view-cavaliers-btn.webp"
+                alt=""
+              />
+              <span class="visually-hidden">
+                View Cavaliers
               </span>
             </a>
 
@@ -514,13 +582,16 @@
 
 
             <a
-              class="text-link"
+              class="sticker-button sticker-button-inline"
               href="puppies.html?breed=cavapoo"
+              aria-label="View Cavapoos"
             >
-              View Cavapoos
-
-              <span aria-hidden="true">
-                →
+              <img
+                src="ck-buttons/view-cavapoos-btn.webp"
+                alt=""
+              />
+              <span class="visually-hidden">
+                View Cavapoos
               </span>
             </a>
 
@@ -661,10 +732,17 @@
       <div class="process-action">
 
         <a
-          class="button button-dark"
+          class="sticker-button sticker-button-large"
           href="apply.html"
+          aria-label="Start an Application"
         >
-          Start an Application
+          <img
+            src="ck-buttons/start-an-app-btn.webp"
+            alt=""
+          />
+          <span class="visually-hidden">
+            Start an Application
+          </span>
         </a>
 
       </div>
@@ -711,13 +789,16 @@
 
 
         <a
-          class="text-link"
+          class="sticker-button sticker-button-inline sticker-button-wide"
           href="apply.html#contact"
+          aria-label="Ask About Transportation"
         >
-          Ask About Transportation
-
-          <span aria-hidden="true">
-            →
+          <img
+            src="ck-buttons/ask-about-transport-btn.webp"
+            alt=""
+          />
+          <span class="visually-hidden">
+            Ask About Transportation
           </span>
         </a>
 
@@ -759,13 +840,16 @@
 
 
         <a
-          class="text-link"
+          class="sticker-button sticker-button-inline"
           href="apply.html#contact"
+          aria-label="Contact Clearview"
         >
-          Contact Clearview
-
-          <span aria-hidden="true">
-            →
+          <img
+            src="ck-buttons/contact-clearview.webp"
+            alt=""
+          />
+          <span class="visually-hidden">
+            Contact Clearview
           </span>
         </a>
 
@@ -797,24 +881,34 @@
       </p>
 
 
-      <div class="final-cta-actions">
+      <div class="final-cta-actions sticker-actions">
 
         <a
-          class="button button-light"
+          class="sticker-button sticker-button-large"
           href="puppies.html"
+          aria-label="Meet the Puppies"
         >
-          Meet the Puppies
+          <img
+            src="ck-buttons/meet-the-pups-btn.webp"
+            alt=""
+          />
+          <span class="visually-hidden">
+            Meet the Puppies
+          </span>
         </a>
 
 
         <a
-          class="final-cta-link"
+          class="sticker-button sticker-button-large"
           href="apply.html"
+          aria-label="Puppy Application"
         >
-          Puppy Application
-
-          <span aria-hidden="true">
-            →
+          <img
+            src="ck-buttons/puppy-app-btn.webp"
+            alt=""
+          />
+          <span class="visually-hidden">
+            Puppy Application
           </span>
         </a>
 
@@ -912,10 +1006,6 @@
 
   <!-- =====================================
        SCRIPTS
-
-       IMPORTANT:
-       puppies.js must load BEFORE
-       puppy-system.js.
        ===================================== -->
 
   <script src="script.js"></script>
