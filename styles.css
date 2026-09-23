@@ -7592,3 +7592,230 @@ p {
   }
 
 }
+/* ========================================
+   CLEARVIEW — HEAVY SMALL TEXT
+   ======================================== */
+
+/*
+  Small supporting text needs extra weight
+  against the paper texture.
+*/
+
+
+/* ----------------------------------------
+   EYEBROWS / KICKERS / SMALL LABELS
+   ---------------------------------------- */
+
+.eyebrow,
+.hero-eyebrow,
+.form-kicker,
+.parent-label,
+.puppy-welcome-eyebrow,
+.puppy-detail-status,
+.puppy-detail-breed,
+.puppy-facts dt,
+.puppy-detail-price span,
+.selected-puppy-note span {
+  font-weight: 900;
+}
+
+
+/* ----------------------------------------
+   HEADER SMALL TEXT
+   ---------------------------------------- */
+
+.brand-location {
+  font-weight: 900;
+}
+
+
+/* ----------------------------------------
+   NAVIGATION + BUTTON TEXT
+   ---------------------------------------- */
+
+.site-nav > a,
+.button,
+.puppy-card-link,
+.puppy-back-link,
+.puppy-welcome-link,
+.inventory-filter,
+[data-breed-filter],
+.puppy-filter {
+  font-weight: 900;
+}
+
+
+/* ----------------------------------------
+   PUPPY CARDS / INVENTORY META
+   ---------------------------------------- */
+
+.puppy-meta,
+.puppy-price,
+.puppy-card-status,
+.puppy-card-breed {
+  font-weight: 900;
+}
+
+
+/* ----------------------------------------
+   PUPPY DETAIL SMALL TEXT
+   ---------------------------------------- */
+
+.puppy-detail-status,
+.puppy-detail-breed,
+.puppy-facts dt,
+.puppy-detail-price span,
+.puppy-back-link,
+.parent-coming-soon {
+  font-weight: 900;
+}
+
+
+/* ----------------------------------------
+   FORMS
+   ---------------------------------------- */
+
+.form-field label {
+  font-weight: 900;
+
+  color: var(--ink);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  font-weight: 700;
+
+  color: var(--ink);
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  font-weight: 700;
+
+  color:
+    rgba(
+      41,
+      41,
+      31,
+      .68
+    );
+
+  opacity: 1;
+}
+
+.form-submit p {
+  font-weight: 700;
+}
+
+
+/* ----------------------------------------
+   MODAL
+   ---------------------------------------- */
+
+.puppy-welcome-eyebrow {
+  font-weight: 900;
+}
+
+.puppy-welcome-copy p {
+  font-weight: 700;
+
+  color: var(--ink);
+}
+
+.puppy-welcome-link {
+  font-weight: 900;
+}
+
+.puppy-welcome-note {
+  font-weight: 700;
+
+  color: var(--ink-soft);
+}
+
+
+/* ----------------------------------------
+   FAQ / CONTACT / SUPPORTING COPY
+   ---------------------------------------- */
+
+.faq-answer p,
+.contact-heading p,
+.application-intro p,
+.inventory-contact p,
+.transport-option p {
+  font-weight: 700;
+}
+
+
+/* ----------------------------------------
+   FOOTER
+   ---------------------------------------- */
+
+.site-footer,
+.site-footer p,
+.footer-nav a,
+.footer-bottom,
+.footer-bottom a {
+  font-weight: 800;
+}
+
+
+/* ----------------------------------------
+   GLOBAL SMALL TEXT SAFETY NET
+   ---------------------------------------- */
+
+/*
+  Anything explicitly rendered as small text
+  gets a substantial minimum weight.
+*/
+
+small,
+.small,
+.meta,
+.label {
+  font-weight: 800;
+}
+
+
+/* ========================================
+   MOBILE — EVEN STRONGER READABILITY
+   ======================================== */
+
+@media (max-width: 760px) {
+
+  .eyebrow,
+  .hero-eyebrow,
+  .form-kicker,
+  .parent-label,
+  .brand-location,
+  .puppy-detail-status,
+  .puppy-detail-breed,
+  .puppy-facts dt,
+  .puppy-detail-price span,
+  .selected-puppy-note span,
+  .puppy-welcome-eyebrow,
+  .puppy-welcome-link,
+  .puppy-back-link,
+  .puppy-meta,
+  .puppy-price {
+    font-weight: 900;
+  }
+
+  .form-field label {
+    font-weight: 900;
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    font-weight: 700;
+  }
+
+  .puppy-welcome-copy p,
+  .puppy-welcome-note,
+  .faq-answer p,
+  .form-submit p {
+    font-weight: 700;
+  }
+
+}
