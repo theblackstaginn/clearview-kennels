@@ -251,7 +251,7 @@
 
 
       <!-- =================================
-           HEADING + FILTERS
+           HEADING
            ================================= -->
 
       <div class="inventory-heading">
@@ -280,42 +280,78 @@
 
 
       <!-- =================================
-           BREED FILTERS
+           BREED FILTER STICKERS
 
-           Kept as live HTML controls so
-           puppy-system.js can show the
-           active breed state.
+           data-breed-filter is preserved
+           for puppy-system.js.
            ================================= -->
 
       <nav
-        class="puppy-filters"
+        class="puppy-filters puppy-filter-stickers"
         aria-label="Filter puppies by breed"
       >
 
+
+        <!-- ALL PUPPIES -->
+
         <a
-          class="puppy-filter"
+          class="puppy-filter sticker-button puppy-filter-sticker"
           href="puppies.html"
           data-breed-filter="all"
+          aria-label="View All Puppies"
         >
-          All Puppies
+
+          <img
+            src="ck-buttons/view-all-pups-btn.webp"
+            alt=""
+          />
+
+          <span class="visually-hidden">
+            All Puppies
+          </span>
+
         </a>
 
 
+        <!-- CAVALIERS -->
+
         <a
-          class="puppy-filter"
+          class="puppy-filter sticker-button puppy-filter-sticker"
           href="puppies.html?breed=cavalier"
           data-breed-filter="cavalier"
+          aria-label="View Cavaliers"
         >
-          Cavaliers
+
+          <img
+            src="ck-buttons/view-cavaliers-btn.webp"
+            alt=""
+          />
+
+          <span class="visually-hidden">
+            Cavaliers
+          </span>
+
         </a>
 
 
+        <!-- CAVAPOOS -->
+
         <a
-          class="puppy-filter"
+          class="puppy-filter sticker-button puppy-filter-sticker"
           href="puppies.html?breed=cavapoo"
           data-breed-filter="cavapoo"
+          aria-label="View Cavapoos"
         >
-          Cavapoos
+
+          <img
+            src="ck-buttons/view-cavapoos-btn.webp"
+            alt=""
+          />
+
+          <span class="visually-hidden">
+            Cavapoos
+          </span>
+
         </a>
 
       </nav>
@@ -398,6 +434,7 @@
             href="apply.html#contact"
             aria-label="Contact Clearview"
           >
+
             <img
               src="ck-buttons/contact-clearview.webp"
               alt=""
@@ -406,6 +443,7 @@
             <span class="visually-hidden">
               Contact Clearview
             </span>
+
           </a>
 
         </div>
@@ -569,6 +607,7 @@
           href="apply.html"
           aria-label="Puppy Application"
         >
+
           <img
             src="ck-buttons/puppy-app-btn.webp"
             alt=""
@@ -577,6 +616,7 @@
           <span class="visually-hidden">
             Puppy Application
           </span>
+
         </a>
 
 
@@ -585,6 +625,7 @@
           href="apply.html#contact"
           aria-label="Ask a Question"
         >
+
           <img
             src="ck-buttons/ask-a-question-btn.webp"
             alt=""
@@ -593,6 +634,7 @@
           <span class="visually-hidden">
             Ask a Question
           </span>
+
         </a>
 
       </div>
