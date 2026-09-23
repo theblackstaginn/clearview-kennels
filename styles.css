@@ -3053,13 +3053,16 @@ main::before {
 .site-header {
   color: var(--ink);
 
-  background:
-    rgba(
-      244,
-      239,
-      229,
-      .92
-    );
+  background-color: var(--cream);
+
+  background-image:
+    url("ck-assets/ck-paper-web.webp");
+
+  background-repeat: no-repeat;
+
+  background-position: center center;
+
+  background-size: cover;
 
   border-bottom:
     1px solid
@@ -3067,14 +3070,21 @@ main::before {
       41,
       41,
       31,
+      .13
+    );
+
+  box-shadow:
+    0 7px 24px
+    rgba(
+      41,
+      41,
+      31,
       .1
     );
 
-  -webkit-backdrop-filter:
-    blur(14px);
+  -webkit-backdrop-filter: none;
 
-  backdrop-filter:
-    blur(14px);
+  backdrop-filter: none;
 }
 
 
