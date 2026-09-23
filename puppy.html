@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+
+  <title>
+    Puppy | Clearview Kennels
+  </title>
+
+  <meta
+    name="description"
+    content="Meet this puppy from Clearview Kennels in Marshfield, Missouri."
+  />
+
+  <meta name="theme-color" content="#f6f1e7" />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  />
+
+</head>
+
+
+<body class="interior-page puppy-detail-page">
+
+
+  <!-- =========================
+       HEADER
+       ========================= -->
+
+  <header
+    class="site-header scrolled"
+    id="siteHeader"
+  >
+
+    <a
+      class="brand"
+      href="index.html"
+      aria-label="Clearview Kennels home"
+    >
+
+      <span class="brand-name">
+        Clearview Kennels
+      </span>
+
+      <span class="brand-location">
+        Marshfield, Missouri
+      </span>
+
+    </a>
+
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      type="button"
+      aria-label="Open navigation"
+      aria-expanded="false"
+      aria-controls="siteNav"
+    >
+
+      <span></span>
+      <span></span>
+
+    </button>
+
+
+    <nav
+      class="site-nav"
+      id="siteNav"
+      aria-label="Primary navigation"
+    >
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="puppies.html">
+        Puppies
+      </a>
+
+      <a href="index.html#about">
+        Our Story
+      </a>
+
+      <a href="apply.html">
+        FAQ
+      </a>
+
+      <a
+        class="nav-cta"
+        href="apply.html"
+      >
+        Apply
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <!-- =========================
+       MAIN
+       ========================= -->
+
+  <main>
+
+    <!--
+      Everything inside this element
+      is generated from puppies.js.
+    -->
+
+    <div id="puppyDetail">
+
+      <section class="puppy-loading">
+
+        <p class="eyebrow">
+          Clearview Kennels
+        </p>
+
+        <p>
+          Loading puppy information…
+        </p>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+       ========================= -->
+
+  <footer class="site-footer">
+
+    <div class="footer-brand">
+
+      <strong>
+        Clearview Kennels
+      </strong>
+
+      <span>
+        Marshfield, Missouri
+      </span>
+
+    </div>
+
+
+    <nav
+      class="footer-nav"
+      aria-label="Footer navigation"
+    >
+
+      <a href="puppies.html">
+        Puppies
+      </a>
+
+      <a href="apply.html">
+        Application
+      </a>
+
+      <a href="apply.html#faq">
+        FAQ
+      </a>
+
+    </nav>
+
+
+    <div class="footer-bottom">
+
+      <span>
+        © <span id="year"></span>
+        Clearview Kennels
+      </span>
+
+      <a
+        href="https://blackstagweb.com/"
+        target="_blank"
+        rel="noopener"
+      >
+        Website by Black Stag Web Design
+      </a>
+
+    </div>
+
+  </footer>
+
+
+  <script src="data/puppies.js"></script>
+  <script src="puppy-system.js"></script>
+  <script src="script.js"></script>
+
+</body>
+
+</html>
