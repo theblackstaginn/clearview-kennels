@@ -4578,6 +4578,796 @@ main::before {
 
 }
 /* ========================================
+   APPLICATION / FAQ / CONTACT
+   ======================================== */
+
+
+/* ========================================
+   APPLICATION HERO
+   ======================================== */
+
+.application-hero {
+  width:
+    min(
+      calc(100% - 64px),
+      var(--max)
+    );
+
+  margin: 0 auto;
+
+  padding:
+    clamp(
+      105px,
+      14vw,
+      185px
+    )
+    0
+    clamp(
+      80px,
+      10vw,
+      125px
+    );
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.application-hero-inner {
+  max-width: 900px;
+}
+
+.application-hero h1 {
+  max-width: 850px;
+
+  margin-bottom: 34px;
+
+  color: var(--ink);
+
+  font-size:
+    clamp(
+      4rem,
+      8vw,
+      7.5rem
+    );
+
+  letter-spacing: -.06em;
+}
+
+.application-hero .lead {
+  max-width: 650px;
+
+  margin-bottom: 0;
+}
+
+
+/* ========================================
+   APPLICATION LAYOUT
+   ======================================== */
+
+.application-section {
+  border-bottom:
+    1px solid var(--line);
+}
+
+.application-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(260px, .7fr)
+    minmax(0, 1.3fr);
+
+  gap:
+    clamp(
+      65px,
+      10vw,
+      145px
+    );
+
+  align-items: start;
+}
+
+.application-intro {
+  position: sticky;
+
+  top: 120px;
+}
+
+.application-intro h2 {
+  max-width: 540px;
+}
+
+.application-intro > p:not(.eyebrow) {
+  max-width: 430px;
+}
+
+
+/* ========================================
+   FORM
+   ======================================== */
+
+.clearview-form {
+  width: 100%;
+}
+
+.form-section {
+  padding:
+    0 0
+    clamp(
+      65px,
+      8vw,
+      90px
+    );
+
+  margin-bottom:
+    clamp(
+      65px,
+      8vw,
+      90px
+    );
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.form-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.form-section-heading {
+  margin-bottom:
+    clamp(
+      35px,
+      5vw,
+      50px
+    );
+}
+
+.form-kicker {
+  margin-bottom: 11px;
+
+  color: var(--gold);
+
+  font-size: .64rem;
+
+  font-weight: 600;
+
+  letter-spacing: .16em;
+
+  text-transform: uppercase;
+}
+
+.form-section-heading h3 {
+  max-width: 600px;
+
+  margin-bottom: 0;
+
+  font-size:
+    clamp(
+      1.8rem,
+      3.2vw,
+      2.8rem
+    );
+}
+
+
+/* ========================================
+   FIELD GRID
+   ======================================== */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    34px
+    30px;
+}
+
+.form-field {
+  position: relative;
+
+  display: flex;
+
+  min-width: 0;
+
+  flex-direction: column;
+}
+
+.form-field-full {
+  margin-top: 34px;
+}
+
+.form-field label {
+  margin-bottom: 10px;
+
+  color: var(--ink-soft);
+
+  font-size: .67rem;
+
+  font-weight: 600;
+
+  letter-spacing: .055em;
+}
+
+
+/* ========================================
+   INPUTS
+   ======================================== */
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+
+  margin: 0;
+
+  padding:
+    13px 0
+    14px;
+
+  color: var(--ink);
+
+  border: 0;
+
+  border-bottom:
+    1px solid
+    rgba(
+      41,
+      41,
+      31,
+      .28
+    );
+
+  border-radius: 0;
+
+  outline: none;
+
+  background: transparent;
+
+  box-shadow: none;
+
+  font-family: var(--sans);
+
+  font-size: .95rem;
+
+  line-height: 1.55;
+
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.form-field textarea {
+  min-height: 130px;
+
+  padding-top: 15px;
+
+  resize: vertical;
+}
+
+.form-field select {
+  min-height: 52px;
+
+  padding-right: 30px;
+
+  cursor: pointer;
+
+  -webkit-appearance: none;
+  appearance: none;
+
+  background-image:
+    linear-gradient(
+      45deg,
+      transparent 50%,
+      var(--muted) 50%
+    ),
+    linear-gradient(
+      135deg,
+      var(--muted) 50%,
+      transparent 50%
+    );
+
+  background-position:
+    calc(100% - 8px)
+    calc(50% - 2px),
+
+    calc(100% - 3px)
+    calc(50% - 2px);
+
+  background-size:
+    5px 5px,
+    5px 5px;
+
+  background-repeat:
+    no-repeat;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color:
+    rgba(
+      116,
+      114,
+      101,
+      .64
+    );
+}
+
+.form-field input:hover,
+.form-field select:hover,
+.form-field textarea:hover {
+  border-bottom-color:
+    rgba(
+      53,
+      71,
+      53,
+      .55
+    );
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-bottom-color:
+    var(--forest);
+
+  box-shadow:
+    0 1px 0
+    var(--forest);
+}
+
+
+/* ========================================
+   AUTOFILL
+   ======================================== */
+
+.form-field input:-webkit-autofill,
+.form-field input:-webkit-autofill:hover,
+.form-field input:-webkit-autofill:focus,
+.form-field textarea:-webkit-autofill,
+.form-field select:-webkit-autofill {
+  -webkit-text-fill-color:
+    var(--ink);
+
+  -webkit-box-shadow:
+    0 0 0 1000px
+    transparent
+    inset;
+
+  transition:
+    background-color
+    9999s ease-in-out
+    0s;
+}
+
+
+/* ========================================
+   SELECTED PUPPY
+   ======================================== */
+
+.selected-puppy-note {
+  position: relative;
+
+  margin:
+    -8px 0
+    38px;
+
+  padding:
+    18px 0
+    18px 22px;
+
+  border-left:
+    2px solid var(--gold);
+}
+
+.selected-puppy-note[hidden] {
+  display: none;
+}
+
+.selected-puppy-note span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: var(--muted);
+
+  font-size: .64rem;
+
+  font-weight: 600;
+
+  letter-spacing: .07em;
+
+  text-transform: uppercase;
+}
+
+.selected-puppy-note strong {
+  color: var(--ink);
+
+  font-family: var(--serif);
+
+  font-size: 1.25rem;
+
+  font-weight: 400;
+}
+
+
+/* ========================================
+   FORM SUBMIT
+   ======================================== */
+
+.form-submit {
+  display: flex;
+
+  padding-top: 42px;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 35px;
+}
+
+.form-submit p {
+  max-width: 390px;
+
+  margin-bottom: 0;
+
+  font-size: .8rem;
+}
+
+.form-submit .button {
+  flex: 0 0 auto;
+}
+
+
+/* ========================================
+   FAQ
+   ======================================== */
+
+.faq-section {
+  display: grid;
+
+  grid-template-columns:
+    minmax(260px, .72fr)
+    minmax(0, 1.28fr);
+
+  gap:
+    clamp(
+      65px,
+      10vw,
+      145px
+    );
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.faq-heading {
+  align-self: start;
+}
+
+.faq-heading h2 {
+  max-width: 520px;
+}
+
+.faq-heading > p:last-child {
+  max-width: 420px;
+}
+
+.faq-list {
+  border-top:
+    1px solid var(--line);
+}
+
+.faq-item {
+  border-bottom:
+    1px solid var(--line);
+}
+
+.faq-item summary {
+  position: relative;
+
+  padding:
+    28px
+    46px
+    28px
+    0;
+
+  color: var(--ink);
+
+  cursor: pointer;
+
+  list-style: none;
+
+  font-family: var(--serif);
+
+  font-size:
+    clamp(
+      1.05rem,
+      1.8vw,
+      1.3rem
+    );
+
+  line-height: 1.45;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  position: absolute;
+
+  top: 50%;
+  right: 3px;
+
+  width: 17px;
+  height: 17px;
+
+  content: "";
+
+  background:
+    linear-gradient(
+      var(--forest),
+      var(--forest)
+    )
+    center / 17px 1px
+    no-repeat,
+
+    linear-gradient(
+      var(--forest),
+      var(--forest)
+    )
+    center / 1px 17px
+    no-repeat;
+
+  opacity: .72;
+
+  transform:
+    translateY(-50%);
+
+  transition:
+    transform .25s ease,
+    opacity .25s ease;
+}
+
+.faq-item[open]
+summary::after {
+  transform:
+    translateY(-50%)
+    rotate(45deg);
+
+  opacity: 1;
+}
+
+.faq-answer {
+  max-width: 650px;
+
+  padding:
+    0 45px
+    27px 0;
+}
+
+.faq-answer p {
+  margin-bottom: 0;
+}
+
+
+/* ========================================
+   CONTACT
+   ======================================== */
+
+.contact-section {
+  border-bottom:
+    1px solid var(--line);
+}
+
+.contact-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(260px, .8fr)
+    minmax(0, 1.2fr);
+
+  gap:
+    clamp(
+      65px,
+      10vw,
+      145px
+    );
+
+  align-items: start;
+}
+
+.contact-heading h2 {
+  max-width: 600px;
+}
+
+.contact-heading .lead {
+  margin-bottom: 13px;
+}
+
+.contact-heading > p:last-child {
+  max-width: 430px;
+}
+
+.contact-form {
+  max-width: 680px;
+}
+
+.contact-form .form-field {
+  margin-bottom: 31px;
+}
+
+.contact-form .form-field:last-of-type {
+  margin-bottom: 0;
+}
+
+.contact-submit {
+  justify-content: flex-end;
+
+  padding-top: 12px;
+}
+
+
+/* ========================================
+   MOBILE APPLICATION
+   ======================================== */
+
+@media (
+  max-width: 760px
+) {
+
+  .application-hero {
+    width:
+      calc(100% - 40px);
+
+    padding:
+      80px 0
+      75px;
+  }
+
+  .application-hero h1 {
+    margin-bottom: 27px;
+
+    font-size:
+      clamp(
+        3.35rem,
+        16vw,
+        5rem
+      );
+  }
+
+  .application-layout {
+    grid-template-columns: 1fr;
+
+    gap: 58px;
+  }
+
+  .application-intro {
+    position: static;
+  }
+
+  .application-intro h2 {
+    margin-bottom: 25px;
+  }
+
+  .form-section {
+    padding-bottom: 58px;
+
+    margin-bottom: 58px;
+  }
+
+  .form-section-heading {
+    margin-bottom: 34px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+
+    gap: 29px;
+  }
+
+  .form-field-full {
+    margin-top: 29px;
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    font-size: 16px;
+  }
+
+  .selected-puppy-note {
+    margin-bottom: 32px;
+  }
+
+  .form-submit {
+    padding-top: 34px;
+
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 25px;
+  }
+
+  .form-submit .button {
+    width: 100%;
+  }
+
+  .faq-section {
+    grid-template-columns: 1fr;
+
+    gap: 45px;
+  }
+
+  .faq-heading h2 {
+    margin-bottom: 24px;
+  }
+
+  .faq-item summary {
+    padding:
+      24px
+      38px
+      24px
+      0;
+  }
+
+  .faq-answer {
+    padding:
+      0 32px
+      24px 0;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+  .contact-form {
+    max-width: none;
+  }
+
+  .contact-submit {
+    padding-top: 10px;
+  }
+
+}
+
+
+/* ========================================
+   SMALL MOBILE APPLICATION
+   ======================================== */
+
+@media (
+  max-width: 420px
+) {
+
+  .application-hero h1 {
+    font-size:
+      clamp(
+        3rem,
+        15vw,
+        4.25rem
+      );
+  }
+
+  .form-section-heading h3 {
+    font-size: 1.75rem;
+  }
+
+  .faq-item summary {
+    font-size: 1rem;
+  }
+
+}
+/* ========================================
    REDUCED MOTION
    ======================================== */
 
