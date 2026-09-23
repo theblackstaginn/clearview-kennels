@@ -103,39 +103,105 @@
 
 
     <nav
-      class="site-nav"
+      class="site-nav sticker-nav"
       id="siteNav"
       aria-label="Main navigation"
     >
 
       <a
+        class="sticker-button sticker-nav-button"
         href="puppies.html"
+        aria-label="Puppies"
         aria-current="page"
       >
-        Puppies
+        <img
+          src="ck-buttons/puppies-btn.webp"
+          alt=""
+        />
+
+        <span class="visually-hidden">
+          Puppies
+        </span>
       </a>
 
-      <a href="index.html#breeds">
-        Our Breeds
-      </a>
-
-      <a href="index.html#about">
-        About
-      </a>
-
-      <a href="index.html#process">
-        How It Works
-      </a>
-
-      <a href="apply.html#contact">
-        Contact
-      </a>
 
       <a
-        class="nav-cta"
-        href="apply.html"
+        class="sticker-button sticker-nav-button"
+        href="index.html#breeds"
+        aria-label="Our Breeds"
       >
-        Puppy Application
+        <img
+          src="ck-buttons/our-breeds-btn.webp"
+          alt=""
+        />
+
+        <span class="visually-hidden">
+          Our Breeds
+        </span>
+      </a>
+
+
+      <a
+        class="sticker-button sticker-nav-button"
+        href="index.html#about"
+        aria-label="About"
+      >
+        <img
+          src="ck-buttons/about-btn.webp"
+          alt=""
+        />
+
+        <span class="visually-hidden">
+          About
+        </span>
+      </a>
+
+
+      <a
+        class="sticker-button sticker-nav-button"
+        href="index.html#process"
+        aria-label="How It Works"
+      >
+        <img
+          src="ck-buttons/how-it-works-btn.webp"
+          alt=""
+        />
+
+        <span class="visually-hidden">
+          How It Works
+        </span>
+      </a>
+
+
+      <a
+        class="sticker-button sticker-nav-button"
+        href="apply.html#contact"
+        aria-label="Contact"
+      >
+        <img
+          src="ck-buttons/contact-btn.webp"
+          alt=""
+        />
+
+        <span class="visually-hidden">
+          Contact
+        </span>
+      </a>
+
+
+      <a
+        class="sticker-button sticker-nav-button sticker-nav-cta"
+        href="apply.html"
+        aria-label="Puppy Application"
+      >
+        <img
+          src="ck-buttons/puppy-app-btn.webp"
+          alt=""
+        />
+
+        <span class="visually-hidden">
+          Puppy Application
+        </span>
       </a>
 
     </nav>
@@ -216,8 +282,9 @@
       <!-- =================================
            BREED FILTERS
 
-           puppy-system.js automatically
-           marks the active filter.
+           Kept as live HTML controls so
+           puppy-system.js can show the
+           active breed state.
            ================================= -->
 
       <nav
@@ -327,10 +394,18 @@
 
 
           <a
-            class="button button-dark"
+            class="sticker-button sticker-button-inline"
             href="apply.html#contact"
+            aria-label="Contact Clearview"
           >
-            Contact Clearview
+            <img
+              src="ck-buttons/contact-clearview.webp"
+              alt=""
+            />
+
+            <span class="visually-hidden">
+              Contact Clearview
+            </span>
           </a>
 
         </div>
@@ -487,24 +562,36 @@
       </p>
 
 
-      <div class="final-cta-actions">
+      <div class="final-cta-actions sticker-actions">
 
         <a
-          class="button button-light"
+          class="sticker-button sticker-button-large"
           href="apply.html"
+          aria-label="Puppy Application"
         >
-          Puppy Application
+          <img
+            src="ck-buttons/puppy-app-btn.webp"
+            alt=""
+          />
+
+          <span class="visually-hidden">
+            Puppy Application
+          </span>
         </a>
 
 
         <a
-          class="final-cta-link"
+          class="sticker-button sticker-button-large"
           href="apply.html#contact"
+          aria-label="Ask a Question"
         >
-          Ask a Question
+          <img
+            src="ck-buttons/ask-a-question-btn.webp"
+            alt=""
+          />
 
-          <span aria-hidden="true">
-            →
+          <span class="visually-hidden">
+            Ask a Question
           </span>
         </a>
 
