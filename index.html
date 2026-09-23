@@ -239,6 +239,19 @@
 
     <!-- =====================================
          FEATURED PUPPIES
+
+         Intentionally placed directly
+         beneath the hero so the puppies
+         are the first thing visitors
+         encounter after scrolling.
+
+         Puppy cards are populated by:
+         data/puppies.js
+         data/puppy-system.js
+
+         The field-journal welcome card
+         is triggered from this section
+         by script.js.
          ===================================== -->
 
     <section
@@ -285,12 +298,6 @@
 
       </div>
 
-
-      <!--
-        Populated automatically by:
-        data/puppies.js
-        data/puppy-system.js
-      -->
 
       <div
         class="puppy-grid"
@@ -906,92 +913,6 @@
     </div>
 
   </footer>
-
-
-  <!-- =====================================
-       PUPPY MATCHING PROMPT
-       ===================================== -->
-
-  <div
-    class="puppy-match-overlay"
-    id="puppyMatchOverlay"
-    aria-hidden="true"
-  >
-
-    <section
-      class="puppy-match-card"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="puppyMatchTitle"
-    >
-
-      <button
-        class="puppy-match-close"
-        id="puppyMatchClose"
-        type="button"
-        aria-label="Close puppy matching prompt"
-      >
-        ×
-      </button>
-
-
-      <div
-        class="puppy-match-mark"
-        aria-hidden="true"
-      >
-        <span></span>
-      </div>
-
-
-      <p class="eyebrow">
-        Finding the Right Fit
-      </p>
-
-
-      <h2 id="puppyMatchTitle">
-        Not sure which puppy
-        fits your family?
-      </h2>
-
-
-      <p>
-        A photograph is only the beginning.
-        Tell us a little about your home,
-        your family, and what you're looking
-        for, and we'll help you find the
-        puppy that feels like the right fit.
-      </p>
-
-
-      <div class="puppy-match-actions">
-
-        <a
-          class="button button-dark"
-          href="apply.html"
-        >
-          Tell Us About Your Family
-        </a>
-
-
-        <button
-          class="puppy-match-browse"
-          id="puppyMatchBrowse"
-          type="button"
-        >
-          Keep Looking
-        </button>
-
-      </div>
-
-
-      <p class="puppy-match-note">
-        No pressure. No commitment.
-        Just a conversation.
-      </p>
-
-    </section>
-
-  </div>
 
 
   <!-- =====================================
