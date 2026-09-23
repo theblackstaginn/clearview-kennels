@@ -747,13 +747,26 @@ function renderPuppyDetail() {
 
   if (metaDescription) {
 
+    const sex =
+      puppy.sex
+        ? puppy.sex.toLowerCase()
+        : "";
+
+    const description =
+      sex
+        ? `Meet ${puppy.name}, a ${sex} ${puppy.breed} from Clearview Kennels in Marshfield, Missouri.`
+        : `Meet ${puppy.name}, a ${puppy.breed} from Clearview Kennels in Marshfield, Missouri.`;
+
     metaDescription.setAttribute(
       "content",
-      `Meet ${puppy.name}, a ${puppy.sex.toLowerCase()} ${puppy.breed} from Clearview Kennels in Marshfield, Missouri.`
+      description
     );
 
   }
 
+
+  /* Initialize gallery after
+     the puppy HTML exists */
 
   initializePuppyGallery();
 
@@ -854,3 +867,15 @@ function initializePuppyGallery() {
   );
 
 }
+
+
+/* ========================================
+   INITIALIZE
+   ======================================== */
+
+
+renderFeaturedPuppies();
+
+renderInventory();
+
+renderPuppyDetail();
