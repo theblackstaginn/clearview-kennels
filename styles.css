@@ -2301,6 +2301,160 @@ main::before {
   margin-top: 42px;
 }
 
+/* ========================================
+   PAYMENT METHODS
+   ======================================== */
+
+.payment-section {
+  text-align: center;
+}
+
+.payment-content {
+  max-width: 720px;
+
+  margin:
+    0 auto;
+}
+
+.payment-content h2 {
+  max-width: 620px;
+
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.payment-content .lead {
+  max-width: 590px;
+
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.payment-note {
+  max-width: 540px;
+
+  margin:
+    18px auto 0;
+
+  color: var(--ink-soft);
+
+  font-size: .9rem;
+
+  font-weight: 800;
+
+  line-height: 1.65;
+}
+
+.payment-methods {
+  display: flex;
+
+  margin-top: 34px;
+
+  align-items: flex-start;
+  justify-content: center;
+
+  gap:
+    clamp(
+      30px,
+      6vw,
+      58px
+    );
+}
+
+.payment-method {
+  display: flex;
+
+  width: 112px;
+
+  flex-direction: column;
+  align-items: center;
+
+  gap: 10px;
+
+  color: var(--ink);
+
+  text-decoration: none;
+
+  transition:
+    transform .2s ease;
+}
+
+.payment-method img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(
+      0 7px 8px
+      rgba(41, 41, 31, .16)
+    );
+}
+
+.payment-method span {
+  font-size: .75rem;
+
+  font-weight: 900;
+
+  letter-spacing: .04em;
+}
+
+.payment-method:hover {
+  transform:
+    translateY(-3px);
+}
+
+.payment-method:active {
+  transform:
+    translateY(1px)
+    scale(.98);
+}
+
+.payment-method:focus-visible {
+  outline:
+    2px solid var(--forest);
+
+  outline-offset: 6px;
+
+  border-radius: 8px;
+}
+
+
+/* ========================================
+   PAYMENT METHODS — MOBILE
+   ======================================== */
+
+@media (max-width: 760px) {
+
+  .payment-section {
+    text-align: center;
+  }
+
+  .payment-content h2,
+  .payment-content .lead,
+  .payment-note {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .payment-methods {
+    margin-top: 30px;
+
+    gap: 38px;
+  }
+
+  .payment-method {
+    width: 105px;
+  }
+
+  .payment-method span {
+    font-size: .78rem;
+  }
+
+}
 
 /* ========================================
    LOCATION
