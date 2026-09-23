@@ -7437,3 +7437,158 @@ and (
   }
 
 }
+/* ========================================
+   CLEARVIEW — TYPOGRAPHY TUNING
+   ======================================== */
+
+
+/* ----------------------------------------
+   BODY COPY — SLIGHTLY LARGER SITEWIDE
+   ---------------------------------------- */
+
+body {
+  font-size: 17px;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+
+/*
+  Supporting copy that previously ran
+  intentionally small gets a modest bump.
+*/
+
+.lead {
+  font-size:
+    clamp(
+      1.05rem,
+      1.7vw,
+      1.2rem
+    );
+
+  line-height: 1.7;
+}
+
+.home-intro-copy p,
+.story-copy p,
+.breed-copy p,
+.process-step p,
+.location-content p,
+.faq-teaser-content p,
+.puppy-card-copy p,
+.inventory-heading > p,
+.inventory-contact p,
+.transport-option p,
+.puppy-story-copy p,
+.application-intro > p,
+.contact-heading p,
+.faq-answer p {
+  font-size: 1rem;
+
+  line-height: 1.72;
+}
+
+
+/* ----------------------------------------
+   HEADER BRAND — BIGGER + STRONGER
+   ---------------------------------------- */
+
+.brand-name {
+  font-size: 1.18rem;
+
+  font-weight: 700;
+
+  letter-spacing: -.015em;
+}
+
+.brand-location {
+  margin-top: 4px;
+
+  font-size: .58rem;
+
+  font-weight: 700;
+
+  letter-spacing: .15em;
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 760px) {
+
+  body {
+    font-size: 17px;
+  }
+
+  p {
+    font-size: 1.02rem;
+
+    line-height: 1.72;
+  }
+
+
+  /* Header branding */
+
+  .brand-name {
+    font-size: 1.12rem;
+
+    font-weight: 700;
+
+    letter-spacing: -.015em;
+  }
+
+  .brand-location {
+    margin-top: 4px;
+
+    font-size: .54rem;
+
+    font-weight: 700;
+
+    letter-spacing: .14em;
+  }
+
+
+  /* Main reading copy */
+
+  .home-intro-copy p,
+  .story-copy p,
+  .breed-copy p,
+  .process-step p,
+  .location-content p,
+  .faq-teaser-content p,
+  .puppy-card-copy p,
+  .inventory-heading > p,
+  .inventory-contact p,
+  .transport-option p,
+  .puppy-story-copy p,
+  .application-intro > p,
+  .contact-heading p,
+  .faq-answer p {
+    font-size: 1.02rem;
+
+    line-height: 1.72;
+  }
+
+}
+
+
+/* ========================================
+   SMALL MOBILE
+   ======================================== */
+
+@media (max-width: 480px) {
+
+  .brand-name {
+    font-size: 1.08rem;
+  }
+
+  .brand-location {
+    font-size: .52rem;
+  }
+
+}
