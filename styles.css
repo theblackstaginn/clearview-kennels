@@ -685,7 +685,393 @@ main::before {
   gap: 14px;
 }
 
+/* ========================================
+   STICKER IMAGE BUTTONS
+   ======================================== */
 
+/*
+  Accessible text remains in the HTML
+  for screen readers while the artwork
+  supplies the visible button label.
+*/
+
+.visually-hidden {
+  position: absolute !important;
+
+  width: 1px !important;
+  height: 1px !important;
+
+  padding: 0 !important;
+  margin: -1px !important;
+
+  overflow: hidden !important;
+
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+
+  white-space: nowrap !important;
+
+  border: 0 !important;
+}
+
+
+/* -------------------------
+   BASE STICKER
+   ------------------------- */
+
+.sticker-button {
+  position: relative;
+
+  display: inline-flex;
+
+  width: auto;
+  max-width: 100%;
+
+  padding: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+
+  background: transparent;
+
+  line-height: 0;
+
+  vertical-align: middle;
+
+  cursor: pointer;
+
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    transform .18s ease,
+    filter .18s ease;
+}
+
+.sticker-button img {
+  display: block;
+
+  width: auto;
+  max-width: 100%;
+  height: auto;
+
+  object-fit: contain;
+
+  pointer-events: none;
+
+  user-select: none;
+
+  -webkit-user-drag: none;
+
+  filter:
+    drop-shadow(
+      0 4px 5px
+      rgba(31, 36, 26, .12)
+    );
+
+  transition:
+    filter .18s ease;
+}
+
+
+/* -------------------------
+   HOVER / PRESS
+   ------------------------- */
+
+@media (hover: hover) {
+
+  .sticker-button:hover {
+    transform:
+      translateY(-3px)
+      rotate(-.35deg);
+  }
+
+  .sticker-button:hover img {
+    filter:
+      drop-shadow(
+        0 7px 8px
+        rgba(31, 36, 26, .17)
+      );
+  }
+
+}
+
+.sticker-button:active {
+  transform:
+    translateY(1px)
+    scale(.975);
+}
+
+.sticker-button:active img {
+  filter:
+    drop-shadow(
+      0 2px 2px
+      rgba(31, 36, 26, .12)
+    );
+}
+
+.sticker-button:focus-visible {
+  outline:
+    2px solid var(--gold);
+
+  outline-offset: 6px;
+
+  border-radius: 6px;
+}
+
+
+/* -------------------------
+   LARGE CTA STICKERS
+   ------------------------- */
+
+.sticker-button-large {
+  width:
+    clamp(
+      155px,
+      15vw,
+      215px
+    );
+}
+
+.sticker-button-large img {
+  width: 100%;
+}
+
+
+/* -------------------------
+   INLINE STICKERS
+   ------------------------- */
+
+.sticker-button-inline {
+  width:
+    clamp(
+      128px,
+      12vw,
+      178px
+    );
+
+  margin-top: 5px;
+}
+
+.sticker-button-inline img {
+  width: 100%;
+}
+
+
+/* Longer artwork gets more room. */
+
+.sticker-button-wide {
+  width:
+    clamp(
+      180px,
+      18vw,
+      245px
+    );
+}
+
+
+/* -------------------------
+   STICKER ACTION GROUPS
+   ------------------------- */
+
+.sticker-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap:
+    clamp(
+      14px,
+      2vw,
+      25px
+    );
+}
+
+
+/* ========================================
+   STICKER NAVIGATION
+   ======================================== */
+
+.site-nav.sticker-nav {
+  gap:
+    clamp(
+      8px,
+      1.1vw,
+      17px
+    );
+}
+
+
+/*
+  Kill the old text-link underline
+  system for sticker navigation.
+*/
+
+.site-nav.sticker-nav
+> a:not(.nav-cta) {
+  font-size: inherit;
+
+  font-weight: inherit;
+
+  letter-spacing: normal;
+
+  text-transform: none;
+}
+
+.site-nav.sticker-nav
+> a:not(.nav-cta)::after {
+  display: none;
+}
+
+
+/*
+  All navigation artwork uses the
+  same visual height rather than the
+  same width. This preserves each
+  sticker's natural proportions.
+*/
+
+.sticker-nav-button {
+  flex: 0 0 auto;
+
+  width: auto;
+  height:
+    clamp(
+      34px,
+      3.3vw,
+      45px
+    );
+
+  margin: 0;
+}
+
+.sticker-nav-button img {
+  width: auto;
+  max-width: none;
+  height: 100%;
+}
+
+
+/*
+  The application sticker can carry
+  slightly more visual weight.
+*/
+
+.sticker-nav-cta {
+  height:
+    clamp(
+      39px,
+      3.7vw,
+      50px
+    );
+}
+
+
+/*
+  Remove the old .nav-cta box if
+  that class remains anywhere beside
+  the new sticker system.
+*/
+
+.sticker-nav
+.nav-cta,
+.sticker-nav
+.sticker-nav-cta {
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+}
+
+
+/* ========================================
+   STICKERS IN SPECIFIC SECTIONS
+   ======================================== */
+
+.section-heading-side
+.sticker-button-inline {
+  margin-top: 3px;
+}
+
+.story-copy
+.sticker-button-inline {
+  margin-top: 7px;
+}
+
+.breed-copy
+.sticker-button-inline {
+  margin-top: 5px;
+}
+
+.location-content
+.sticker-button-inline {
+  margin-top: 7px;
+}
+
+.faq-teaser-content
+.sticker-button-inline {
+  margin-top: 7px;
+}
+
+.process-action
+.sticker-button-large {
+  width:
+    clamp(
+      165px,
+      16vw,
+      220px
+    );
+}
+
+
+/* ========================================
+   HERO STICKERS
+   ======================================== */
+
+.hero
+.sticker-button img {
+  filter:
+    drop-shadow(
+      0 5px 7px
+      rgba(8, 12, 8, .25)
+    );
+}
+
+@media (hover: hover) {
+
+  .hero
+  .sticker-button:hover img {
+    filter:
+      drop-shadow(
+        0 8px 10px
+        rgba(8, 12, 8, .32)
+      );
+  }
+
+}
+
+
+/* ========================================
+   FINAL CTA STICKERS
+   ======================================== */
+
+.final-cta
+.sticker-button img {
+  filter:
+    drop-shadow(
+      0 5px 8px
+      rgba(7, 10, 7, .25)
+    );
+}
+
+.final-cta
+.sticker-actions {
+  margin-top: 18px;
+
+  justify-content: center;
+}
 /* ========================================
    HEADER
    ======================================== */
