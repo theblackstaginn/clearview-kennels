@@ -55,18 +55,28 @@
 }
 
 html {
+  min-height: 100%;
+
   scroll-behavior: smooth;
+
+  background: var(--cream);
 }
 
 body {
+  position: relative;
+
+  z-index: 0;
+
   min-width: 320px;
+  min-height: 100%;
+
   margin: 0;
 
   overflow-x: hidden;
 
   color: var(--ink);
 
-  background: var(--cream);
+  background: transparent;
 
   font-family: var(--sans);
 
@@ -163,10 +173,395 @@ p {
 
 
 /* ========================================
+   FIXED PAPER BACKGROUND
+   ======================================== */
+
+/*
+  The paper is fixed to the viewport.
+
+  All light sections remain transparent
+  and scroll over this layer.
+*/
+
+body::before {
+  position: fixed;
+
+  z-index: -3;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  content: "";
+
+  pointer-events: none;
+
+  background-color: var(--cream);
+
+  background-image:
+    url("ck-assets/ck-paper-web.webp");
+
+  background-repeat: no-repeat;
+
+  background-position: center center;
+
+  background-size: cover;
+
+  transform: translateZ(0);
+
+  will-change: transform;
+}
+
+
+/* ========================================
+   DAPPLED SUNLIGHT
+   ======================================== */
+
+/*
+  This layer is independent of the paper.
+
+  The paper remains stationary while
+  soft patches of light slowly move
+  across the viewport.
+*/
+
+body::after {
+  position: fixed;
+
+  z-index: -2;
+
+  inset: -18%;
+
+  width: 136%;
+  height: 136%;
+
+  content: "";
+
+  pointer-events: none;
+
+  background:
+
+    radial-gradient(
+      ellipse 22% 16%
+      at 13% 17%,
+      rgba(255, 249, 217, .36) 0%,
+      rgba(255, 244, 197, .23) 28%,
+      rgba(255, 239, 181, .09) 55%,
+      transparent 74%
+    ),
+
+    radial-gradient(
+      ellipse 15% 24%
+      at 35% 8%,
+      rgba(255, 250, 220, .27) 0%,
+      rgba(255, 243, 192, .13) 38%,
+      transparent 72%
+    ),
+
+    radial-gradient(
+      ellipse 25% 14%
+      at 67% 22%,
+      rgba(255, 250, 221, .31) 0%,
+      rgba(255, 242, 191, .15) 36%,
+      transparent 70%
+    ),
+
+    radial-gradient(
+      ellipse 17% 26%
+      at 89% 35%,
+      rgba(255, 247, 209, .24) 0%,
+      rgba(255, 240, 183, .11) 39%,
+      transparent 72%
+    ),
+
+    radial-gradient(
+      ellipse 27% 18%
+      at 19% 61%,
+      rgba(255, 250, 220, .28) 0%,
+      rgba(255, 242, 191, .14) 36%,
+      transparent 71%
+    ),
+
+    radial-gradient(
+      ellipse 18% 14%
+      at 51% 53%,
+      rgba(255, 250, 222, .33) 0%,
+      rgba(255, 243, 195, .15) 38%,
+      transparent 70%
+    ),
+
+    radial-gradient(
+      ellipse 24% 19%
+      at 76% 72%,
+      rgba(255, 248, 214, .29) 0%,
+      rgba(255, 241, 188, .13) 38%,
+      transparent 72%
+    ),
+
+    radial-gradient(
+      ellipse 18% 25%
+      at 29% 91%,
+      rgba(255, 249, 217, .25) 0%,
+      rgba(255, 241, 187, .11) 40%,
+      transparent 72%
+    );
+
+  filter:
+    blur(22px);
+
+  opacity: .82;
+
+  transform:
+    translate3d(
+      -1.5%,
+      -1%,
+      0
+    )
+    rotate(-1deg)
+    scale(1.02);
+
+  animation:
+    clearview-dapple-primary
+    28s
+    ease-in-out
+    infinite alternate;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+/*
+  Second canopy layer.
+
+  This moves differently from the main
+  sunlight so the light changes shape
+  instead of simply sliding around.
+*/
+
+main {
+  position: relative;
+
+  z-index: 0;
+
+  background: transparent;
+}
+
+main::before {
+  position: fixed;
+
+  z-index: -1;
+
+  inset: -20%;
+
+  width: 140%;
+  height: 140%;
+
+  content: "";
+
+  pointer-events: none;
+
+  background:
+
+    radial-gradient(
+      ellipse 13% 21%
+      at 23% 29%,
+      rgba(255, 252, 231, .18) 0%,
+      rgba(255, 247, 211, .08) 45%,
+      transparent 72%
+    ),
+
+    radial-gradient(
+      ellipse 20% 12%
+      at 48% 16%,
+      rgba(255, 251, 226, .17) 0%,
+      rgba(255, 244, 201, .07) 45%,
+      transparent 73%
+    ),
+
+    radial-gradient(
+      ellipse 15% 23%
+      at 73% 43%,
+      rgba(255, 251, 227, .17) 0%,
+      rgba(255, 245, 205, .07) 43%,
+      transparent 72%
+    ),
+
+    radial-gradient(
+      ellipse 22% 13%
+      at 42% 71%,
+      rgba(255, 251, 228, .16) 0%,
+      rgba(255, 245, 205, .07) 44%,
+      transparent 73%
+    ),
+
+    radial-gradient(
+      ellipse 14% 20%
+      at 84% 84%,
+      rgba(255, 251, 227, .15) 0%,
+      rgba(255, 244, 201, .06) 45%,
+      transparent 73%
+    );
+
+  filter:
+    blur(34px);
+
+  opacity: .72;
+
+  transform:
+    translate3d(
+      1%,
+      1%,
+      0
+    )
+    rotate(.7deg);
+
+  animation:
+    clearview-dapple-secondary
+    37s
+    ease-in-out
+    infinite alternate;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+@keyframes clearview-dapple-primary {
+
+  0% {
+    transform:
+      translate3d(
+        -2%,
+        -1%,
+        0
+      )
+      rotate(-1.2deg)
+      scale(1.01);
+
+    opacity: .67;
+  }
+
+  23% {
+    transform:
+      translate3d(
+        .5%,
+        1.4%,
+        0
+      )
+      rotate(-.25deg)
+      scale(1.035);
+
+    opacity: .82;
+  }
+
+  48% {
+    transform:
+      translate3d(
+        2.2%,
+        -.6%,
+        0
+      )
+      rotate(.8deg)
+      scale(1.015);
+
+    opacity: .72;
+  }
+
+  71% {
+    transform:
+      translate3d(
+        .7%,
+        2%,
+        0
+      )
+      rotate(.2deg)
+      scale(1.045);
+
+    opacity: .88;
+  }
+
+  100% {
+    transform:
+      translate3d(
+        -1.7%,
+        .4%,
+        0
+      )
+      rotate(-.8deg)
+      scale(1.025);
+
+    opacity: .74;
+  }
+
+}
+
+
+@keyframes clearview-dapple-secondary {
+
+  0% {
+    transform:
+      translate3d(
+        2%,
+        .5%,
+        0
+      )
+      rotate(.8deg)
+      scale(1);
+  }
+
+  31% {
+    transform:
+      translate3d(
+        -.8%,
+        1.8%,
+        0
+      )
+      rotate(-.5deg)
+      scale(1.035);
+
+    opacity: .62;
+  }
+
+  63% {
+    transform:
+      translate3d(
+        -2%,
+        -.8%,
+        0
+      )
+      rotate(-.9deg)
+      scale(1.015);
+
+    opacity: .78;
+  }
+
+  100% {
+    transform:
+      translate3d(
+        1.5%,
+        -1.5%,
+        0
+      )
+      rotate(.5deg)
+      scale(1.045);
+
+    opacity: .68;
+  }
+
+}
+
+
+/* ========================================
    SHARED
    ======================================== */
 
 .section {
+  position: relative;
+
   width:
     min(
       calc(100% - 64px),
@@ -182,6 +577,8 @@ p {
       150px
     )
     0;
+
+  background: transparent;
 }
 
 .eyebrow {
@@ -407,7 +804,7 @@ p {
       244,
       239,
       229,
-      .94
+      .92
     );
 
   border-bottom:
@@ -534,8 +931,7 @@ p {
     10px 18px;
 
   border:
-    1px solid
-    currentColor;
+    1px solid currentColor;
 
   font-size: .65rem;
 
@@ -598,6 +994,8 @@ p {
 .hero {
   position: relative;
 
+  z-index: 2;
+
   display: flex;
 
   min-height:
@@ -623,6 +1021,8 @@ p {
   overflow: hidden;
 
   color: var(--white);
+
+  background-color: #263326;
 
   background-image:
     linear-gradient(
@@ -857,6 +1257,8 @@ p {
    ======================================== */
 
 .home-intro {
+  position: relative;
+
   width:
     min(
       calc(100% - 64px),
@@ -872,6 +1274,8 @@ p {
       180px
     )
     0;
+
+  background: transparent;
 
   border-bottom:
     1px solid var(--line);
@@ -1453,6 +1857,10 @@ p {
    ======================================== */
 
 .final-cta {
+  position: relative;
+
+  z-index: 2;
+
   display: flex;
 
   min-height:
@@ -1543,6 +1951,10 @@ p {
    ======================================== */
 
 .site-footer {
+  position: relative;
+
+  z-index: 2;
+
   padding:
     70px
     clamp(
@@ -1709,11 +2121,17 @@ p {
       244,
       239,
       229,
-      .96
+      .92
     );
 
   border-bottom:
     1px solid var(--line);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+
+  backdrop-filter:
+    blur(14px);
 }
 
 .inventory-hero {
@@ -2445,6 +2863,52 @@ p {
 
 
   /* -------------------------
+     FIXED PAPER
+     ------------------------- */
+
+  body::before {
+    background-image:
+      url("ck-assets/ck-paper-mobile.webp");
+
+    background-position:
+      center center;
+
+    background-size: cover;
+  }
+
+
+  /*
+    Slightly soften the light on small
+    screens so it doesn't compete with
+    typography.
+  */
+
+  body::after {
+    inset: -25%;
+
+    width: 150%;
+    height: 150%;
+
+    filter:
+      blur(28px);
+
+    opacity: .68;
+  }
+
+  main::before {
+    inset: -28%;
+
+    width: 156%;
+    height: 156%;
+
+    filter:
+      blur(38px);
+
+    opacity: .58;
+  }
+
+
+  /* -------------------------
      SHARED
      ------------------------- */
 
@@ -2531,7 +2995,19 @@ p {
 
     color: var(--ink);
 
-    background: var(--cream);
+    background:
+      rgba(
+        244,
+        239,
+        229,
+        .97
+      );
+
+    -webkit-backdrop-filter:
+      blur(18px);
+
+    backdrop-filter:
+      blur(18px);
 
     visibility: hidden;
 
@@ -3121,6 +3597,13 @@ p {
 
   html {
     scroll-behavior: auto;
+  }
+
+  body::after,
+  main::before {
+    animation: none !important;
+
+    transform: none;
   }
 
   *,
