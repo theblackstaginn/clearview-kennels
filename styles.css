@@ -2154,7 +2154,7 @@ main::before {
    ======================================== */
 
 .testimonials-section {
-  overflow: hidden;
+  overflow: visible;
 }
 
 .testimonials-heading {
