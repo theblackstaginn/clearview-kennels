@@ -2224,23 +2224,23 @@ TESTIMONIAL CARD
 ======================================== */
 
 .testimonial-card {
-position: relative;
-display: flex;
-flex: 0 0 min(29vw, 350px);
-width: min(29vw, 350px);
-aspect-ratio: 3 / 4;
-padding: 44px 32px 30px;
-flex-direction: column;
-overflow: hidden;
-color: var(--ink);
-background:
-#eee5d4
-url("ck-assets/testimony-card.webp")
-center / 100% 100%
-no-repeat;
-border-radius: 30px;
-box-shadow: 0 14px 34px rgba(41,41,31,.1);
-scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  flex: 0 0 min(25vw, 310px);
+  width: min(25vw, 310px);
+  aspect-ratio: 3 / 4;
+  padding: 40px 28px 27px;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--ink);
+  background:
+    #eee5d4
+    url("ck-assets/testimony-card.webp")
+    center / 100% 100%
+    no-repeat;
+  border-radius: 28px;
+  box-shadow: 0 14px 34px rgba(41,41,31,.1);
+  scroll-snap-align: start;
 }
 
 .testimonial-card::before {
