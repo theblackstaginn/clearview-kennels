@@ -17,8 +17,24 @@
    - Parent profiles / photos
    - Status labels
    - Dates / prices
+   - Dynamic puppy SEO
+   - Social sharing metadata
+   - Puppy structured data
    - Graceful handling of incomplete listings
    ======================================== */
+
+
+/* ========================================
+   SITE CONSTANTS
+   ======================================== */
+
+
+const CLEARVIEW_SITE_URL =
+  "https://clearviewkennels.com";
+
+
+const CLEARVIEW_PUPPIES_URL =
+  `${CLEARVIEW_SITE_URL}/puppies.html`;
 
 
 /* ========================================
@@ -171,6 +187,69 @@ function getPuppies() {
 
 
 /* ========================================
+   META HELPERS
+   ======================================== */
+
+
+function setMetaContent(
+  selector,
+  content
+) {
+
+  if (!hasValue(content)) {
+    return;
+  }
+
+
+  const element =
+    document.querySelector(
+      selector
+    );
+
+
+  if (!element) {
+    return;
+  }
+
+
+  element.setAttribute(
+    "content",
+    content
+  );
+
+}
+
+
+function setLinkHref(
+  selector,
+  href
+) {
+
+  if (!hasValue(href)) {
+    return;
+  }
+
+
+  const element =
+    document.querySelector(
+      selector
+    );
+
+
+  if (!element) {
+    return;
+  }
+
+
+  element.setAttribute(
+    "href",
+    href
+  );
+
+}
+
+
+/* ========================================
    PUPPY URL
    ======================================== */
 
@@ -179,6 +258,18 @@ function puppyDetailUrl(puppy) {
 
   return (
     "puppy.html?id=" +
+    encodeURIComponent(
+      puppy.id
+    )
+  );
+
+}
+
+
+function puppyCanonicalUrl(puppy) {
+
+  return (
+    `${CLEARVIEW_SITE_URL}/puppy.html?id=` +
     encodeURIComponent(
       puppy.id
     )
@@ -213,6 +304,599 @@ function puppyPhotoAlt(puppy) {
 
 
   return parts.join(", ");
+
+}
+
+
+/* ========================================
+   ABSOLUTE IMAGE URL
+   ======================================== */
+
+
+function absoluteImageUrl(
+  image
+) {
+
+  if (!hasValue(image)) {
+    return "";
+  }
+
+
+  try {
+
+    return new URL(
+      image,
+      `${CLEARVIEW_SITE_URL}/`
+    ).href;
+
+  } catch (error) {
+
+    return "";
+
+  }
+
+}
+
+
+/* ========================================
+   PRIMARY PUPPY IMAGE
+   ======================================== */
+
+
+function getPrimaryPuppyImage(
+  puppy
+) {
+
+  if (
+    !Array.isArray(
+      puppy.images
+    )
+  ) {
+    return "";
+  }
+
+
+  return (
+    puppy.images.find(
+      image =>
+        hasValue(image)
+    ) || ""
+  );
+
+}
+
+
+/* ========================================
+   DYNAMIC SEO DESCRIPTION
+   ======================================== */
+
+
+function puppySeoDescription(
+  puppy
+) {
+
+  const pieces = [];
+
+
+  if (hasValue(puppy.sex)) {
+
+    pieces.push(
+      puppy.sex.toLowerCase()
+    );
+
+  }
+
+
+  if (hasValue(puppy.color)) {
+
+    pieces.push(
+      puppy.color
+    );
+
+  }
+
+
+  if (hasValue(puppy.breed)) {
+
+    pieces.push(
+      puppy.breed
+    );
+
+  }
+
+
+  let puppyDescription =
+    pieces.join(" ");
+
+
+  if (puppyDescription) {
+
+    puppyDescription +=
+      " puppy";
+
+  } else {
+
+    puppyDescription =
+      "puppy";
+
+  }
+
+
+  if (
+    puppy.status === "available"
+  ) {
+
+    return (
+      `Meet ${puppy.name}, an available ` +
+      `${puppyDescription} from Clearview Kennels ` +
+      `in Marshfield, Missouri, serving families ` +
+      `throughout the contiguous United States.`
+    );
+
+  }
+
+
+  return (
+    `Meet ${puppy.name}, a ${puppyDescription} ` +
+    `from Clearview Kennels in Marshfield, Missouri.`
+  );
+
+}
+
+
+/* ========================================
+   DYNAMIC SEO TITLE
+   ======================================== */
+
+
+function puppySeoTitle(
+  puppy
+) {
+
+  const parts = [];
+
+
+  if (hasValue(puppy.name)) {
+
+    parts.push(
+      puppy.name
+    );
+
+  }
+
+
+  if (hasValue(puppy.breed)) {
+
+    parts.push(
+      `${puppy.breed} Puppy`
+    );
+
+  } else {
+
+    parts.push(
+      "Puppy"
+    );
+
+  }
+
+
+  parts.push(
+    "Clearview Kennels"
+  );
+
+
+  return parts.join(
+    " | "
+  );
+
+}
+
+
+/* ========================================
+   DYNAMIC PUPPY STRUCTURED DATA
+   ======================================== */
+
+
+function puppyStructuredData(
+  puppy
+) {
+
+  const canonical =
+    puppyCanonicalUrl(
+      puppy
+    );
+
+
+  const description =
+    puppySeoDescription(
+      puppy
+    );
+
+
+  const image =
+    absoluteImageUrl(
+      getPrimaryPuppyImage(
+        puppy
+      )
+    );
+
+
+  const puppyEntity = {
+    "@type": "Thing",
+    "@id": `${canonical}#puppy`,
+    "name": puppy.name,
+    "description": description,
+    "url": canonical
+  };
+
+
+  if (image) {
+
+    puppyEntity.image =
+      image;
+
+  }
+
+
+  if (hasValue(puppy.breed)) {
+
+    puppyEntity.additionalType =
+      "https://schema.org/Animal";
+
+  }
+
+
+  const webPage = {
+    "@type": "WebPage",
+    "@id": `${canonical}#webpage`,
+    "url": canonical,
+    "name": puppySeoTitle(
+      puppy
+    ),
+    "description": description,
+    "isPartOf": {
+      "@id":
+        `${CLEARVIEW_SITE_URL}/#website`
+    },
+    "about": [
+      {
+        "@id":
+          `${CLEARVIEW_SITE_URL}/#organization`
+      },
+      {
+        "@id":
+          `${canonical}#puppy`
+      }
+    ],
+    "breadcrumb": {
+      "@id":
+        `${canonical}#breadcrumb`
+    },
+    "mainEntity": {
+      "@id":
+        `${canonical}#puppy`
+    }
+  };
+
+
+  if (image) {
+
+    webPage.primaryImageOfPage = {
+      "@type": "ImageObject",
+      "url": image
+    };
+
+  }
+
+
+  const breadcrumb = {
+    "@type": "BreadcrumbList",
+    "@id":
+      `${canonical}#breadcrumb`,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item":
+          `${CLEARVIEW_SITE_URL}/`
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Available Puppies",
+        "item":
+          CLEARVIEW_PUPPIES_URL
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": puppy.name,
+        "item":
+          canonical
+      }
+    ]
+  };
+
+
+  return {
+    "@context":
+      "https://schema.org",
+
+    "@graph": [
+      webPage,
+      puppyEntity,
+      breadcrumb
+    ]
+  };
+
+}
+
+
+/* ========================================
+   APPLY DYNAMIC PUPPY SEO
+   ======================================== */
+
+
+function applyPuppySeo(
+  puppy
+) {
+
+  const title =
+    puppySeoTitle(
+      puppy
+    );
+
+
+  const description =
+    puppySeoDescription(
+      puppy
+    );
+
+
+  const canonical =
+    puppyCanonicalUrl(
+      puppy
+    );
+
+
+  const image =
+    absoluteImageUrl(
+      getPrimaryPuppyImage(
+        puppy
+      )
+    );
+
+
+  /* =====================================
+     TITLE
+     ===================================== */
+
+  document.title =
+    title;
+
+
+  /* =====================================
+     DESCRIPTION
+     ===================================== */
+
+  setMetaContent(
+    'meta[name="description"]',
+    description
+  );
+
+
+  /* =====================================
+     ROBOTS
+     ===================================== */
+
+  setMetaContent(
+    'meta[name="robots"]',
+    "index,follow,max-image-preview:large"
+  );
+
+
+  /* =====================================
+     CANONICAL
+     ===================================== */
+
+  setLinkHref(
+    'link[rel="canonical"]',
+    canonical
+  );
+
+
+  /* =====================================
+     OPEN GRAPH
+     ===================================== */
+
+  setMetaContent(
+    'meta[property="og:title"]',
+    title
+  );
+
+
+  setMetaContent(
+    'meta[property="og:description"]',
+    description
+  );
+
+
+  setMetaContent(
+    'meta[property="og:url"]',
+    canonical
+  );
+
+
+  if (image) {
+
+    setMetaContent(
+      'meta[property="og:image"]',
+      image
+    );
+
+  }
+
+
+  /* =====================================
+     TWITTER / SOCIAL
+     ===================================== */
+
+  setMetaContent(
+    'meta[name="twitter:title"]',
+    title
+  );
+
+
+  setMetaContent(
+    'meta[name="twitter:description"]',
+    description
+  );
+
+
+  if (image) {
+
+    setMetaContent(
+      'meta[name="twitter:image"]',
+      image
+    );
+
+  }
+
+
+  /* =====================================
+     STRUCTURED DATA
+     ===================================== */
+
+  const schema =
+    document.getElementById(
+      "puppyPageSchema"
+    );
+
+
+  if (schema) {
+
+    schema.textContent =
+      JSON.stringify(
+        puppyStructuredData(
+          puppy
+        )
+      );
+
+  }
+
+}
+
+
+/* ========================================
+   INVALID PUPPY SEO
+   ======================================== */
+
+
+function applyPuppyNotFoundSeo() {
+
+  const title =
+    "Puppy Not Found | Clearview Kennels";
+
+
+  const description =
+    "Browse available Cavalier King Charles Spaniel and Cavapoo puppies from Clearview Kennels in Marshfield, Missouri.";
+
+
+  document.title =
+    title;
+
+
+  setMetaContent(
+    'meta[name="description"]',
+    description
+  );
+
+
+  /*
+    Invalid puppy query URLs should not
+    become indexed search results.
+  */
+
+  setMetaContent(
+    'meta[name="robots"]',
+    "noindex,follow"
+  );
+
+
+  setLinkHref(
+    'link[rel="canonical"]',
+    CLEARVIEW_PUPPIES_URL
+  );
+
+
+  setMetaContent(
+    'meta[property="og:title"]',
+    title
+  );
+
+
+  setMetaContent(
+    'meta[property="og:description"]',
+    description
+  );
+
+
+  setMetaContent(
+    'meta[property="og:url"]',
+    CLEARVIEW_PUPPIES_URL
+  );
+
+
+  setMetaContent(
+    'meta[name="twitter:title"]',
+    title
+  );
+
+
+  setMetaContent(
+    'meta[name="twitter:description"]',
+    description
+  );
+
+
+  const schema =
+    document.getElementById(
+      "puppyPageSchema"
+    );
+
+
+  if (schema) {
+
+    schema.textContent =
+      JSON.stringify({
+        "@context":
+          "https://schema.org",
+
+        "@type":
+          "WebPage",
+
+        "@id":
+          `${CLEARVIEW_PUPPIES_URL}#webpage`,
+
+        "url":
+          CLEARVIEW_PUPPIES_URL,
+
+        "name":
+          "Available Puppies | Clearview Kennels",
+
+        "isPartOf": {
+          "@id":
+            `${CLEARVIEW_SITE_URL}/#website`
+        },
+
+        "about": {
+          "@id":
+            `${CLEARVIEW_SITE_URL}/#organization`
+        }
+      });
+
+  }
 
 }
 
@@ -1703,11 +2387,12 @@ function createPuppyDetail(puppy) {
         </h2>
 
         <p>
-          Clearview works with families
-          both near and far. We'll help you
-          talk through the way home that
-          makes sense for you and your
-          puppy.
+          Clearview is based in Marshfield,
+          Missouri, and works with families
+          throughout the contiguous United
+          States. We'll help you talk through
+          the way home that makes sense for
+          you and your puppy.
         </p>
 
       </div>
@@ -1717,7 +2402,7 @@ function createPuppyDetail(puppy) {
 
         ${goingHomeOption(
           "Personal Pickup",
-          "Meet Clearview in person and bring your puppy home yourself."
+          "Meet Clearview in Marshfield, Missouri, and bring your puppy home yourself."
         )}
 
         ${goingHomeOption(
@@ -1882,8 +2567,7 @@ function renderPuppyDetail() {
       puppyNotFoundMarkup();
 
 
-    document.title =
-      "Puppy Not Found | Clearview Kennels";
+    applyPuppyNotFoundSeo();
 
 
     return;
@@ -1897,64 +2581,14 @@ function renderPuppyDetail() {
     );
 
 
-  /* =====================================
-     DYNAMIC TITLE
-     ===================================== */
+  /*
+    Update the browser/search/social metadata
+    after the puppy data has been loaded.
+  */
 
-  const titleParts = [
-    puppy.name,
-    hasValue(puppy.breed)
-      ? puppy.breed
-      : null,
-    "Clearview Kennels"
-  ]
-    .filter(hasValue);
-
-
-  document.title =
-    titleParts.join(" | ");
-
-
-  /* =====================================
-     DYNAMIC DESCRIPTION
-     ===================================== */
-
-  const metaDescription =
-    document.querySelector(
-      'meta[name="description"]'
-    );
-
-
-  if (metaDescription) {
-
-    let description =
-      `Meet ${puppy.name} from Clearview Kennels in Marshfield, Missouri.`;
-
-
-    if (
-      hasValue(puppy.sex) &&
-      hasValue(puppy.breed)
-    ) {
-
-      description =
-        `Meet ${puppy.name}, a ${puppy.sex.toLowerCase()} ${puppy.breed} from Clearview Kennels in Marshfield, Missouri.`;
-
-    } else if (
-      hasValue(puppy.breed)
-    ) {
-
-      description =
-        `Meet ${puppy.name}, a ${puppy.breed} from Clearview Kennels in Marshfield, Missouri.`;
-
-    }
-
-
-    metaDescription.setAttribute(
-      "content",
-      description
-    );
-
-  }
+  applyPuppySeo(
+    puppy
+  );
 
 
   initializePuppyGallery();
