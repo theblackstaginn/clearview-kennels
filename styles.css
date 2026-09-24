@@ -2385,7 +2385,8 @@ main::before {
 
 @media (max-width: 900px) {
   .testimonial-card {
-    flex-basis: min(72vw, 390px);
+    flex-basis: min(68vw, 365px);
+    width: min(68vw, 365px);
   }
 }
 
