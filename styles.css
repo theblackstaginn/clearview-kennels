@@ -8623,3 +8623,164 @@ small,
   }
 
 }
+/* ========================================
+   TESTIMONIAL CAROUSEL CONTROLS
+   ======================================== */
+
+.testimonials-carousel {
+  position: relative;
+  width: 100%;
+}
+
+
+/* Track */
+
+.testimonials-track {
+  display: flex;
+  gap: 24px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  padding:
+    10px
+    54px
+    18px;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.testimonials-track::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* Cards */
+
+.testimonial-card {
+  scroll-snap-align: start;
+}
+
+
+/* ========================================
+   DESKTOP PREVIOUS / NEXT BUTTONS
+   ======================================== */
+
+.testimonial-scroll-button {
+  position: absolute;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  z-index: 10;
+
+  width: 42px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid rgba(41, 41, 31, .18);
+  border-radius: 999px;
+
+  background:
+    rgba(250, 247, 240, .92);
+
+  color: var(--forest-deep);
+
+  font-family:
+    "Libre Baskerville",
+    Georgia,
+    serif;
+
+  font-size: 2rem;
+  line-height: 1;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 24px
+    rgba(41, 41, 31, .12);
+
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+
+
+.testimonial-scroll-button:hover {
+  transform:
+    translateY(-50%)
+    scale(1.06);
+
+  background:
+    var(--paper);
+
+  box-shadow:
+    0 10px 28px
+    rgba(41, 41, 31, .17);
+}
+
+
+.testimonial-scroll-button:focus-visible {
+  outline:
+    3px solid
+    rgba(53, 71, 53, .28);
+
+  outline-offset: 3px;
+}
+
+
+/* Previous */
+
+.testimonial-scroll-prev {
+  left: 4px;
+}
+
+
+/* Next */
+
+.testimonial-scroll-next {
+  right: 4px;
+}
+
+
+/* Keep the arrow itself centered */
+
+.testimonial-scroll-button span {
+  display: block;
+  line-height: 1;
+  transform: translateY(-2px);
+}
+
+
+/* ========================================
+   MOBILE
+   Natural swipe — no arrows needed
+   ======================================== */
+
+@media (max-width: 760px) {
+
+  .testimonial-scroll-button {
+    display: none;
+  }
+
+
+  .testimonials-track {
+    padding:
+      8px
+      7vw
+      18px;
+
+    gap: 16px;
+  }
+
+}
