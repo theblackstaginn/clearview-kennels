@@ -5041,3 +5041,86 @@ small,
     translateY(-6px)
     rotate(1deg);
 }
+/* ========================================
+   CALL CLEARVIEW STICKER HOVER
+   Matches Application + Send Message
+   ======================================== */
+
+.faq-teaser-content .sticker-button {
+  transition:
+    transform .2s ease,
+    filter .2s ease;
+}
+
+.faq-teaser-content .sticker-button img {
+  transition:
+    transform .2s ease,
+    filter .2s ease;
+}
+
+/* Hover */
+
+@media (hover: hover) and (pointer: fine) {
+
+  .faq-teaser-content .sticker-button:hover {
+    transform:
+      translateY(-6px)
+      rotate(1deg);
+  }
+
+  .faq-teaser-content .sticker-button:hover img {
+    transform:
+      scale(1.035);
+
+    filter:
+      brightness(1.04)
+      saturate(1.04)
+      drop-shadow(0 16px 14px rgba(41, 32, 24, .32));
+  }
+
+}
+
+/* Press / tap */
+
+.faq-teaser-content .sticker-button:active {
+  transform:
+    translateY(1px)
+    scale(.975);
+}
+
+.faq-teaser-content .sticker-button:active img {
+  transform:
+    scale(.99);
+
+  filter:
+    drop-shadow(0 4px 4px rgba(41, 32, 24, .20));
+}
+
+/* Keyboard focus */
+
+.faq-teaser-content .sticker-button:focus-visible {
+  outline:
+    3px solid
+    rgba(89, 67, 51, .42);
+
+  outline-offset: 7px;
+  border-radius: 20px;
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .faq-teaser-content .sticker-button,
+  .faq-teaser-content .sticker-button img {
+    transition: none;
+  }
+
+  .faq-teaser-content .sticker-button:hover,
+  .faq-teaser-content .sticker-button:active,
+  .faq-teaser-content .sticker-button:hover img,
+  .faq-teaser-content .sticker-button:active img {
+    transform: none;
+  }
+
+}
