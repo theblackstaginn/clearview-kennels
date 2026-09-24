@@ -21,6 +21,11 @@
 
    To move a puppy between sections:
    Change only the status value.
+
+   Keep factual puppy information here.
+   The puppy system automatically uses
+   this data for cards, detail pages,
+   application links, and SEO metadata.
    ======================================== */
 
 
@@ -55,16 +60,18 @@ const puppies = [
     ],
 
     description:
-      "More information about Chocolate Chip is coming soon.",
+      "Chocolate Chip is a male chocolate tri Cavalier King Charles Spaniel born August 8, 2026, and raised at Clearview Kennels in Marshfield, Missouri.",
 
     sire: {
-      name: "Sire information coming soon",
-      details: ""
+      name: "Peanut",
+      details: "Chocolate",
+      image: "ck-parents/peanut.webp"
     },
 
     dam: {
-      name: "Dam information coming soon",
-      details: ""
+      name: "Amber",
+      details: "Tri-color",
+      image: "ck-parents/amber.webp"
     }
   },
 
@@ -98,16 +105,18 @@ const puppies = [
     ],
 
     description:
-      "More information about Zoro is coming soon.",
+      "Zoro is a male tri-color Cavalier King Charles Spaniel born August 8, 2026, and raised at Clearview Kennels in Marshfield, Missouri.",
 
     sire: {
-      name: "Sire information coming soon",
-      details: ""
+      name: "Peanut",
+      details: "Chocolate",
+      image: "ck-parents/peanut.webp"
     },
 
     dam: {
-      name: "Dam information coming soon",
-      details: ""
+      name: "Amber",
+      details: "Tri-color",
+      image: "ck-parents/amber.webp"
     }
   }
 
