@@ -4024,6 +4024,7 @@ main::before {
   position: relative;
 
   display: flex;
+
   flex:
     0 0
     clamp(
@@ -4032,14 +4033,19 @@ main::before {
       410px
     );
 
-  height: 510px;
+  /*
+    Taller portrait proportion to match
+    the new physical card artwork.
+  */
+
+  height: 560px;
 
   flex-direction: column;
 
   padding:
-    38px
-    32px
-    28px;
+    48px
+    40px
+    34px;
 
   overflow: hidden;
 
@@ -4047,84 +4053,68 @@ main::before {
 
   color: var(--ink);
 
-  background:
-    radial-gradient(
-      circle at 15% 10%,
-      rgba(164, 123, 69, .06),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 88% 82%,
-      rgba(53, 71, 53, .035),
-      transparent 30%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(250, 247, 240, .96),
-      rgba(244, 239, 229, .94)
-    );
+  background-color: #e8dcc5;
 
-  border:
-    1px solid
-    rgba(41, 41, 31, .12);
+  background-image:
+    url("ck-assets/testimony-card.webp");
+
+  background-repeat: no-repeat;
+
+  background-position: center center;
+
+  background-size: 100% 100%;
+
+  border: 0;
 
   border-radius: 22px;
 
   box-shadow:
-    0 16px 36px
-    rgba(41, 41, 31, .08);
+    0 18px 40px
+    rgba(41, 41, 31, .12);
 }
 
 
-/* restrained paper grain */
+/*
+  The paper grain and aged edges now live
+  inside the WebP artwork, so we no longer
+  generate a fake texture over the card.
+*/
 
 .testimonial-card::before {
-  content: "";
+  display: none;
 
-  position: absolute;
-  inset: 0;
-
-  pointer-events: none;
-
-  background:
-    repeating-linear-gradient(
-      7deg,
-      rgba(41, 41, 31, .012)
-      0,
-      rgba(41, 41, 31, .012)
-      1px,
-      transparent
-      1px,
-      transparent
-      5px
-    );
-
-  mix-blend-mode: multiply;
-
-  opacity: .55;
+  content: none;
 }
 
 
-/* soft fade above author */
+/*
+  Subtle lower fade keeps long reviews from
+  visually colliding with the author area.
+
+  The color is intentionally warm so it
+  disappears naturally into the parchment.
+*/
 
 .testimonial-card::after {
-  content: "";
-
   position: absolute;
 
-  right: 22px;
-  bottom: 70px;
-  left: 22px;
+  z-index: 2;
 
-  height: 32px;
+  right: 32px;
+  bottom: 79px;
+  left: 32px;
+
+  height: 34px;
+
+  content: "";
 
   pointer-events: none;
 
   background:
     linear-gradient(
       to bottom,
-      rgba(244, 239, 229, 0),
-      rgba(244, 239, 229, .9)
+      rgba(232, 220, 197, 0),
+      rgba(232, 220, 197, .9)
     );
 }
 
@@ -4135,20 +4125,29 @@ main::before {
 
 .testimonial-quote-mark {
   position: relative;
-  z-index: 2;
+
+  z-index: 3;
 
   display: block;
 
-  height: 56px;
+  flex-shrink: 0;
+
+  height: 58px;
 
   color:
-    rgba(53, 71, 53, .28);
+    rgba(
+      53,
+      71,
+      53,
+      .34
+    );
 
   font-family:
     "Libre Baskerville",
     serif;
 
-  font-size: 4.8rem;
+  font-size: 4.9rem;
+
   font-weight: 700;
 
   line-height: .8;
@@ -4163,7 +4162,8 @@ main::before {
 
 .testimonial-text {
   position: relative;
-  z-index: 2;
+
+  z-index: 3;
 
   flex: 1;
 
@@ -4173,24 +4173,36 @@ main::before {
 
   padding:
     0
-    6px
-    30px
+    7px
+    34px
     0;
 
-  overflow-y: auto;
   overflow-x: hidden;
+  overflow-y: auto;
 
   overscroll-behavior: contain;
 
   -webkit-overflow-scrolling: touch;
 
   scrollbar-width: none;
+
   -ms-overflow-style: none;
+
+  /*
+    Keeps the browser from interpreting
+    vertical review scrolling as accidental
+    horizontal movement where supported.
+  */
+
+  touch-action: pan-y;
 }
 
 
 .testimonial-text::-webkit-scrollbar {
   display: none;
+
+  width: 0;
+  height: 0;
 }
 
 
@@ -4206,15 +4218,16 @@ main::before {
     "Libre Baskerville",
     serif;
 
-  font-size: 1.03rem;
+  font-size: 1.02rem;
+
   font-weight: 400;
 
-  line-height: 1.72;
+  line-height: 1.74;
 }
 
 
 .testimonial-text p:last-child {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 
@@ -4224,17 +4237,23 @@ main::before {
 
 .testimonial-author {
   position: relative;
-  z-index: 3;
+
+  z-index: 4;
 
   flex-shrink: 0;
 
-  margin-top: 16px;
+  margin-top: 17px;
 
-  padding-top: 17px;
+  padding-top: 18px;
 
   border-top:
     1px solid
-    rgba(41, 41, 31, .14);
+    rgba(
+      41,
+      41,
+      31,
+      .18
+    );
 
   color: var(--forest-deep);
 
@@ -4243,6 +4262,7 @@ main::before {
     sans-serif;
 
   font-size: .8rem;
+
   font-weight: 900;
 
   letter-spacing: .12em;
@@ -4269,6 +4289,7 @@ main::before {
     sans-serif;
 
   font-size: .74rem;
+
   font-weight: 800;
 
   letter-spacing: .08em;
@@ -4291,6 +4312,8 @@ main::before {
         72vw,
         390px
       );
+
+    height: 550px;
   }
 
 }
@@ -4331,39 +4354,56 @@ main::before {
 
     max-width: 390px;
 
-    height: 500px;
+    height: 555px;
 
     padding:
-      36px
-      25px
-      25px;
+      44px
+      31px
+      30px;
 
     text-align: left;
   }
 
 
-  .testimonial-quote-mark {
-    height: 52px;
+  .testimonial-card::after {
+    right: 26px;
+    bottom: 74px;
+    left: 26px;
 
-    font-size: 4.5rem;
+    height: 32px;
+  }
+
+
+  .testimonial-quote-mark {
+    height: 54px;
+
+    font-size: 4.6rem;
   }
 
 
   .testimonial-text {
     margin-top: 8px;
 
-    padding-right: 4px;
+    padding:
+      0
+      4px
+      32px
+      0;
   }
 
 
   .testimonial-text p {
-    font-size: 1.03rem;
+    font-size: 1rem;
 
     line-height: 1.72;
   }
 
 
   .testimonial-author {
+    margin-top: 15px;
+
+    padding-top: 16px;
+
     font-size: .78rem;
   }
 
@@ -4384,17 +4424,24 @@ main::before {
   .testimonial-card {
     flex-basis: 86vw;
 
-    height: 490px;
+    height: 540px;
 
     padding:
-      34px
-      23px
-      24px;
+      42px
+      28px
+      28px;
+  }
+
+
+  .testimonial-card::after {
+    right: 24px;
+    bottom: 71px;
+    left: 24px;
   }
 
 
   .testimonial-text p {
-    font-size: 1rem;
+    font-size: .98rem;
 
     line-height: 1.7;
   }
