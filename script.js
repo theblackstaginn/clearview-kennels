@@ -15,6 +15,7 @@ document.addEventListener(
     initializeNavigation();
     initializeFooterYear();
     initializeSmoothAnchors();
+    initializeTestimonialCarousel();
     initializePuppyWelcomeModal();
 
   }
@@ -361,6 +362,199 @@ function initializeSmoothAnchors() {
 
       }
     );
+
+}
+
+
+/* ========================================
+   TESTIMONIAL CAROUSEL
+   ======================================== */
+
+
+function initializeTestimonialCarousel() {
+
+  const track =
+    document.getElementById(
+      "testimonialsTrack"
+    );
+
+
+  const previousButton =
+    document.getElementById(
+      "testimonialPrev"
+    );
+
+
+  const nextButton =
+    document.getElementById(
+      "testimonialNext"
+    );
+
+
+  if (
+    !track ||
+    !previousButton ||
+    !nextButton
+  ) {
+    return;
+  }
+
+
+  const reducedMotion =
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
+
+
+  /*
+    Measure one card plus the space
+    between cards so each button press
+    advances exactly one testimonial.
+  */
+
+  function getScrollAmount() {
+
+    const card =
+      track.querySelector(
+        ".testimonial-card"
+      );
+
+
+    if (!card) {
+      return track.clientWidth;
+    }
+
+
+    const styles =
+      window.getComputedStyle(
+        track
+      );
+
+
+    const gap =
+      parseFloat(
+        styles.columnGap ||
+        styles.gap ||
+        "0"
+      ) || 0;
+
+
+    return (
+      card.getBoundingClientRect().width +
+      gap
+    );
+
+  }
+
+
+  /*
+    Scroll one testimonial backward.
+  */
+
+  previousButton.addEventListener(
+    "click",
+    () => {
+
+      track.scrollBy({
+        left: -getScrollAmount(),
+
+        behavior:
+          reducedMotion.matches
+            ? "auto"
+            : "smooth"
+      });
+
+    }
+  );
+
+
+  /*
+    Scroll one testimonial forward.
+  */
+
+  nextButton.addEventListener(
+    "click",
+    () => {
+
+      track.scrollBy({
+        left: getScrollAmount(),
+
+        behavior:
+          reducedMotion.matches
+            ? "auto"
+            : "smooth"
+      });
+
+    }
+  );
+
+
+  /*
+    Disable the arrows when the carousel
+    reaches either end.
+
+    This also updates after manual
+    trackpad/touch scrolling.
+  */
+
+  function updateButtons() {
+
+    const maxScroll =
+      track.scrollWidth -
+      track.clientWidth;
+
+
+    const currentScroll =
+      track.scrollLeft;
+
+
+    const atBeginning =
+      currentScroll <= 2;
+
+
+    const atEnd =
+      currentScroll >=
+      maxScroll - 2;
+
+
+    previousButton.disabled =
+      atBeginning;
+
+
+    nextButton.disabled =
+      atEnd;
+
+
+    previousButton.setAttribute(
+      "aria-disabled",
+      String(atBeginning)
+    );
+
+
+    nextButton.setAttribute(
+      "aria-disabled",
+      String(atEnd)
+    );
+
+  }
+
+
+  track.addEventListener(
+    "scroll",
+    updateButtons,
+    {
+      passive: true
+    }
+  );
+
+
+  window.addEventListener(
+    "resize",
+    updateButtons
+  );
+
+
+  updateButtons();
 
 }
 
