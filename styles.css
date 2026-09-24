@@ -4598,8 +4598,8 @@ small,
   -webkit-appearance: none;
 
   transition:
-    transform .18s ease,
-    filter .18s ease;
+    transform .2s ease,
+    filter .2s ease;
 }
 
 
@@ -4610,57 +4610,103 @@ small,
 
   pointer-events: none;
 
+  /*
+    Tight brown drop-shadows create an
+    outline around the transparent sticker
+    silhouette.
+
+    Final shadow gives the sticker depth.
+  */
+
   filter:
-    drop-shadow(
-      0 8px 10px
-      rgba(41, 41, 31, .13)
-    );
+    drop-shadow(2px 0 0 #594333)
+    drop-shadow(-2px 0 0 #594333)
+    drop-shadow(0 2px 0 #594333)
+    drop-shadow(0 -2px 0 #594333)
+    drop-shadow(0 9px 9px rgba(41, 32, 24, .24));
+
+  transition:
+    transform .2s ease,
+    filter .2s ease;
 }
 
 
+/* ========================================
+   HOVER
+   ======================================== */
+
 .form-sticker-submit:hover {
   transform:
-    translateY(-3px)
-    rotate(-.25deg);
+    translateY(-5px)
+    rotate(-1deg);
 }
 
 
 .form-sticker-submit:hover img {
-  filter:
-    drop-shadow(
-      0 11px 13px
-      rgba(41, 41, 31, .17)
-    );
-}
-
-
-.form-sticker-submit:active {
   transform:
-    translateY(1px)
-    scale(.985);
+    scale(1.025);
+
+  filter:
+    drop-shadow(2px 0 0 #4d392b)
+    drop-shadow(-2px 0 0 #4d392b)
+    drop-shadow(0 2px 0 #4d392b)
+    drop-shadow(0 -2px 0 #4d392b)
+    drop-shadow(0 14px 13px rgba(41, 32, 24, .30));
 }
 
 
-.form-sticker-submit:focus-visible {
-  outline:
-    3px solid
-    rgba(53, 71, 53, .42);
-
-  outline-offset: 6px;
-
-  border-radius: 18px;
-}
-
-
-/* Contact sticker can lean the opposite way */
+/* Let Send Message tilt the other direction */
 
 .contact-submit
 .form-sticker-submit:hover {
   transform:
-    translateY(-3px)
-    rotate(.25deg);
+    translateY(-5px)
+    rotate(1deg);
 }
 
+
+/* ========================================
+   PRESS
+   ======================================== */
+
+.form-sticker-submit:active {
+  transform:
+    translateY(1px)
+    scale(.975);
+}
+
+
+.form-sticker-submit:active img {
+  transform:
+    scale(.99);
+
+  filter:
+    drop-shadow(2px 0 0 #4d392b)
+    drop-shadow(-2px 0 0 #4d392b)
+    drop-shadow(0 2px 0 #4d392b)
+    drop-shadow(0 -2px 0 #4d392b)
+    drop-shadow(0 4px 4px rgba(41, 32, 24, .20));
+}
+
+
+/* ========================================
+   KEYBOARD FOCUS
+   ======================================== */
+
+.form-sticker-submit:focus-visible {
+  outline:
+    3px solid
+    rgba(89, 67, 51, .42);
+
+  outline-offset: 7px;
+
+  border-radius: 20px;
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
 
 @media (max-width: 760px) {
 
@@ -4671,16 +4717,28 @@ small,
 }
 
 
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
 @media (prefers-reduced-motion: reduce) {
 
-  .form-sticker-submit {
+  .form-sticker-submit,
+  .form-sticker-submit img {
     transition: none;
   }
+
 
   .form-sticker-submit:hover,
   .contact-submit
   .form-sticker-submit:hover,
   .form-sticker-submit:active {
+    transform: none;
+  }
+
+
+  .form-sticker-submit:hover img,
+  .form-sticker-submit:active img {
     transform: none;
   }
 
