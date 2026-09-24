@@ -571,7 +571,8 @@ function filterPuppiesByBreed(
 function inventoryGroupMarkup(
   title,
   copy,
-  puppyList
+  puppyList,
+  showHeading = true
 ) {
 
   if (!puppyList.length) {
@@ -582,21 +583,27 @@ function inventoryGroupMarkup(
   return `
     <section class="inventory-group">
 
-      <div class="inventory-group-heading">
+      ${
+        showHeading
+          ? `
+            <div class="inventory-group-heading">
 
-        <div>
+              <div>
 
-          <p class="eyebrow">
-            ${escapeHtml(copy)}
-          </p>
+                <p class="eyebrow">
+                  ${escapeHtml(copy)}
+                </p>
 
-          <h2>
-            ${escapeHtml(title)}
-          </h2>
+                <h2>
+                  ${escapeHtml(title)}
+                </h2>
 
-        </div>
+              </div>
 
-      </div>
+            </div>
+          `
+          : ""
+      }
 
 
       <div class="puppy-grid">
@@ -813,7 +820,8 @@ function renderInventory() {
       inventoryGroupMarkup(
         "Available Puppies",
         "Looking for Their Families",
-        available
+        available,
+        false
       )
     );
 
