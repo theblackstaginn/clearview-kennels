@@ -35,27 +35,11 @@ const puppies = [
 
     name: "Chocolate Chip",
 
-    /*
-      Breed has not yet been confirmed.
-
-      Once confirmed, replace these with:
-
-      Cavalier:
-      breed: "Cavalier King Charles Spaniel",
-      breedKey: "cavalier",
-
-      OR
-
-      Cavapoo:
-      breed: "Cavapoo",
-      breedKey: "cavapoo",
-    */
-
-    breed: "Breed information coming soon",
-    breedKey: "",
+    breed: "Cavalier King Charles Spaniel",
+    breedKey: "cavalier",
 
     sex: "Male",
-    color: "Color information coming soon",
+    color: "Chocolate Tri",
 
     birthDate: "2026-08-08",
     readyDate: "",
@@ -94,16 +78,11 @@ const puppies = [
 
     name: "Zoro",
 
-    /*
-      Breed has not yet been confirmed.
-      Update this once Danny confirms it.
-    */
-
-    breed: "Breed information coming soon",
-    breedKey: "",
+    breed: "Cavalier King Charles Spaniel",
+    breedKey: "cavalier",
 
     sex: "Male",
-    color: "Color information coming soon",
+    color: "Tri-color",
 
     birthDate: "2026-08-08",
     readyDate: "",
