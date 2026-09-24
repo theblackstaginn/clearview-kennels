@@ -4711,7 +4711,7 @@ small,
 @media (max-width: 760px) {
 
   .form-sticker-submit {
-    width: min(100%, 340px);
+    width: min(100%, 245px);
   }
 
 }
