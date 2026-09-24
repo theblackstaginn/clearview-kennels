@@ -4550,3 +4550,12 @@ small,
     scroll-behavior: auto;
   }
 }
+/* Softer pastel payment icons */
+.payment-method img {
+  filter:
+    saturate(.68)
+    brightness(1.08)
+    contrast(.88)
+    sepia(.06)
+    drop-shadow(0 7px 8px rgba(41,41,31,.12));
+}
