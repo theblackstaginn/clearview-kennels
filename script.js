@@ -701,25 +701,6 @@ function initializePuppyWelcomeModal() {
 
         </div>
 
-
-        <div class="puppy-welcome-actions">
-
-          <a
-            class="button button-dark"
-            href="puppies.html"
-          >
-            Meet All the Puppies
-          </a>
-
-
-          <a
-            class="puppy-welcome-link"
-            href="apply.html#contact"
-          >
-            Ask Clearview a Question
-
-            <span aria-hidden="true">
-              →
             </span>
           </a>
 
