@@ -4560,3 +4560,17 @@ small,
     opacity(.92)
     drop-shadow(0 6px 7px rgba(41,41,31,.11));
 }
+/* ========================================
+   UNIVERSAL PUPPY IMAGE CORNERS
+   ======================================== */
+
+.puppy-card-photo,
+.puppy-card-image,
+.puppy-detail-primary,
+.puppy-detail-primary-image,
+.puppy-gallery-button,
+.puppy-gallery-button img,
+.puppy-photo-placeholder,
+.puppy-detail-placeholder {
+  border-radius: 18px;
+}
