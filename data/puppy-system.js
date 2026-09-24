@@ -217,6 +217,70 @@ function puppyPhotoAlt(puppy) {
 
 
 /* ========================================
+   IMAGE RECOVERY
+
+   If a puppy image fails to load, retry
+   the exact same image once with a unique
+   query string.
+
+   This helps recover from a failed,
+   interrupted, or stale browser/CDN image
+   request without changing the real file
+   path stored in puppies.js.
+   ======================================== */
+
+
+function retryPuppyImage(image) {
+
+  if (!image) {
+    return;
+  }
+
+
+  /*
+    Never retry the same image more than
+    once or an unavailable file could
+    create an endless request loop.
+  */
+
+  if (
+    image.dataset
+      .puppyRetry === "true"
+  ) {
+    return;
+  }
+
+
+  const originalSource =
+    image.dataset
+      .originalSrc ||
+    image.getAttribute(
+      "src"
+    );
+
+
+  if (!originalSource) {
+    return;
+  }
+
+
+  image.dataset
+    .puppyRetry = "true";
+
+
+  const separator =
+    originalSource.includes("?")
+      ? "&"
+      : "?";
+
+
+  image.src =
+    `${originalSource}${separator}retry=${Date.now()}`;
+
+}
+
+
+/* ========================================
    CARD PHOTO
    ======================================== */
 
@@ -238,10 +302,13 @@ function puppyCardPhoto(puppy) {
       <img
         class="puppy-card-image"
         src="${escapeHtml(image)}"
+        data-original-src="${escapeHtml(image)}"
         alt="${escapeHtml(
           puppyPhotoAlt(puppy)
         )}"
-        loading="lazy"
+        loading="eager"
+        decoding="async"
+        onerror="retryPuppyImage(this)"
       />
     `;
 
@@ -944,9 +1011,13 @@ function detailPrimaryPhoto(puppy) {
     <img
       class="puppy-detail-primary-image"
       src="${escapeHtml(image)}"
+      data-original-src="${escapeHtml(image)}"
       alt="${escapeHtml(
         puppyPhotoAlt(puppy)
       )}"
+      loading="eager"
+      decoding="async"
+      onerror="retryPuppyImage(this)"
     />
   `;
 
@@ -1004,10 +1075,13 @@ function detailGallery(puppy) {
 
               <img
                 src="${escapeHtml(image)}"
+                data-original-src="${escapeHtml(image)}"
                 alt="${escapeHtml(
                   `${puppy.name} photo ${index + 2}`
                 )}"
                 loading="lazy"
+                decoding="async"
+                onerror="retryPuppyImage(this)"
               />
 
             </button>
@@ -1910,6 +1984,15 @@ function initializePuppyGallery() {
             );
 
 
+          primaryImage.dataset
+            .puppyRetry = "false";
+
+
+          primaryImage.dataset
+            .originalSrc =
+              nextSource;
+
+
           primaryImage.setAttribute(
             "src",
             nextSource
@@ -1927,6 +2010,15 @@ function initializePuppyGallery() {
 
 
           if (previousSource) {
+
+            thumbnail.dataset
+              .puppyRetry = "false";
+
+
+            thumbnail.dataset
+              .originalSrc =
+                previousSource;
+
 
             thumbnail.setAttribute(
               "src",
