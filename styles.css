@@ -2390,11 +2390,11 @@ text-transform: uppercase;
 }
 
 .testimonial-scroll-prev {
-  left: 0;
+  left: -28px;
 }
 
 .testimonial-scroll-next {
-  right: 0;
+  right: -28px;
 }
 /* ========================================
    TESTIMONIAL RESPONSIVE
