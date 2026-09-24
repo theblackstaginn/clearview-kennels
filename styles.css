@@ -864,7 +864,7 @@ main::before {
   padding:
     clamp(72px, 8vw, 105px)
     max(32px, calc((100vw - var(--max)) / 2));
-  background: rgba(250,247,240,.42);
+  background: transparent;
 }
 
 .featured-puppies-section .split-heading,
@@ -3999,11 +3999,10 @@ height: 32px;
      ======================================== */
 
   .featured-puppies-section {
-    width: 100%;
-    padding: 65px 20px;
-    background: rgba(250,247,240,.38);
-    text-align: center;
-  }
+  width: 100%;
+  padding: 65px 20px;
+  text-align: center;
+}
 
   .featured-puppies-section .split-heading {
     align-items: center;
