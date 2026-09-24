@@ -68,7 +68,7 @@
   />
 
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
     rel="stylesheet"
   />
 
@@ -79,7 +79,7 @@
 
   <link
     rel="stylesheet"
-    href="styles.css"
+    href="styles.css?v=20260924-2"
   />
 
 </head>
@@ -130,32 +130,72 @@
 
 
     <nav
-      class="site-nav"
+      class="site-nav sticker-nav"
       id="siteNav"
-      aria-label="Primary navigation"
+      aria-label="Main navigation"
     >
 
-      <a href="index.html">
-        Home
+      <a
+        class="sticker-button sticker-nav-button"
+        href="puppies.html"
+        aria-label="Puppies"
+      >
+        <img
+          src="ck-buttons/puppies-btn.webp"
+          alt=""
+        />
+
+        <span class="visually-hidden">
+          Puppies
+        </span>
       </a>
 
-      <a href="puppies.html">
-        Puppies
-      </a>
-
-      <a href="index.html#about">
-        Our Story
-      </a>
-
-      <a href="apply.html">
-        FAQ
-      </a>
 
       <a
-        class="nav-cta"
-        href="apply.html"
+        class="sticker-button sticker-nav-button"
+        href="index.html#process"
+        aria-label="How It Works"
       >
-        Apply
+        <img
+          src="ck-buttons/how-it-works-btn.webp"
+          alt=""
+        />
+
+        <span class="visually-hidden">
+          How It Works
+        </span>
+      </a>
+
+
+      <a
+        class="sticker-button sticker-nav-button"
+        href="apply.html#contact"
+        aria-label="Contact"
+      >
+        <img
+          src="ck-buttons/contact-btn.webp"
+          alt=""
+        />
+
+        <span class="visually-hidden">
+          Contact
+        </span>
+      </a>
+
+
+      <a
+        class="sticker-button sticker-nav-button sticker-nav-cta"
+        href="apply.html"
+        aria-label="Puppy Application"
+      >
+        <img
+          src="ck-buttons/puppy-app-btn.webp"
+          alt=""
+        />
+
+        <span class="visually-hidden">
+          Puppy Application
+        </span>
       </a>
 
     </nav>
@@ -205,44 +245,66 @@
 
   <footer class="site-footer">
 
-    <div class="footer-brand">
+    <div class="footer-top">
 
-      <strong>
-        Clearview Kennels
-      </strong>
+      <div class="footer-brand">
 
-      <span>
-        Marshfield, Missouri
-      </span>
+        <strong>
+          Clearview Kennels
+        </strong>
+
+        <span>
+          Marshfield, Missouri
+        </span>
+
+        <p>
+          Cavalier King Charles Spaniels
+          &amp; Cavapoos raised with care.
+        </p>
+
+      </div>
+
+
+      <nav
+        class="footer-nav"
+        aria-label="Footer navigation"
+      >
+
+        <a href="puppies.html">
+          Puppies
+        </a>
+
+        <a href="index.html#breeds">
+          Our Breeds
+        </a>
+
+        <a href="index.html#about">
+          Our Story
+        </a>
+
+        <a href="index.html#process">
+          How It Works
+        </a>
+
+        <a href="apply.html">
+          Apply
+        </a>
+
+        <a href="apply.html#contact">
+          Contact
+        </a>
+
+      </nav>
 
     </div>
-
-
-    <nav
-      class="footer-nav"
-      aria-label="Footer navigation"
-    >
-
-      <a href="puppies.html">
-        Puppies
-      </a>
-
-      <a href="apply.html">
-        Application
-      </a>
-
-      <a href="apply.html#faq">
-        FAQ
-      </a>
-
-    </nav>
 
 
     <div class="footer-bottom">
 
       <span>
         © <span id="year"></span>
-        Clearview Kennels
+        Clearview Kennels.
+        All rights reserved.
       </span>
 
       <a
@@ -267,11 +329,11 @@
        3. Puppy rendering system
        ===================================== -->
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20260924-1"></script>
 
-  <script src="data/puppies.js"></script>
+  <script src="data/puppies.js?v=20260924-1"></script>
 
-  <script src="data/puppy-system.js"></script>
+  <script src="data/puppy-system.js?v=20260924-1"></script>
 
 
 </body>
