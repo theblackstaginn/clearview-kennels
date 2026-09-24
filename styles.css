@@ -5252,3 +5252,193 @@ small,
   }
 
 }
+/* ========================================
+   HEALTH & GENETIC TESTING
+   ======================================== */
+
+.health-section {
+  position: relative;
+  width: 100%;
+  padding:
+    clamp(85px, 9vw, 125px)
+    max(32px, calc((100vw - var(--max)) / 2));
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(53, 71, 53, .10),
+      rgba(53, 71, 53, .045)
+    );
+
+  border-top: 1px solid rgba(53, 71, 53, .12);
+  border-bottom: 1px solid rgba(53, 71, 53, .12);
+}
+
+.health-inner {
+  display: grid;
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+
+  grid-template-columns:
+    minmax(280px, .8fr)
+    minmax(0, 1.2fr);
+
+  gap: clamp(60px, 9vw, 125px);
+  align-items: start;
+}
+
+
+/* ========================================
+   HEALTH HEADING
+   ======================================== */
+
+.health-heading {
+  position: sticky;
+  top: 120px;
+}
+
+.health-heading h2 {
+  max-width: 520px;
+  margin-bottom: 24px;
+}
+
+.health-intro {
+  max-width: 400px;
+
+  color: var(--ink-soft);
+
+  font-family: var(--serif);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.7;
+}
+
+
+/* ========================================
+   HEALTH POINTS
+   ======================================== */
+
+.health-points {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.health-point {
+  position: relative;
+  padding: 34px 0 36px;
+  border-top: 1px solid rgba(53, 71, 53, .22);
+}
+
+.health-point:first-child {
+  padding-top: 8px;
+  border-top: 0;
+}
+
+.health-point:last-child {
+  padding-bottom: 0;
+}
+
+.health-mark {
+  display: block;
+
+  width: 25px;
+  height: 9px;
+
+  margin-bottom: 18px;
+
+  border-radius: 100% 0 100% 0;
+
+  background: var(--gold);
+
+  opacity: .75;
+
+  transform: rotate(-13deg);
+}
+
+.health-point-label {
+  margin-bottom: 9px;
+
+  color: var(--gold);
+
+  font-size: .63rem;
+  font-weight: 900;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.health-point h3 {
+  margin-bottom: 12px;
+
+  color: var(--ink);
+
+  font-size: clamp(1.45rem, 2.3vw, 2rem);
+}
+
+.health-point p:last-child {
+  max-width: 540px;
+  margin-bottom: 0;
+
+  color: var(--muted);
+
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+
+/* ========================================
+   HEALTH MOBILE
+   ======================================== */
+
+@media (max-width: 760px) {
+
+  .health-section {
+    padding: 70px 20px;
+  }
+
+  .health-inner {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .health-heading {
+    position: static;
+    text-align: center;
+  }
+
+  .health-heading h2,
+  .health-intro {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .health-heading h2 {
+    margin-bottom: 20px;
+  }
+
+  .health-points {
+    width: 100%;
+    max-width: 470px;
+    margin: 0 auto;
+  }
+
+  .health-point {
+    padding: 32px 0;
+    text-align: center;
+  }
+
+  .health-point:first-child {
+    padding-top: 28px;
+    border-top: 1px solid rgba(53, 71, 53, .22);
+  }
+
+  .health-mark {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .health-point p:last-child {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+}
