@@ -2,29 +2,39 @@
 <html lang="en">
 
 <head>
-  <!-- Clearview site icons -->
-<link
-  rel="icon"
-  type="image/webp"
-  sizes="64x64"
-  href="ck-icons/favicon.webp"
-/>
 
-<link
-  rel="apple-touch-icon"
-  sizes="180x180"
-  href="ck-icons/apple-touch-icon.png"
-/>
+  <!-- =====================================
+       CLEARVIEW SITE ICONS
+       ===================================== -->
 
-<link
-  rel="manifest"
-  href="manifest.webmanifest"
-/>
+  <link
+    rel="icon"
+    type="image/webp"
+    sizes="64x64"
+    href="ck-icons/favicon.webp"
+  />
 
-<meta
-  name="theme-color"
-  content="#354735"
-/>
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="ck-icons/apple-touch-icon.png"
+  />
+
+  <link
+    rel="manifest"
+    href="manifest.webmanifest"
+  />
+
+  <meta
+    name="theme-color"
+    content="#354735"
+  />
+
+
+  <!-- =====================================
+       META
+       ===================================== -->
+
   <meta charset="utf-8" />
 
   <meta
@@ -41,7 +51,10 @@
     content="Meet this puppy from Clearview Kennels in Marshfield, Missouri."
   />
 
-  <meta name="theme-color" content="#f6f1e7" />
+
+  <!-- =====================================
+       FONTS
+       ===================================== -->
 
   <link
     rel="preconnect"
@@ -59,6 +72,11 @@
     rel="stylesheet"
   />
 
+
+  <!-- =====================================
+       STYLES
+       ===================================== -->
+
   <link
     rel="stylesheet"
     href="styles.css"
@@ -70,9 +88,9 @@
 <body class="interior-page puppy-detail-page">
 
 
-  <!-- =========================
+  <!-- =====================================
        HEADER
-       ========================= -->
+       ===================================== -->
 
   <header
     class="site-header scrolled"
@@ -145,15 +163,21 @@
   </header>
 
 
-  <!-- =========================
+  <!-- =====================================
        MAIN
-       ========================= -->
+       ===================================== -->
 
   <main>
 
     <!--
       Everything inside this element
-      is generated from puppies.js.
+      is generated automatically from:
+
+      data/puppies.js
+
+      by:
+
+      data/puppy-system.js
     -->
 
     <div id="puppyDetail">
@@ -175,9 +199,9 @@
   </main>
 
 
-  <!-- =========================
+  <!-- =====================================
        FOOTER
-       ========================= -->
+       ===================================== -->
 
   <footer class="site-footer">
 
@@ -224,7 +248,7 @@
       <a
         href="https://blackstagweb.com/"
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
       >
         Website by Black Stag Web Design
       </a>
@@ -234,9 +258,21 @@
   </footer>
 
 
-  <script src="data/puppies.js"></script>
-  <script src="puppy-system.js"></script>
+  <!-- =====================================
+       SCRIPTS
+
+       Order matters:
+       1. General site behavior
+       2. Puppy data
+       3. Puppy rendering system
+       ===================================== -->
+
   <script src="script.js"></script>
+
+  <script src="data/puppies.js"></script>
+
+  <script src="data/puppy-system.js"></script>
+
 
 </body>
 
