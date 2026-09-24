@@ -4743,3 +4743,37 @@ small,
   }
 
 }
+/* ========================================
+   STICKER HOVER
+   ======================================== */
+
+.form-sticker-submit:hover {
+  transform:
+    translateY(-6px)
+    rotate(-1deg);
+}
+
+
+.form-sticker-submit:hover img {
+  transform:
+    scale(1.035);
+
+  filter:
+    brightness(1.04)
+    saturate(1.04)
+    drop-shadow(2px 0 0 #4d392b)
+    drop-shadow(-2px 0 0 #4d392b)
+    drop-shadow(0 2px 0 #4d392b)
+    drop-shadow(0 -2px 0 #4d392b)
+    drop-shadow(0 16px 14px rgba(41, 32, 24, .32));
+}
+
+
+/* Send Message tilts the opposite direction */
+
+.contact-submit
+.form-sticker-submit:hover {
+  transform:
+    translateY(-6px)
+    rotate(1deg);
+}
