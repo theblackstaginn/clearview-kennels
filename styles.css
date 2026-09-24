@@ -5124,3 +5124,131 @@ small,
   }
 
 }
+/* ========================================
+   FEATURED CTA STICKER TREATMENT
+   Call Clearview + Meet All Puppies
+   ======================================== */
+
+.faq-teaser .sticker-button,
+.final-cta .sticker-button {
+  transition:
+    transform .2s ease,
+    filter .2s ease;
+}
+
+.faq-teaser .sticker-button img,
+.final-cta .sticker-button img {
+  filter:
+    drop-shadow(2px 0 0 #594333)
+    drop-shadow(-2px 0 0 #594333)
+    drop-shadow(0 2px 0 #594333)
+    drop-shadow(0 -2px 0 #594333)
+    drop-shadow(0 9px 9px rgba(41, 32, 24, .24));
+
+  transition:
+    transform .2s ease,
+    filter .2s ease;
+}
+
+
+/* ========================================
+   HOVER
+   ======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+
+  .faq-teaser .sticker-button:hover,
+  .final-cta .sticker-button:hover {
+    transform:
+      translateY(-6px)
+      rotate(-1deg);
+  }
+
+  .faq-teaser .sticker-button:hover img,
+  .final-cta .sticker-button:hover img {
+    transform: scale(1.035);
+
+    filter:
+      brightness(1.04)
+      saturate(1.04)
+      drop-shadow(2px 0 0 #4d392b)
+      drop-shadow(-2px 0 0 #4d392b)
+      drop-shadow(0 2px 0 #4d392b)
+      drop-shadow(0 -2px 0 #4d392b)
+      drop-shadow(0 16px 14px rgba(41, 32, 24, .32));
+  }
+
+  /* Give Meet All Puppies the opposite tilt */
+  .final-cta .sticker-button:hover {
+    transform:
+      translateY(-6px)
+      rotate(1deg);
+  }
+
+}
+
+
+/* ========================================
+   PRESS / TAP
+   ======================================== */
+
+.faq-teaser .sticker-button:active,
+.final-cta .sticker-button:active {
+  transform:
+    translateY(1px)
+    scale(.975);
+}
+
+.faq-teaser .sticker-button:active img,
+.final-cta .sticker-button:active img {
+  transform: scale(.99);
+
+  filter:
+    drop-shadow(2px 0 0 #4d392b)
+    drop-shadow(-2px 0 0 #4d392b)
+    drop-shadow(0 2px 0 #4d392b)
+    drop-shadow(0 -2px 0 #4d392b)
+    drop-shadow(0 4px 4px rgba(41, 32, 24, .20));
+}
+
+
+/* ========================================
+   KEYBOARD FOCUS
+   ======================================== */
+
+.faq-teaser .sticker-button:focus-visible,
+.final-cta .sticker-button:focus-visible {
+  outline:
+    3px solid
+    rgba(89, 67, 51, .42);
+
+  outline-offset: 7px;
+  border-radius: 20px;
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .faq-teaser .sticker-button,
+  .faq-teaser .sticker-button img,
+  .final-cta .sticker-button,
+  .final-cta .sticker-button img {
+    transition: none;
+  }
+
+  .faq-teaser .sticker-button:hover,
+  .faq-teaser .sticker-button:active,
+  .final-cta .sticker-button:hover,
+  .final-cta .sticker-button:active,
+  .faq-teaser .sticker-button:hover img,
+  .faq-teaser .sticker-button:active img,
+  .final-cta .sticker-button:hover img,
+  .final-cta .sticker-button:active img {
+    transform: none;
+  }
+
+}
