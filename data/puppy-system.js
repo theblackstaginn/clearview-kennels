@@ -14,6 +14,7 @@
    - Breed filtering
    - Puppy detail pages
    - Puppy galleries
+   - Parent profiles / photos
    - Status labels
    - Dates / prices
    - Graceful handling of incomplete listings
@@ -219,8 +220,8 @@ function puppyPhotoAlt(puppy) {
 /* ========================================
    IMAGE RECOVERY
 
-   If a puppy image fails to load, retry
-   the exact same image once with a unique
+   If an image fails to load, retry the
+   exact same image once with a unique
    query string.
 
    This helps recover from a failed,
@@ -365,6 +366,12 @@ function createPuppyCard(puppy) {
     );
 
 
+  const birthDate =
+    formatDate(
+      puppy.birthDate
+    );
+
+
   const meta = [
     puppy.sex,
     puppy.color
@@ -441,6 +448,19 @@ function createPuppyCard(puppy) {
               <div class="puppy-meta">
                 ${meta}
               </div>
+            `
+            : ""
+        }
+
+
+        ${
+          birthDate
+            ? `
+              <p class="puppy-birth-date">
+                Born ${escapeHtml(
+                  birthDate
+                )}
+              </p>
             `
             : ""
         }
@@ -1109,7 +1129,8 @@ function parentMarkup(
     !parent ||
     (
       !hasValue(parent.name) &&
-      !hasValue(parent.details)
+      !hasValue(parent.details) &&
+      !hasValue(parent.image)
     )
   ) {
     return "";
@@ -1128,32 +1149,71 @@ function parentMarkup(
       : "";
 
 
+  const image =
+    hasValue(parent.image)
+      ? parent.image
+      : "";
+
+
+  const altText = [
+    name,
+    label,
+    "Clearview Kennels"
+  ]
+    .filter(hasValue)
+    .join(", ");
+
+
   return `
     <article class="puppy-parent">
 
-      <p class="parent-label">
-        ${escapeHtml(label)}
-      </p>
-
       ${
-        name
+        image
           ? `
-            <h3>
-              ${escapeHtml(name)}
-            </h3>
+            <div class="puppy-parent-photo">
+
+              <img
+                src="${escapeHtml(image)}"
+                data-original-src="${escapeHtml(image)}"
+                alt="${escapeHtml(altText)}"
+                loading="lazy"
+                decoding="async"
+                onerror="retryPuppyImage(this)"
+              />
+
+            </div>
           `
           : ""
       }
 
-      ${
-        details
-          ? `
-            <p>
-              ${escapeHtml(details)}
-            </p>
-          `
-          : ""
-      }
+
+      <div class="puppy-parent-copy">
+
+        <p class="parent-label">
+          ${escapeHtml(label)}
+        </p>
+
+        ${
+          name
+            ? `
+              <h3>
+                ${escapeHtml(name)}
+              </h3>
+            `
+            : ""
+        }
+
+        ${
+          details
+            ? `
+              <p>
+                ${escapeHtml(details)}
+              </p>
+            `
+            : ""
+        }
+
+      </div>
 
     </article>
   `;
