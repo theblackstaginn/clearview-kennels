@@ -2,29 +2,39 @@
 <html lang="en">
 
 <head>
-  <!-- Clearview site icons -->
-<link
-  rel="icon"
-  type="image/webp"
-  sizes="64x64"
-  href="ck-icons/favicon.webp"
-/>
 
-<link
-  rel="apple-touch-icon"
-  sizes="180x180"
-  href="ck-icons/apple-touch-icon.png"
-/>
+  <!-- =====================================
+       CLEARVIEW SITE ICONS
+       ===================================== -->
 
-<link
-  rel="manifest"
-  href="manifest.webmanifest"
-/>
+  <link
+    rel="icon"
+    type="image/webp"
+    sizes="64x64"
+    href="ck-icons/favicon.webp"
+  />
 
-<meta
-  name="theme-color"
-  content="#354735"
-/>
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="ck-icons/apple-touch-icon.png"
+  />
+
+  <link
+    rel="manifest"
+    href="manifest.webmanifest"
+  />
+
+  <meta
+    name="theme-color"
+    content="#354735"
+  />
+
+
+  <!-- =====================================
+       META
+       ===================================== -->
+
   <meta charset="utf-8" />
 
   <meta
@@ -74,7 +84,7 @@
 
   <link
     rel="stylesheet"
-    href="styles.css"
+    href="styles.css?v=20260924-2"
   />
 
 </head>
@@ -218,12 +228,10 @@
           Puppy Application
         </p>
 
-
         <h1>
           Tell us about
           your family.
         </h1>
-
 
         <p class="lead">
           Finding the right home matters.
@@ -238,7 +246,7 @@
 
 
     <!-- =====================================
-         APPLICATION INTRO
+         APPLICATION
          ===================================== -->
 
     <section
@@ -255,12 +263,10 @@
             A Little About You
           </p>
 
-
           <h2>
             Start the
             conversation.
           </h2>
-
 
           <p>
             You don't need to have every
@@ -270,7 +276,6 @@
             whether a particular puppy has
             already caught your eye.
           </p>
-
 
           <p>
             Submitting an application
@@ -284,22 +289,21 @@
 
 
         <!-- =================================
-             APPLICATION FORM
+             PUPPY APPLICATION FORM
              ================================= -->
 
         <form
           class="clearview-form application-form"
           id="puppyApplication"
-          method="post"
+          action="https://formspree.io/f/xljdllvj"
+          method="POST"
         >
 
-          <!--
-            We can connect the action to
-            Clearview's preferred form
-            service once that destination
-            is confirmed.
-          -->
-
+          <input
+            type="hidden"
+            name="_subject"
+            value="New Puppy Application - Clearview Kennels"
+          />
 
           <input
             type="hidden"
@@ -783,20 +787,20 @@
 
 
             <button
-  class="form-sticker-submit"
-  type="submit"
-  aria-label="Send Application"
->
-  <img
-    src="ck-buttons/send-app-btn.webp"
-    alt=""
-    aria-hidden="true"
-  />
+              class="form-sticker-submit"
+              type="submit"
+              aria-label="Send Application"
+            >
+              <img
+                src="ck-buttons/send-app-btn.webp"
+                alt=""
+                aria-hidden="true"
+              />
 
-  <span class="visually-hidden">
-    Send Application
-  </span>
-</button>
+              <span class="visually-hidden">
+                Send Application
+              </span>
+            </button>
 
           </div>
 
@@ -822,11 +826,9 @@
           Good to Know
         </p>
 
-
         <h2>
           Before you apply.
         </h2>
-
 
         <p>
           A few of the things families
@@ -894,14 +896,14 @@
 
           <div class="faq-answer">
 
-   <p>
-   The reservation deposit
-   is $300 for approved
-   families. Clearview will
-   confirm availability and
-   reservation details before
-   any payment is made.
-   </p>
+            <p>
+              The reservation deposit
+              is $300 for approved
+              families. Clearview will
+              confirm availability and
+              reservation details before
+              any payment is made.
+            </p>
 
           </div>
 
@@ -998,16 +1000,13 @@
             Contact Clearview
           </p>
 
-
           <h2>
             Have a question first?
           </h2>
 
-
           <p class="lead">
             That's welcome too.
           </p>
-
 
           <p>
             Ask about a puppy, an upcoming
@@ -1019,17 +1018,22 @@
         </div>
 
 
+        <!-- =================================
+             CONTACT FORM
+             ================================= -->
+
         <form
           class="clearview-form contact-form"
           id="contactForm"
-          method="post"
+          action="https://formspree.io/f/xeaozzdz"
+          method="POST"
         >
 
-          <!--
-            Connect the action once the
-            preferred form destination is
-            confirmed.
-          -->
+          <input
+            type="hidden"
+            name="_subject"
+            value="New Website Message - Clearview Kennels"
+          />
 
 
           <div class="form-field">
@@ -1101,20 +1105,20 @@
           <div class="form-submit contact-submit">
 
             <button
-  class="form-sticker-submit"
-  type="submit"
-  aria-label="Send Message"
->
-  <img
-    src="ck-buttons/send-mess-btn.webp"
-    alt=""
-    aria-hidden="true"
-  />
+              class="form-sticker-submit"
+              type="submit"
+              aria-label="Send Message"
+            >
+              <img
+                src="ck-buttons/send-mess-btn.webp"
+                alt=""
+                aria-hidden="true"
+              />
 
-  <span class="visually-hidden">
-    Send Message
-  </span>
-</button>
+              <span class="visually-hidden">
+                Send Message
+              </span>
+            </button>
 
           </div>
 
@@ -1135,12 +1139,10 @@
         Clearview Kennels
       </p>
 
-
       <h2>
         Still looking for
         the right one?
       </h2>
-
 
       <p>
         Meet the Cavaliers and Cavapoos
@@ -1276,9 +1278,11 @@
        SCRIPTS
        ===================================== -->
 
-  <script src="data/puppies.js"></script>
-  <script src="data/puppy-system.js"></script>
-  <script src="script.js"></script>
+  <script src="data/puppies.js?v=20260924-1"></script>
+
+  <script src="data/puppy-system.js?v=20260924-1"></script>
+
+  <script src="script.js?v=20260924-1"></script>
 
 
 </body>
