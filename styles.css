@@ -4574,3 +4574,114 @@ small,
 .puppy-detail-placeholder {
   border-radius: 18px;
 }
+/* ========================================
+   FORM STICKER SUBMIT BUTTONS
+   ======================================== */
+
+.form-sticker-submit {
+  display: inline-flex;
+  width: min(100%, 390px);
+  margin: 0;
+  padding: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  outline: 0;
+  background: transparent;
+  box-shadow: none;
+
+  cursor: pointer;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  transition:
+    transform .18s ease,
+    filter .18s ease;
+}
+
+
+.form-sticker-submit img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  pointer-events: none;
+
+  filter:
+    drop-shadow(
+      0 8px 10px
+      rgba(41, 41, 31, .13)
+    );
+}
+
+
+.form-sticker-submit:hover {
+  transform:
+    translateY(-3px)
+    rotate(-.25deg);
+}
+
+
+.form-sticker-submit:hover img {
+  filter:
+    drop-shadow(
+      0 11px 13px
+      rgba(41, 41, 31, .17)
+    );
+}
+
+
+.form-sticker-submit:active {
+  transform:
+    translateY(1px)
+    scale(.985);
+}
+
+
+.form-sticker-submit:focus-visible {
+  outline:
+    3px solid
+    rgba(53, 71, 53, .42);
+
+  outline-offset: 6px;
+
+  border-radius: 18px;
+}
+
+
+/* Contact sticker can lean the opposite way */
+
+.contact-submit
+.form-sticker-submit:hover {
+  transform:
+    translateY(-3px)
+    rotate(.25deg);
+}
+
+
+@media (max-width: 760px) {
+
+  .form-sticker-submit {
+    width: min(100%, 340px);
+  }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  .form-sticker-submit {
+    transition: none;
+  }
+
+  .form-sticker-submit:hover,
+  .contact-submit
+  .form-sticker-submit:hover,
+  .form-sticker-submit:active {
+    transform: none;
+  }
+
+}
