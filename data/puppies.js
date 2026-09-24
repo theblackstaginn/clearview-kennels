@@ -26,30 +26,52 @@
 
 const puppies = [
 
+  /* ========================================
+     CHOCOLATE CHIP
+     ======================================== */
+
   {
-    id: "sample-cavalier-1",
+    id: "chocolate-chip",
 
-    name: "Sample Puppy",
+    name: "Chocolate Chip",
 
-    breed: "Cavalier King Charles Spaniel",
-    breedKey: "cavalier",
+    /*
+      Breed has not yet been confirmed.
 
-    sex: "Female",
-    color: "Blenheim",
+      Once confirmed, replace these with:
 
-    birthDate: "2026-07-14",
-    readyDate: "2026-09-08",
+      Cavalier:
+      breed: "Cavalier King Charles Spaniel",
+      breedKey: "cavalier",
 
-    price: 2500,
+      OR
+
+      Cavapoo:
+      breed: "Cavapoo",
+      breedKey: "cavapoo",
+    */
+
+    breed: "Breed information coming soon",
+    breedKey: "",
+
+    sex: "Male",
+    color: "Color information coming soon",
+
+    birthDate: "2026-08-08",
+    readyDate: "",
+
+    price: null,
 
     status: "available",
 
     featured: true,
 
-    images: [],
+    images: [
+      "ck-puppies/choc-chip.webp"
+    ],
 
     description:
-      "Puppy description will appear here once Clearview provides the puppy's individual information.",
+      "More information about Chocolate Chip is coming soon.",
 
     sire: {
       name: "Sire information coming soon",
@@ -63,104 +85,41 @@ const puppies = [
   },
 
 
+  /* ========================================
+     ZORO
+     ======================================== */
+
   {
-    id: "sample-cavapoo-1",
+    id: "zoro",
 
-    name: "Sample Puppy",
+    name: "Zoro",
 
-    breed: "Cavapoo",
-    breedKey: "cavapoo",
+    /*
+      Breed has not yet been confirmed.
+      Update this once Danny confirms it.
+    */
+
+    breed: "Breed information coming soon",
+    breedKey: "",
 
     sex: "Male",
-    color: "Color coming soon",
+    color: "Color information coming soon",
 
-    birthDate: "2026-07-22",
-    readyDate: "2026-09-16",
+    birthDate: "2026-08-08",
+    readyDate: "",
 
-    price: 2200,
+    price: null,
 
     status: "available",
 
     featured: true,
 
-    images: [],
+    images: [
+      "ck-puppies/zoro.webp"
+    ],
 
     description:
-      "Puppy description will appear here once Clearview provides the puppy's individual information.",
-
-    sire: {
-      name: "Sire information coming soon",
-      details: ""
-    },
-
-    dam: {
-      name: "Dam information coming soon",
-      details: ""
-    }
-  },
-
-
-  {
-    id: "sample-reserved",
-
-    name: "Sample Puppy",
-
-    breed: "Cavalier King Charles Spaniel",
-    breedKey: "cavalier",
-
-    sex: "Male",
-    color: "Ruby",
-
-    birthDate: "2026-06-30",
-    readyDate: "2026-08-25",
-
-    price: 2400,
-
-    status: "reserved",
-
-    featured: false,
-
-    images: [],
-
-    description:
-      "This sample demonstrates how a reserved puppy will appear.",
-
-    sire: {
-      name: "Sire information coming soon",
-      details: ""
-    },
-
-    dam: {
-      name: "Dam information coming soon",
-      details: ""
-    }
-  },
-
-
-  {
-    id: "sample-adopted",
-
-    name: "Sample Puppy",
-
-    breed: "Cavapoo",
-    breedKey: "cavapoo",
-
-    sex: "Female",
-    color: "Color coming soon",
-
-    birthDate: "2026-05-18",
-    readyDate: "2026-07-13",
-
-    price: 2100,
-
-    status: "adopted",
-
-    featured: false,
-
-    images: [],
-
-    description:
-      "This sample demonstrates how a puppy will appear after finding a family.",
+      "More information about Zoro is coming soon.",
 
     sire: {
       name: "Sire information coming soon",
