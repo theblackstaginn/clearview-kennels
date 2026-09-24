@@ -2646,25 +2646,51 @@ text-transform: uppercase;
 }
 
 .puppy-welcome-dialog {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  width: min(92vw, 820px);
-  max-height: calc(100svh - 36px);
-  aspect-ratio: 1.48 / 1;
-  padding:
-    clamp(46px, 5vw, 64px)
-    clamp(55px, 7vw, 88px)
-    clamp(42px, 5vw, 58px);
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  color: var(--ink);
-  background: #e9dfcb url("ck-assets/ck-modal-card.webp") center / 100% 100% no-repeat;
-  box-shadow: 0 32px 90px rgba(14,17,13,.38);
-  opacity: 0;
-  transform: translateY(22px) scale(.985);
-  transition: opacity .38s ease, transform .38s ease;
+position: relative;
+z-index: 1;
+
+display: flex;
+
+width: min(92vw, 820px);
+max-height: calc(100svh - 36px);
+
+aspect-ratio: 1.48 / 1;
+
+padding:
+clamp(46px, 5vw, 64px)
+clamp(55px, 7vw, 88px)
+clamp(42px, 5vw, 58px);
+
+align-items: center;
+justify-content: center;
+
+overflow: visible;
+
+color: var(--ink);
+
+background:
+transparent
+url("ck-assets/ck-modal-card.webp")
+center / 100% 100%
+no-repeat;
+
+box-shadow: none;
+
+filter:
+drop-shadow(
+0 26px 30px
+rgba(14,17,13,.34)
+);
+
+opacity: 0;
+
+transform:
+translateY(22px)
+scale(.985);
+
+transition:
+opacity .38s ease,
+transform .38s ease;
 }
 
 .puppy-welcome-modal.open .puppy-welcome-dialog {
