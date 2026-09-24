@@ -2178,6 +2178,10 @@ main::before {
   scrollbar-width: none;
 
   -ms-overflow-style: none;
+  
+  -webkit-overflow-scrolling: touch;
+
+touch-action: pan-x;
 
 }
 
@@ -2259,7 +2263,7 @@ overscroll-behavior-y: contain;
 -webkit-overflow-scrolling: touch;
 scrollbar-width: none;
 -ms-overflow-style: none;
-touch-action: pan-y;
+touch-action: pan-x pan-y;
 }
 
 .testimonial-text::-webkit-scrollbar {
