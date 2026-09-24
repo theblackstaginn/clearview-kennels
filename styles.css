@@ -4550,12 +4550,13 @@ small,
     scroll-behavior: auto;
   }
 }
-/* Softer pastel payment icons */
+/* More strongly pastel payment icons */
 .payment-method img {
   filter:
-    saturate(.68)
-    brightness(1.08)
-    contrast(.88)
-    sepia(.06)
-    drop-shadow(0 7px 8px rgba(41,41,31,.12));
+    saturate(.42)
+    brightness(1.16)
+    contrast(.76)
+    sepia(.10)
+    opacity(.88)
+    drop-shadow(0 6px 7px rgba(41,41,31,.10));
 }
