@@ -16,6 +16,7 @@
    - Puppy galleries
    - Status labels
    - Dates / prices
+   - Graceful handling of incomplete listings
    ======================================== */
 
 
@@ -43,16 +44,43 @@ function escapeHtml(value) {
 }
 
 
+function hasValue(value) {
+
+  return (
+    value !== null &&
+    value !== undefined &&
+    String(value).trim() !== ""
+  );
+
+}
+
+
 function formatPrice(value) {
+
+  /*
+    Important:
+    Number(null) === 0 in JavaScript.
+
+    Check for an actual value first so an
+    unknown price never appears as $0.
+  */
+
+  if (!hasValue(value)) {
+    return "";
+  }
+
 
   const amount =
     Number(value);
 
+
   if (
-    !Number.isFinite(amount)
+    !Number.isFinite(amount) ||
+    amount <= 0
   ) {
     return "";
   }
+
 
   return new Intl.NumberFormat(
     "en-US",
@@ -68,9 +96,10 @@ function formatPrice(value) {
 
 function formatDate(value) {
 
-  if (!value) {
+  if (!hasValue(value)) {
     return "";
   }
+
 
   /*
     Adding a local midday time prevents
@@ -83,13 +112,15 @@ function formatDate(value) {
       `${value}T12:00:00`
     );
 
+
   if (
     Number.isNaN(
       date.getTime()
     )
   ) {
-    return value;
+    return "";
   }
+
 
   return new Intl.DateTimeFormat(
     "en-US",
@@ -156,6 +187,36 @@ function puppyDetailUrl(puppy) {
 
 
 /* ========================================
+   PHOTO ALT TEXT
+   ======================================== */
+
+
+function puppyPhotoAlt(puppy) {
+
+  const parts = [];
+
+
+  if (hasValue(puppy.name)) {
+    parts.push(puppy.name);
+  }
+
+
+  if (hasValue(puppy.breed)) {
+    parts.push(puppy.breed);
+  }
+
+
+  if (!parts.length) {
+    return "Clearview Kennels puppy";
+  }
+
+
+  return parts.join(", ");
+
+}
+
+
+/* ========================================
    CARD PHOTO
    ======================================== */
 
@@ -164,7 +225,10 @@ function puppyCardPhoto(puppy) {
 
   const image =
     Array.isArray(puppy.images)
-      ? puppy.images[0]
+      ? puppy.images.find(
+          image =>
+            hasValue(image)
+        )
       : null;
 
 
@@ -175,7 +239,7 @@ function puppyCardPhoto(puppy) {
         class="puppy-card-image"
         src="${escapeHtml(image)}"
         alt="${escapeHtml(
-          `${puppy.name}, ${puppy.breed}`
+          puppyPhotoAlt(puppy)
         )}"
         loading="lazy"
       />
@@ -185,7 +249,7 @@ function puppyCardPhoto(puppy) {
 
 
   const initial =
-    puppy.name
+    hasValue(puppy.name)
       ? puppy.name
           .charAt(0)
           .toUpperCase()
@@ -219,10 +283,14 @@ function createPuppyCard(puppy) {
   const url =
     puppyDetailUrl(puppy);
 
+
   const price =
     puppy.status !== "adopted"
-      ? formatPrice(puppy.price)
+      ? formatPrice(
+          puppy.price
+        )
       : "";
+
 
   const status =
     statusLabel(
@@ -234,7 +302,7 @@ function createPuppyCard(puppy) {
     puppy.sex,
     puppy.color
   ]
-    .filter(Boolean)
+    .filter(hasValue)
     .map(escapeHtml)
     .join(
       '<span aria-hidden="true">•</span>'
@@ -276,11 +344,17 @@ function createPuppyCard(puppy) {
 
       <div class="puppy-card-copy">
 
-        <p class="puppy-breed">
-          ${escapeHtml(
-            puppy.breed
-          )}
-        </p>
+        ${
+          hasValue(puppy.breed)
+            ? `
+              <p class="puppy-breed">
+                ${escapeHtml(
+                  puppy.breed
+                )}
+              </p>
+            `
+            : ""
+        }
 
 
         <h3>
@@ -349,6 +423,7 @@ function renderFeaturedPuppies() {
     document.getElementById(
       "featuredPuppies"
     );
+
 
   if (!container) {
     return;
@@ -425,6 +500,7 @@ function renderFeaturedPuppies() {
     `;
 
     return;
+
   }
 
 
@@ -448,8 +524,10 @@ function getBreedFilter() {
       window.location.search
     );
 
+
   const breed =
     params.get("breed");
+
 
   if (
     breed === "cavalier" ||
@@ -457,6 +535,7 @@ function getBreedFilter() {
   ) {
     return breed;
   }
+
 
   return "all";
 
@@ -474,6 +553,7 @@ function filterPuppiesByBreed(
   ) {
     return puppyList;
   }
+
 
   return puppyList.filter(
     puppy =>
@@ -545,6 +625,7 @@ function inventoryEmptyMarkup(
   let title =
     "No puppies are listed right now.";
 
+
   let copy =
     "Check back for future litters, or contact Clearview to ask what's coming next.";
 
@@ -553,6 +634,7 @@ function inventoryEmptyMarkup(
 
     title =
       "No Cavaliers are listed right now.";
+
 
     copy =
       "Clearview may have another Cavalier litter planned. Get in touch to ask what's coming next.";
@@ -564,6 +646,7 @@ function inventoryEmptyMarkup(
 
     title =
       "No Cavapoos are listed right now.";
+
 
     copy =
       "Clearview may have another Cavapoo litter planned. Get in touch to ask what's coming next.";
@@ -621,6 +704,7 @@ function updateInventoryFilters(
         filter.dataset
           .breedFilter;
 
+
       const active =
         breed === activeBreed;
 
@@ -664,6 +748,7 @@ function renderInventory() {
       "puppyInventory"
     );
 
+
   if (!container) {
     return;
   }
@@ -671,6 +756,7 @@ function renderInventory() {
 
   const breed =
     getBreedFilter();
+
 
   const allPuppies =
     filterPuppiesByBreed(
@@ -691,7 +777,9 @@ function renderInventory() {
         breed
       );
 
+
     return;
+
   }
 
 
@@ -776,6 +864,7 @@ function getCurrentPuppy() {
       window.location.search
     );
 
+
   const puppyId =
     params.get("id");
 
@@ -804,14 +893,17 @@ function detailPrimaryPhoto(puppy) {
 
   const image =
     Array.isArray(puppy.images)
-      ? puppy.images[0]
+      ? puppy.images.find(
+          image =>
+            hasValue(image)
+        )
       : null;
 
 
   if (!image) {
 
     const initial =
-      puppy.name
+      hasValue(puppy.name)
         ? puppy.name
             .charAt(0)
             .toUpperCase()
@@ -845,7 +937,7 @@ function detailPrimaryPhoto(puppy) {
       class="puppy-detail-primary-image"
       src="${escapeHtml(image)}"
       alt="${escapeHtml(
-        `${puppy.name}, ${puppy.breed}`
+        puppyPhotoAlt(puppy)
       )}"
     />
   `;
@@ -861,15 +953,28 @@ function detailPrimaryPhoto(puppy) {
 function detailGallery(puppy) {
 
   if (
-    !Array.isArray(puppy.images) ||
-    puppy.images.length <= 1
+    !Array.isArray(puppy.images)
+  ) {
+    return "";
+  }
+
+
+  const validImages =
+    puppy.images.filter(
+      image =>
+        hasValue(image)
+    );
+
+
+  if (
+    validImages.length <= 1
   ) {
     return "";
   }
 
 
   const galleryImages =
-    puppy.images.slice(1);
+    validImages.slice(1);
 
 
   return `
@@ -918,18 +1023,27 @@ function parentMarkup(
   parent
 ) {
 
-  if (!parent) {
+  if (
+    !parent ||
+    (
+      !hasValue(parent.name) &&
+      !hasValue(parent.details)
+    )
+  ) {
     return "";
   }
 
 
   const name =
-    parent.name ||
-    "Information coming soon";
+    hasValue(parent.name)
+      ? parent.name
+      : "";
 
 
   const details =
-    parent.details || "";
+    hasValue(parent.details)
+      ? parent.details
+      : "";
 
 
   return `
@@ -939,9 +1053,15 @@ function parentMarkup(
         ${escapeHtml(label)}
       </p>
 
-      <h3>
-        ${escapeHtml(name)}
-      </h3>
+      ${
+        name
+          ? `
+            <h3>
+              ${escapeHtml(name)}
+            </h3>
+          `
+          : ""
+      }
 
       ${
         details
@@ -950,15 +1070,134 @@ function parentMarkup(
               ${escapeHtml(details)}
             </p>
           `
-          : `
-            <p class="parent-coming-soon">
-              Additional parent and pedigree
-              information coming soon.
-            </p>
-          `
+          : ""
       }
 
     </article>
+  `;
+
+}
+
+
+/* ========================================
+   PARENTS SECTION
+   ======================================== */
+
+
+function parentsSectionMarkup(
+  puppy
+) {
+
+  const sire =
+    parentMarkup(
+      "Sire",
+      puppy.sire
+    );
+
+
+  const dam =
+    parentMarkup(
+      "Dam",
+      puppy.dam
+    );
+
+
+  if (
+    !sire &&
+    !dam
+  ) {
+    return "";
+  }
+
+
+  return `
+    <section class="section puppy-parents-section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          Their Family
+        </p>
+
+        <h2>
+          Meet the parents.
+        </h2>
+
+        <p>
+          Learn a little more about the
+          dogs behind this litter. Clearview
+          can provide additional pedigree
+          and registration information when
+          applicable.
+        </p>
+
+      </div>
+
+
+      <div class="puppy-parents">
+
+        ${sire}
+
+        ${dam}
+
+      </div>
+
+    </section>
+  `;
+
+}
+
+
+/* ========================================
+   STORY SECTION
+   ======================================== */
+
+
+function puppyStoryMarkup(
+  puppy
+) {
+
+  if (
+    !hasValue(
+      puppy.description
+    )
+  ) {
+    return "";
+  }
+
+
+  return `
+    <section class="section puppy-story">
+
+      <div class="puppy-story-heading">
+
+        <p class="eyebrow">
+          Meet ${escapeHtml(
+            puppy.name
+          )}
+        </p>
+
+        <h2>
+          Get to know
+          ${escapeHtml(
+            puppy.name
+          )}.
+        </h2>
+
+      </div>
+
+
+      <div class="puppy-story-copy">
+
+        <p class="lead">
+          ${escapeHtml(
+            puppy.description
+          )}
+        </p>
+
+      </div>
+
+    </section>
   `;
 
 }
@@ -1013,7 +1252,9 @@ function createPuppyDetail(puppy) {
 
   const price =
     puppy.status !== "adopted"
-      ? formatPrice(puppy.price)
+      ? formatPrice(
+          puppy.price
+        )
       : "";
 
 
@@ -1042,6 +1283,18 @@ function createPuppyDetail(puppy) {
       "Ask About Upcoming Puppies";
 
   }
+
+
+  const birthDate =
+    formatDate(
+      puppy.birthDate
+    );
+
+
+  const readyDate =
+    formatDate(
+      puppy.readyDate
+    );
 
 
   return `
@@ -1080,27 +1333,41 @@ function createPuppyDetail(puppy) {
         </a>
 
 
-        <p
-          class="
-            puppy-detail-status
-            puppy-detail-status-${escapeHtml(
-              puppy.status
-            )}
-          "
-        >
-          ${escapeHtml(
-            statusLabel(
-              puppy.status
-            )
-          )}
-        </p>
+        ${
+          statusLabel(
+            puppy.status
+          )
+            ? `
+              <p
+                class="
+                  puppy-detail-status
+                  puppy-detail-status-${escapeHtml(
+                    puppy.status
+                  )}
+                "
+              >
+                ${escapeHtml(
+                  statusLabel(
+                    puppy.status
+                  )
+                )}
+              </p>
+            `
+            : ""
+        }
 
 
-        <p class="puppy-detail-breed">
-          ${escapeHtml(
-            puppy.breed
-          )}
-        </p>
+        ${
+          hasValue(puppy.breed)
+            ? `
+              <p class="puppy-detail-breed">
+                ${escapeHtml(
+                  puppy.breed
+                )}
+              </p>
+            `
+            : ""
+        }
 
 
         <h1>
@@ -1113,7 +1380,7 @@ function createPuppyDetail(puppy) {
         <dl class="puppy-facts">
 
           ${
-            puppy.sex
+            hasValue(puppy.sex)
               ? `
                 <div>
 
@@ -1134,7 +1401,7 @@ function createPuppyDetail(puppy) {
 
 
           ${
-            puppy.color
+            hasValue(puppy.color)
               ? `
                 <div>
 
@@ -1155,7 +1422,7 @@ function createPuppyDetail(puppy) {
 
 
           ${
-            puppy.birthDate
+            birthDate
               ? `
                 <div>
 
@@ -1165,9 +1432,7 @@ function createPuppyDetail(puppy) {
 
                   <dd>
                     ${escapeHtml(
-                      formatDate(
-                        puppy.birthDate
-                      )
+                      birthDate
                     )}
                   </dd>
 
@@ -1178,7 +1443,7 @@ function createPuppyDetail(puppy) {
 
 
           ${
-            puppy.readyDate
+            readyDate
               ? `
                 <div>
 
@@ -1188,9 +1453,7 @@ function createPuppyDetail(puppy) {
 
                   <dd>
                     ${escapeHtml(
-                      formatDate(
-                        puppy.readyDate
-                      )
+                      readyDate
                     )}
                   </dd>
 
@@ -1267,85 +1530,18 @@ function createPuppyDetail(puppy) {
          STORY
          ================================== -->
 
-    <section class="section puppy-story">
-
-      <div class="puppy-story-heading">
-
-        <p class="eyebrow">
-          Meet ${escapeHtml(
-            puppy.name
-          )}
-        </p>
-
-        <h2>
-          Get to know
-          ${escapeHtml(
-            puppy.name
-          )}.
-        </h2>
-
-      </div>
-
-
-      <div class="puppy-story-copy">
-
-        <p class="lead">
-          ${
-            puppy.description
-              ? escapeHtml(
-                  puppy.description
-                )
-              : "Individual puppy information coming soon."
-          }
-        </p>
-
-      </div>
-
-    </section>
+    ${puppyStoryMarkup(
+      puppy
+    )}
 
 
     <!-- ==================================
          PARENTS
          ================================== -->
 
-    <section class="section puppy-parents-section">
-
-      <div class="section-heading">
-
-        <p class="eyebrow">
-          Their Family
-        </p>
-
-        <h2>
-          Meet the parents.
-        </h2>
-
-        <p>
-          Learn a little more about the
-          dogs behind this litter. Clearview
-          can provide additional pedigree
-          and registration information when
-          applicable.
-        </p>
-
-      </div>
-
-
-      <div class="puppy-parents">
-
-        ${parentMarkup(
-          "Sire",
-          puppy.sire
-        )}
-
-        ${parentMarkup(
-          "Dam",
-          puppy.dam
-        )}
-
-      </div>
-
-    </section>
+    ${parentsSectionMarkup(
+      puppy
+    )}
 
 
     <!-- ==================================
@@ -1559,13 +1755,27 @@ function renderPuppyDetail() {
     );
 
 
-  /* Dynamic title */
+  /* =====================================
+     DYNAMIC TITLE
+     ===================================== */
+
+  const titleParts = [
+    puppy.name,
+    hasValue(puppy.breed)
+      ? puppy.breed
+      : null,
+    "Clearview Kennels"
+  ]
+    .filter(hasValue);
+
 
   document.title =
-    `${puppy.name} | ${puppy.breed} | Clearview Kennels`;
+    titleParts.join(" | ");
 
 
-  /* Dynamic description */
+  /* =====================================
+     DYNAMIC DESCRIPTION
+     ===================================== */
 
   const metaDescription =
     document.querySelector(
@@ -1575,16 +1785,26 @@ function renderPuppyDetail() {
 
   if (metaDescription) {
 
-    const sex =
-      puppy.sex
-        ? puppy.sex.toLowerCase()
-        : "";
+    let description =
+      `Meet ${puppy.name} from Clearview Kennels in Marshfield, Missouri.`;
 
 
-    const description =
-      sex
-        ? `Meet ${puppy.name}, a ${sex} ${puppy.breed} from Clearview Kennels in Marshfield, Missouri.`
-        : `Meet ${puppy.name}, a ${puppy.breed} from Clearview Kennels in Marshfield, Missouri.`;
+    if (
+      hasValue(puppy.sex) &&
+      hasValue(puppy.breed)
+    ) {
+
+      description =
+        `Meet ${puppy.name}, a ${puppy.sex.toLowerCase()} ${puppy.breed} from Clearview Kennels in Marshfield, Missouri.`;
+
+    } else if (
+      hasValue(puppy.breed)
+    ) {
+
+      description =
+        `Meet ${puppy.name}, a ${puppy.breed} from Clearview Kennels in Marshfield, Missouri.`;
+
+    }
 
 
     metaDescription.setAttribute(
