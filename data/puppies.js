@@ -25,7 +25,9 @@
    Keep factual puppy information here.
    The puppy system automatically uses
    this data for cards, detail pages,
-   application links, and SEO metadata.
+   application links, SEO metadata,
+   and the XML sitemap after changes
+   are merged to main.
    ======================================== */
 
 
