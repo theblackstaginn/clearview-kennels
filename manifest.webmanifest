@@ -9,7 +9,7 @@
   "theme_color": "#354735",
   "icons": [
     {
-      "src": "ck-icons/favicon.webp",
+      "src": "ck-icons/apple-touch-icon.webp",
       "type": "image/webp",
       "purpose": "any"
     }
