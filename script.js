@@ -815,11 +815,6 @@ function initializePuppyWelcomeModal() {
 
         </div>
 
-            </span>
-          </a>
-
-        </div>
-
 
         <p class="puppy-welcome-note">
           No pressure. No rush.
