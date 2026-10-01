@@ -859,7 +859,7 @@ main::before {
     clamp(46px, 5vw, 64px)
     clamp(28px, 4.5vw, 58px);
   overflow: hidden;
-  border-radius: 22px;
+  border-radius: 30px;
   background: var(--paper);
   box-shadow: 0 18px 40px rgba(41,41,31,.10);
 }
@@ -868,6 +868,7 @@ main::before {
   position: absolute;
   z-index: 0;
   inset: -1.5%;
+  border-radius: inherit;
   background: url("ck-assets/clearview-story-bg.webp") center / cover no-repeat;
   content: "";
   pointer-events: none;
