@@ -1,0 +1,46 @@
+name: Update puppy sitemap
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/puppies.js"
+      - "scripts/generate-sitemap.mjs"
+      - ".github/workflows/update-sitemap.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-sitemap:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generate sitemap
+        run: node scripts/generate-sitemap.mjs
+
+      - name: Commit sitemap if changed
+        shell: bash
+        run: |
+          if git diff --quiet -- sitemap.xml; then
+            echo "Sitemap is already current."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git commit -m "Update puppy sitemap"
+          git push
