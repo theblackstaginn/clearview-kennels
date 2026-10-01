@@ -1870,20 +1870,27 @@ main::before {
 
 .puppy-detail-top {
   display: grid;
-  width: min(calc(100% - 64px), 1240px);
+  width: min(calc(100% - 64px), 1120px);
   margin: 0 auto;
   padding:
     clamp(55px, 7vw, 85px)
     0
     clamp(75px, 9vw, 110px);
-  grid-template-columns: minmax(0, 1.08fr) minmax(340px, .8fr);
-  gap: clamp(45px, 7vw, 90px);
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1fr);
+  gap: clamp(36px, 5vw, 64px);
   align-items: start;
+}
+
+.puppy-detail-media {
+  width: 100%;
+  max-width: 500px;
+  min-width: 0;
+  justify-self: end;
 }
 
 .puppy-detail-primary {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1.05;
   overflow: hidden;
   background: var(--cream-deep);
   box-shadow: 0 14px 40px rgba(41,41,31,.08);
@@ -1939,6 +1946,9 @@ main::before {
 .puppy-detail-summary {
   position: sticky;
   top: 105px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   padding-top: 5px;
 }
 
@@ -2006,6 +2016,8 @@ main::before {
 
 .puppy-facts div {
   display: flex;
+  width: 100%;
+  min-width: 0;
   padding: 12px 0;
   align-items: center;
   justify-content: space-between;
@@ -2014,6 +2026,8 @@ main::before {
 }
 
 .puppy-facts dt {
+  min-width: 0;
+  flex: 0 1 auto;
   color: var(--muted);
   font-size: .66rem;
   font-weight: 900;
@@ -2022,8 +2036,11 @@ main::before {
 }
 
 .puppy-facts dd {
+  max-width: 62%;
+  min-width: 0;
   margin: 0;
   color: var(--ink);
+  overflow-wrap: anywhere;
   text-align: right;
   font-family: var(--serif);
   font-size: .92rem;
@@ -3536,8 +3553,8 @@ height: 32px;
   }
 
   .puppy-detail-top {
-    grid-template-columns: minmax(0, 1fr) minmax(300px, .8fr);
-    gap: 45px;
+    grid-template-columns: minmax(0, .78fr) minmax(0, 1fr);
+    gap: 32px;
   }
 }
 
@@ -4378,16 +4395,19 @@ height: 32px;
   }
 
   .puppy-detail-media {
-    width: 100%;
+    width: calc(100% - 40px);
+    max-width: 520px;
+    margin: 0 auto;
+    justify-self: center;
   }
 
   .puppy-detail-primary {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1;
     box-shadow: none;
   }
 
   .puppy-detail-gallery {
-    padding: 0 20px;
+    padding: 0;
     gap: 8px;
   }
 
