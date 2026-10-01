@@ -17,9 +17,123 @@ document.addEventListener(
     initializeSmoothAnchors();
     initializeTestimonialCarousel();
     initializePuppyWelcomeModal();
+    initializeApplicationPuppySelection();
 
   }
 );
+
+
+/* ========================================
+   APPLICATION PUPPY HANDOFF
+   ======================================== */
+
+
+function initializeApplicationPuppySelection() {
+
+  const form =
+    document.getElementById(
+      "puppyApplication"
+    );
+
+
+  if (!form) {
+    return;
+  }
+
+
+  const puppyId =
+    new URLSearchParams(
+      window.location.search
+    ).get(
+      "puppy"
+    );
+
+
+  if (!puppyId) {
+    return;
+  }
+
+
+  if (
+    typeof puppies === "undefined" ||
+    !Array.isArray(puppies)
+  ) {
+    return;
+  }
+
+
+  const puppy =
+    puppies.find(
+      (item) =>
+        item &&
+        item.id === puppyId
+    );
+
+
+  if (!puppy) {
+    return;
+  }
+
+
+  const selectedPuppy =
+    document.getElementById(
+      "selectedPuppy"
+    );
+
+  const selectedPuppyNote =
+    document.getElementById(
+      "selectedPuppyNote"
+    );
+
+  const selectedPuppyName =
+    document.getElementById(
+      "selectedPuppyName"
+    );
+
+  const breedInterest =
+    document.getElementById(
+      "breedInterest"
+    );
+
+  const puppyInterest =
+    document.getElementById(
+      "puppyInterest"
+    );
+
+
+  if (selectedPuppy) {
+    selectedPuppy.value =
+      puppy.id;
+  }
+
+
+  if (selectedPuppyName) {
+    selectedPuppyName.textContent =
+      puppy.name;
+  }
+
+
+  if (selectedPuppyNote) {
+    selectedPuppyNote.hidden =
+      false;
+  }
+
+
+  if (
+    breedInterest &&
+    puppy.breedKey
+  ) {
+    breedInterest.value =
+      puppy.breedKey;
+  }
+
+
+  if (puppyInterest) {
+    puppyInterest.value =
+      puppy.name;
+  }
+
+}
 
 
 /* ========================================
