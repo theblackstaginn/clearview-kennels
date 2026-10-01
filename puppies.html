@@ -54,6 +54,11 @@
   />
 
   <meta
+    property="og:locale"
+    content="en_US"
+  />
+
+  <meta
     property="og:title"
     content="Available Cavalier &amp; Cavapoo Puppies | Clearview Kennels"
   />
@@ -73,6 +78,11 @@
   <meta
     property="og:image"
     content="https://clearviewkennels.com/ck-assets/ck-web-bg.webp"
+  />
+
+  <meta
+    property="og:image:type"
+    content="image/webp"
   />
 
   <meta
@@ -136,16 +146,24 @@
        STRUCTURED DATA
        ===================================== -->
 
-  <script type="application/ld+json">
+  <script type="application/ld+json" id="puppiesPageSchema">
   {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "ImageObject",
+        "@id": "https://clearviewkennels.com/puppies.html#primaryimage",
+        "url": "https://clearviewkennels.com/ck-assets/ck-web-bg.webp",
+        "contentUrl": "https://clearviewkennels.com/ck-assets/ck-web-bg.webp",
+        "caption": "Clearview Kennels in Marshfield, Missouri"
+      },
       {
         "@type": "WebPage",
         "@id": "https://clearviewkennels.com/puppies.html#webpage",
         "url": "https://clearviewkennels.com/puppies.html",
         "name": "Available Cavalier & Cavapoo Puppies | Clearview Kennels",
         "description": "Available Cavalier King Charles Spaniel and Cavapoo puppies from Clearview Kennels in Marshfield, Missouri.",
+        "inLanguage": "en-US",
         "isPartOf": {
           "@id": "https://clearviewkennels.com/#website"
         },
@@ -154,6 +172,9 @@
         },
         "breadcrumb": {
           "@id": "https://clearviewkennels.com/puppies.html#breadcrumb"
+        },
+        "primaryImageOfPage": {
+          "@id": "https://clearviewkennels.com/puppies.html#primaryimage"
         }
       },
       {
