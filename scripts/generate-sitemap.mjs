@@ -30,7 +30,7 @@ const staticUrls = [
   `${SITE_URL}/apply.html`
 ];
 
-const puppyUrls = puppies
+const puppyIds = puppies
   .filter(
     (puppy) =>
       puppy &&
@@ -39,10 +39,28 @@ const puppyUrls = puppies
   )
   .map(
     (puppy) =>
-      `${SITE_URL}/puppy.html?id=${encodeURIComponent(
-        puppy.id.trim()
-      )}`
+      puppy.id.trim()
   );
+
+const duplicateIds = puppyIds.filter(
+  (id, index) =>
+    puppyIds.indexOf(id) !== index
+);
+
+if (duplicateIds.length) {
+  throw new Error(
+    `Duplicate puppy id(s): ${[
+      ...new Set(duplicateIds)
+    ].join(", ")}`
+  );
+}
+
+const puppyUrls = puppyIds.map(
+  (id) =>
+    `${SITE_URL}/puppy.html?id=${encodeURIComponent(
+      id
+    )}`
+);
 
 const urls = [
   ...new Set([
