@@ -919,8 +919,8 @@ main::before {
   margin: -10px -12px;
   padding: 10px 12px;
   justify-self: end;
-  border-radius: 12px;
-  background: rgba(249,246,239,.10);
+  border-radius: 16px;
+  background: rgba(249,246,239,.18);
   -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
 }
