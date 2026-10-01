@@ -54,6 +54,11 @@
   />
 
   <meta
+    property="og:locale"
+    content="en_US"
+  />
+
+  <meta
     property="og:title"
     content="Puppy Application &amp; Contact | Clearview Kennels"
   />
@@ -73,6 +78,11 @@
   <meta
     property="og:image"
     content="https://clearviewkennels.com/ck-assets/ck-web-bg.webp"
+  />
+
+  <meta
+    property="og:image:type"
+    content="image/webp"
   />
 
   <meta
@@ -138,17 +148,43 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": "https://clearviewkennels.com/apply.html#webpage",
-    "url": "https://clearviewkennels.com/apply.html",
-    "name": "Puppy Application & Contact | Clearview Kennels",
-    "description": "Apply for a Cavalier King Charles Spaniel or Cavapoo puppy from Clearview Kennels in Marshfield, Missouri. Clearview works with families throughout the contiguous United States.",
-    "isPartOf": {
-      "@id": "https://clearviewkennels.com/#website"
-    },
-    "about": {
-      "@id": "https://clearviewkennels.com/#organization"
-    }
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://clearviewkennels.com/apply.html#webpage",
+        "url": "https://clearviewkennels.com/apply.html",
+        "name": "Puppy Application & Contact | Clearview Kennels",
+        "description": "Apply for a Cavalier King Charles Spaniel or Cavapoo puppy from Clearview Kennels in Marshfield, Missouri. Clearview works with families throughout the contiguous United States.",
+        "inLanguage": "en-US",
+        "isPartOf": {
+          "@id": "https://clearviewkennels.com/#website"
+        },
+        "about": {
+          "@id": "https://clearviewkennels.com/#organization"
+        },
+        "breadcrumb": {
+          "@id": "https://clearviewkennels.com/apply.html#breadcrumb"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://clearviewkennels.com/apply.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://clearviewkennels.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Puppy Application & Contact",
+            "item": "https://clearviewkennels.com/apply.html"
+          }
+        ]
+      }
+    ]
   }
   </script>
 
