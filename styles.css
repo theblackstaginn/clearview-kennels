@@ -4045,7 +4045,8 @@ height: 32px;
   }
 
   .home-intro::before {
-    background-position: 42% center;
+    background-image: url("ck-assets/story-mobile-bg.webp");
+    background-position: center;
   }
 
   .home-intro::after {
