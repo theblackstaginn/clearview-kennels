@@ -1,4 +1,4 @@
-const CACHE_NAME = "clearview-pwa-v4";
+const CACHE_NAME = "clearview-pwa-v5";
 
 const CORE_ASSETS = [
   "/",
