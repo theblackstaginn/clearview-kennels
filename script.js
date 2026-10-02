@@ -1516,7 +1516,7 @@ function initializePuppyWelcomeModal() {
    IDIOT-PROOF APP INSTALL
    ========================================= */
 
-(function initClearviewInstallButton() {
+(function initClearviewInstallExperience() {
   const footerNav =
     document.querySelector(".footer-nav");
 
@@ -1551,6 +1551,19 @@ function initializePuppyWelcomeModal() {
     "ontouchstart" in window ||
     navigator.maxTouchPoints > 0;
 
+  const mobileViewport =
+    window.matchMedia(
+      "(max-width: 900px)"
+    ).matches;
+
+  const isMobile =
+    isIOS ||
+    isAndroid ||
+    (
+      touchCapable &&
+      mobileViewport
+    );
+
   const installButton =
     document.createElement("button");
 
@@ -1560,7 +1573,8 @@ function initializePuppyWelcomeModal() {
   installButton.className =
     "footer-install-button";
 
-  installButton.hidden = true;
+  installButton.hidden =
+    !isMobile;
 
   installButton.textContent =
     "Install Clearview App";
@@ -1570,52 +1584,73 @@ function initializePuppyWelcomeModal() {
   );
 
   let deferredPrompt = null;
+  let banner = null;
 
-  function showInstallButton() {
-    installButton.hidden = false;
+  const dismissedKey =
+    "clearview-install-banner-dismissed-at";
+
+  const dismissForMs =
+    14 * 24 * 60 * 60 * 1000;
+
+  function wasRecentlyDismissed() {
+    try {
+      const dismissedAt =
+        Number(
+          localStorage.getItem(
+            dismissedKey
+          )
+        );
+
+      return (
+        dismissedAt > 0 &&
+        Date.now() - dismissedAt <
+          dismissForMs
+      );
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function rememberDismissal() {
+    try {
+      localStorage.setItem(
+        dismissedKey,
+        String(Date.now())
+      );
+    } catch (error) {
+      /* Storage can be unavailable in private modes. */
+    }
   }
 
   function hideInstallButton() {
     installButton.hidden = true;
   }
 
-  if (
-    isIOS ||
-    isAndroid ||
-    touchCapable
-  ) {
-    showInstallButton();
+  function removeBanner() {
+    if (!banner) {
+      return;
+    }
+
+    banner.classList.remove(
+      "is-visible"
+    );
+
+    const oldBanner =
+      banner;
+
+    banner = null;
+
+    window.setTimeout(
+      () => {
+        oldBanner.remove();
+      },
+      220
+    );
   }
 
-  window.addEventListener(
-    "beforeinstallprompt",
-    event => {
-      event.preventDefault();
-
-      deferredPrompt = event;
-
-      showInstallButton();
-    }
-  );
-
-  window.addEventListener(
-    "appinstalled",
-    () => {
-      deferredPrompt = null;
-      hideInstallButton();
-
-      const openDialog =
-        document.querySelector(
-          ".clearview-install-overlay"
-        );
-
-      if (openDialog) {
-        openDialog.remove();
-      }
-    }
-  );
-
-  function openInstructions() {
+  function openInstructions(
+    returnFocusTo
+  ) {
     const existing =
       document.querySelector(
         ".clearview-install-overlay"
@@ -1659,7 +1694,7 @@ function initializePuppyWelcomeModal() {
       "clearviewInstallTitle";
 
     heading.textContent =
-      "Put Clearview on your home screen";
+      "Add Clearview to your home screen";
 
     const intro =
       document.createElement("p");
@@ -1675,12 +1710,12 @@ function initializePuppyWelcomeModal() {
 
     if (isIOS) {
       intro.textContent =
-        "On iPhone or iPad:";
+        "Three quick taps on iPhone or iPad:";
 
       steps.innerHTML = `
         <li>
-          Tap the Share button
-          <strong>□↑</strong>.
+          Tap the <strong>Share</strong>
+          button at the bottom of Safari.
         </li>
         <li>
           Tap <strong>Add to Home Screen</strong>.
@@ -1691,13 +1726,9 @@ function initializePuppyWelcomeModal() {
       `;
     } else if (isAndroid) {
       intro.textContent =
-        "On Android:";
+        "If the install box did not appear, do this in Chrome:";
 
       steps.innerHTML = `
-        <li>
-          Open this page in
-          <strong>Chrome</strong>.
-        </li>
         <li>
           Tap the <strong>⋮</strong>
           menu in the upper-right.
@@ -1712,7 +1743,7 @@ function initializePuppyWelcomeModal() {
       `;
     } else {
       intro.textContent =
-        "Your browser can save Clearview like an app.";
+        "Save Clearview like an app:";
 
       steps.innerHTML = `
         <li>
@@ -1732,7 +1763,7 @@ function initializePuppyWelcomeModal() {
       "clearview-install-note";
 
     note.textContent =
-      "After that, Clearview opens from its own icon just like an app.";
+      "After that, just tap the Clearview icon on your home screen.";
 
     const closeButton =
       document.createElement("button");
@@ -1765,7 +1796,14 @@ function initializePuppyWelcomeModal() {
     const close = () => {
       overlay.remove();
 
-      installButton.focus();
+      if (
+        returnFocusTo &&
+        document.body.contains(
+          returnFocusTo
+        )
+      ) {
+        returnFocusTo.focus();
+      }
     };
 
     closeButton.addEventListener(
@@ -1806,31 +1844,168 @@ function initializePuppyWelcomeModal() {
     closeButton.focus();
   }
 
-  installButton.addEventListener(
-    "click",
-    async () => {
-      if (!deferredPrompt) {
-        openInstructions();
-        return;
+  async function requestInstall(
+    returnFocusTo
+  ) {
+    if (!deferredPrompt) {
+      openInstructions(
+        returnFocusTo
+      );
+      return;
+    }
+
+    try {
+      deferredPrompt.prompt();
+
+      const choice =
+        await deferredPrompt.userChoice;
+
+      if (
+        choice &&
+        choice.outcome === "accepted"
+      ) {
+        hideInstallButton();
+        removeBanner();
       }
+    } catch (error) {
+      openInstructions(
+        returnFocusTo
+      );
+    } finally {
+      deferredPrompt = null;
+    }
+  }
 
-      try {
-        deferredPrompt.prompt();
+  function createBanner() {
+    if (
+      !isMobile ||
+      banner ||
+      wasRecentlyDismissed()
+    ) {
+      return;
+    }
 
-        const choice =
-          await deferredPrompt.userChoice;
+    banner =
+      document.createElement("aside");
 
-        if (
-          choice &&
-          choice.outcome === "accepted"
-        ) {
-          hideInstallButton();
+    banner.className =
+      "clearview-install-banner";
+
+    banner.setAttribute(
+      "aria-label",
+      "Install Clearview Kennels app"
+    );
+
+    banner.innerHTML = `
+      <button
+        type="button"
+        class="clearview-install-banner-dismiss"
+        aria-label="Dismiss app install suggestion"
+      >×</button>
+
+      <div class="clearview-install-banner-copy">
+        <strong>
+          Keep Clearview handy
+        </strong>
+
+        <span>
+          Add Clearview Kennels to your home screen for quick access to puppies and updates.
+        </span>
+      </div>
+
+      <button
+        type="button"
+        class="clearview-install-banner-action"
+      >
+        Install Clearview App
+      </button>
+    `;
+
+    document.body.appendChild(
+      banner
+    );
+
+    const dismissButton =
+      banner.querySelector(
+        ".clearview-install-banner-dismiss"
+      );
+
+    const actionButton =
+      banner.querySelector(
+        ".clearview-install-banner-action"
+      );
+
+    dismissButton.addEventListener(
+      "click",
+      () => {
+        rememberDismissal();
+        removeBanner();
+      }
+    );
+
+    actionButton.addEventListener(
+      "click",
+      () => {
+        requestInstall(
+          actionButton
+        );
+      }
+    );
+
+    requestAnimationFrame(
+      () => {
+        if (banner) {
+          banner.classList.add(
+            "is-visible"
+          );
         }
-      } catch (error) {
-        openInstructions();
-      } finally {
-        deferredPrompt = null;
+      }
+    );
+  }
+
+  window.addEventListener(
+    "beforeinstallprompt",
+    event => {
+      event.preventDefault();
+      deferredPrompt = event;
+
+      if (isMobile) {
+        installButton.hidden = false;
       }
     }
   );
+
+  window.addEventListener(
+    "appinstalled",
+    () => {
+      deferredPrompt = null;
+      hideInstallButton();
+      removeBanner();
+
+      const openDialog =
+        document.querySelector(
+          ".clearview-install-overlay"
+        );
+
+      if (openDialog) {
+        openDialog.remove();
+      }
+    }
+  );
+
+  installButton.addEventListener(
+    "click",
+    () => {
+      requestInstall(
+        installButton
+      );
+    }
+  );
+
+  if (isMobile) {
+    window.setTimeout(
+      createBanner,
+      5000
+    );
+  }
 })();
