@@ -314,11 +314,12 @@ main::before {
   letter-spacing: .07em;
   text-align: center;
   text-transform: uppercase;
-  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
 }
 
 .button:hover {
   transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(41,41,31,.16);
 }
 
 .button-light {
@@ -1377,6 +1378,7 @@ main::before {
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 7px 8px rgba(41,41,31,.16));
+  transition: filter .2s ease;
 }
 
 .payment-method span {
@@ -1389,6 +1391,10 @@ main::before {
 
 .payment-method:hover {
   transform: translateY(-3px);
+}
+
+.payment-method:hover img {
+  filter: drop-shadow(0 10px 12px rgba(41,41,31,.22));
 }
 
 .payment-method:active {
@@ -2000,6 +2006,7 @@ main::before {
   border: 0;
   background: var(--cream-deep);
   cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 
 .puppy-gallery-button img {
@@ -2007,6 +2014,11 @@ main::before {
   height: 100%;
   object-fit: cover;
   transition: transform .3s ease, opacity .3s ease;
+}
+
+.puppy-gallery-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(41,41,31,.15);
 }
 
 .puppy-gallery-button:hover img {
@@ -2469,10 +2481,15 @@ text-transform: uppercase;
   object-fit: contain;
   pointer-events: none;
   filter: drop-shadow(0 5px 8px rgba(41,41,31,.16));
+  transition: filter .2s ease;
 }
 
 .testimonial-scroll-button:hover:not(:disabled) {
-  transform: translateY(-50%) scale(1.07);
+  transform: translateY(-53%) scale(1.05);
+}
+
+.testimonial-scroll-button:hover:not(:disabled) img {
+  filter: drop-shadow(0 9px 12px rgba(41,41,31,.22));
 }
 
 .testimonial-scroll-button:focus-visible {
@@ -2980,7 +2997,8 @@ transition:
 color .2s ease,
 background .2s ease,
 border-color .2s ease,
-transform .2s ease;
+transform .2s ease,
+box-shadow .2s ease;
 }
 
 .puppy-welcome-close span {
@@ -3004,7 +3022,8 @@ rgba(255,253,248,.8);
 border-color:
 rgba(53,71,53,.35);
 
-transform: rotate(4deg);
+transform: translateY(-2px) rotate(4deg);
+box-shadow: 0 7px 15px rgba(41,41,31,.14);
 }
 
 .puppy-welcome-close:focus-visible {
@@ -5572,4 +5591,26 @@ small,
 
 .puppy-parent-copy {
   min-width: 0;
+}
+
+/* ========================================
+   BUTTON MOTION ACCESSIBILITY
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .payment-method,
+  .puppy-gallery-button,
+  .testimonial-scroll-button,
+  .puppy-welcome-close {
+    transition: none;
+  }
+
+  .button:hover,
+  .payment-method:hover,
+  .puppy-gallery-button:hover,
+  .testimonial-scroll-button:hover:not(:disabled),
+  .puppy-welcome-close:hover {
+    transform: none;
+  }
 }
