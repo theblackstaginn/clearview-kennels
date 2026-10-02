@@ -1510,3 +1510,327 @@ function initializePuppyWelcomeModal() {
     }
   );
 })();
+
+
+/* =========================================
+   IDIOT-PROOF APP INSTALL
+   ========================================= */
+
+(function initClearviewInstallButton() {
+  const footerNav =
+    document.querySelector(".footer-nav");
+
+  if (!footerNav) {
+    return;
+  }
+
+  const launchedStandalone =
+    window.matchMedia(
+      "(display-mode: standalone)"
+    ).matches ||
+    window.navigator.standalone === true;
+
+  if (launchedStandalone) {
+    return;
+  }
+
+  const userAgent =
+    navigator.userAgent || "";
+
+  const isIOS =
+    /iPad|iPhone|iPod/i.test(
+      userAgent
+    );
+
+  const isAndroid =
+    /Android/i.test(
+      userAgent
+    );
+
+  const touchCapable =
+    "ontouchstart" in window ||
+    navigator.maxTouchPoints > 0;
+
+  const installButton =
+    document.createElement("button");
+
+  installButton.type =
+    "button";
+
+  installButton.className =
+    "footer-install-button";
+
+  installButton.hidden = true;
+
+  installButton.textContent =
+    "Install Clearview App";
+
+  footerNav.appendChild(
+    installButton
+  );
+
+  let deferredPrompt = null;
+
+  function showInstallButton() {
+    installButton.hidden = false;
+  }
+
+  function hideInstallButton() {
+    installButton.hidden = true;
+  }
+
+  if (
+    isIOS ||
+    isAndroid ||
+    touchCapable
+  ) {
+    showInstallButton();
+  }
+
+  window.addEventListener(
+    "beforeinstallprompt",
+    event => {
+      event.preventDefault();
+
+      deferredPrompt = event;
+
+      showInstallButton();
+    }
+  );
+
+  window.addEventListener(
+    "appinstalled",
+    () => {
+      deferredPrompt = null;
+      hideInstallButton();
+
+      const openDialog =
+        document.querySelector(
+          ".clearview-install-overlay"
+        );
+
+      if (openDialog) {
+        openDialog.remove();
+      }
+    }
+  );
+
+  function openInstructions() {
+    const existing =
+      document.querySelector(
+        ".clearview-install-overlay"
+      );
+
+    if (existing) {
+      existing.remove();
+    }
+
+    const overlay =
+      document.createElement("div");
+
+    overlay.className =
+      "clearview-install-overlay";
+
+    const dialog =
+      document.createElement("div");
+
+    dialog.className =
+      "clearview-install-dialog";
+
+    dialog.setAttribute(
+      "role",
+      "dialog"
+    );
+
+    dialog.setAttribute(
+      "aria-modal",
+      "true"
+    );
+
+    dialog.setAttribute(
+      "aria-labelledby",
+      "clearviewInstallTitle"
+    );
+
+    const heading =
+      document.createElement("h2");
+
+    heading.id =
+      "clearviewInstallTitle";
+
+    heading.textContent =
+      "Put Clearview on your home screen";
+
+    const intro =
+      document.createElement("p");
+
+    intro.className =
+      "clearview-install-intro";
+
+    const steps =
+      document.createElement("ol");
+
+    steps.className =
+      "clearview-install-steps";
+
+    if (isIOS) {
+      intro.textContent =
+        "On iPhone or iPad:";
+
+      steps.innerHTML = `
+        <li>
+          Tap the Share button
+          <strong>□↑</strong>.
+        </li>
+        <li>
+          Tap <strong>Add to Home Screen</strong>.
+        </li>
+        <li>
+          Tap <strong>Add</strong>.
+        </li>
+      `;
+    } else if (isAndroid) {
+      intro.textContent =
+        "On Android:";
+
+      steps.innerHTML = `
+        <li>
+          Open this page in
+          <strong>Chrome</strong>.
+        </li>
+        <li>
+          Tap the <strong>⋮</strong>
+          menu in the upper-right.
+        </li>
+        <li>
+          Tap <strong>Install app</strong>
+          or <strong>Add to Home screen</strong>.
+        </li>
+        <li>
+          Tap <strong>Install</strong>.
+        </li>
+      `;
+    } else {
+      intro.textContent =
+        "Your browser can save Clearview like an app.";
+
+      steps.innerHTML = `
+        <li>
+          Open your browser menu.
+        </li>
+        <li>
+          Choose <strong>Install app</strong>
+          or <strong>Add to Home screen</strong>.
+        </li>
+      `;
+    }
+
+    const note =
+      document.createElement("p");
+
+    note.className =
+      "clearview-install-note";
+
+    note.textContent =
+      "After that, Clearview opens from its own icon just like an app.";
+
+    const closeButton =
+      document.createElement("button");
+
+    closeButton.type =
+      "button";
+
+    closeButton.className =
+      "clearview-install-close";
+
+    closeButton.textContent =
+      "Got it";
+
+    dialog.append(
+      heading,
+      intro,
+      steps,
+      note,
+      closeButton
+    );
+
+    overlay.appendChild(
+      dialog
+    );
+
+    document.body.appendChild(
+      overlay
+    );
+
+    const close = () => {
+      overlay.remove();
+
+      installButton.focus();
+    };
+
+    closeButton.addEventListener(
+      "click",
+      close
+    );
+
+    overlay.addEventListener(
+      "click",
+      event => {
+        if (event.target === overlay) {
+          close();
+        }
+      }
+    );
+
+    document.addEventListener(
+      "keydown",
+      function onInstallKeydown(event) {
+        if (
+          event.key !== "Escape" ||
+          !document.body.contains(
+            overlay
+          )
+        ) {
+          return;
+        }
+
+        document.removeEventListener(
+          "keydown",
+          onInstallKeydown
+        );
+
+        close();
+      }
+    );
+
+    closeButton.focus();
+  }
+
+  installButton.addEventListener(
+    "click",
+    async () => {
+      if (!deferredPrompt) {
+        openInstructions();
+        return;
+      }
+
+      try {
+        deferredPrompt.prompt();
+
+        const choice =
+          await deferredPrompt.userChoice;
+
+        if (
+          choice &&
+          choice.outcome === "accepted"
+        ) {
+          hideInstallButton();
+        }
+      } catch (error) {
+        openInstructions();
+      } finally {
+        deferredPrompt = null;
+      }
+    }
+  );
+})();
