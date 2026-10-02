@@ -210,6 +210,82 @@
       color: #fff;
     }
 
+    .ios-help-overlay {
+      position: fixed;
+      z-index: 20;
+      inset: 0;
+      display: grid;
+      padding:
+        max(24px, env(safe-area-inset-top))
+        20px
+        max(24px, env(safe-area-inset-bottom));
+      place-items: center;
+      background: rgba(18, 25, 19, .72);
+    }
+
+    .ios-help-card {
+      width: min(100%, 420px);
+      padding: 28px 24px 24px;
+      border: 1px solid rgba(92,72,46,.22);
+      border-radius: 18px;
+      background:
+        linear-gradient(
+          rgba(247,242,232,.97),
+          rgba(247,242,232,.97)
+        ),
+        url("/ck-assets/ck-paper-mobile.webp")
+          center / cover no-repeat;
+      box-shadow:
+        0 24px 60px rgba(10,15,10,.32);
+      text-align: left;
+    }
+
+    .ios-help-card h2 {
+      margin: 0 0 12px;
+      color: var(--forest-deep);
+      font-family: var(--serif);
+      font-size: 1.65rem;
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    .ios-help-card ol {
+      margin: 0 0 20px;
+      padding-left: 22px;
+      color: var(--ink);
+      font-size: .95rem;
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    .ios-help-card li + li {
+      margin-top: 8px;
+    }
+
+    .ios-help-tip {
+      margin: 0 0 20px;
+      color: var(--ink-soft);
+      font-size: .82rem;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .ios-help-close {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 18px;
+      color: var(--white);
+      border: 1px solid var(--forest);
+      border-radius: 12px;
+      background: var(--forest);
+      font: inherit;
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .install-button {
         transition: none;
@@ -328,12 +404,30 @@
         return;
       }
 
-      if (!isAndroid) {
+      const isIOS =
+        /iPad|iPhone|iPod/i.test(
+          navigator.userAgent || ""
+        );
+
+      const isFirefoxIOS =
+        /FxiOS/i.test(
+          navigator.userAgent || ""
+        );
+
+      if (isIOS) {
+        installButton.disabled = false;
+        installButton.textContent =
+          "Show me how";
+        installStatus.textContent =
+          isFirefoxIOS
+            ? "Firefox can add Clearview from the Share menu."
+            : "Use your browser's Share menu to add Clearview.";
+      } else if (!isAndroid) {
         installButton.disabled = false;
         installButton.textContent =
           "How to add Clearview";
         installStatus.textContent =
-          "This one-tap install link is designed for Android Chrome.";
+          "Use your browser's install or Add to Home Screen option.";
       }
 
       window.addEventListener(
@@ -387,10 +481,82 @@
           if (isAndroid) {
             installStatus.innerHTML =
               "In Chrome, tap <strong>⋮</strong> in the upper-right, then <strong>Install app</strong> or <strong>Add to Home screen</strong>.";
-          } else {
-            installStatus.innerHTML =
-              "On iPhone, open this page in Safari, tap <strong>Share</strong>, then <strong>Add to Home Screen</strong>.";
+            return;
           }
+
+          if (isIOS) {
+            const overlay =
+              document.createElement("div");
+
+            overlay.className =
+              "ios-help-overlay";
+
+            overlay.innerHTML = `
+              <section
+                class="ios-help-card"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="iosHelpTitle"
+              >
+                <h2 id="iosHelpTitle">
+                  Add Clearview to your Home Screen
+                </h2>
+
+                <ol>
+                  <li>
+                    Tap the <strong>Share</strong> button
+                    in your browser toolbar.
+                  </li>
+                  <li>
+                    Tap <strong>Add to Home Screen</strong>.
+                  </li>
+                  <li>
+                    Tap <strong>Add</strong>.
+                  </li>
+                </ol>
+
+                <p class="ios-help-tip">
+                  In Firefox on iPhone, the Share button is the box-with-arrow icon in the address bar.
+                </p>
+
+                <button
+                  type="button"
+                  class="ios-help-close"
+                >
+                  Got it
+                </button>
+              </section>
+            `;
+
+            document.body.appendChild(
+              overlay
+            );
+
+            const closeButton =
+              overlay.querySelector(
+                ".ios-help-close"
+              );
+
+            closeButton.addEventListener(
+              "click",
+              () => overlay.remove()
+            );
+
+            overlay.addEventListener(
+              "click",
+              event => {
+                if (event.target === overlay) {
+                  overlay.remove();
+                }
+              }
+            );
+
+            closeButton.focus();
+            return;
+          }
+
+          installStatus.innerHTML =
+            "Open your browser menu and choose <strong>Install app</strong> or <strong>Add to Home Screen</strong>.";
         }
       );
 
