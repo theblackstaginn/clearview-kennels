@@ -4045,7 +4045,7 @@ height: 32px;
   }
 
   .home-intro::before {
-    background-image: url("ck-assets/story-mobile-bg.webp");
+    background-image: url("ck-assets/clearview-story-bg-mobile.webp");
     background-position: center;
   }
 
