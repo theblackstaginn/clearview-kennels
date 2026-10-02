@@ -1573,8 +1573,17 @@ function initializePuppyWelcomeModal() {
   installButton.className =
     "footer-install-button";
 
+  /*
+    On Android, only show the install control once
+    Chrome has confirmed that the native install
+    prompt is ready. That means every visible
+    Android install button is a true one-tap path
+    into the system install dialog.
+  */
   installButton.hidden =
-    !isMobile;
+    isAndroid
+      ? true
+      : !isMobile;
 
   installButton.textContent =
     "Install Clearview App";
@@ -1972,6 +1981,22 @@ function initializePuppyWelcomeModal() {
       if (isMobile) {
         installButton.hidden = false;
       }
+
+      /*
+        Android gets the simple banner only after
+        the native prompt has been captured. If the
+        banner is visible, tapping its install button
+        should open Android's install dialog directly.
+      */
+      if (
+        isAndroid &&
+        !wasRecentlyDismissed()
+      ) {
+        window.setTimeout(
+          createBanner,
+          700
+        );
+      }
     }
   );
 
@@ -2002,7 +2027,17 @@ function initializePuppyWelcomeModal() {
     }
   );
 
-  if (isMobile) {
+  /*
+    iPhone/iPad cannot expose a programmable native
+    install prompt, so they still get the explanatory
+    banner after a few seconds. Android waits for
+    beforeinstallprompt above so its visible button
+    always has the native prompt ready.
+  */
+  if (
+    isMobile &&
+    !isAndroid
+  ) {
     window.setTimeout(
       createBanner,
       5000
