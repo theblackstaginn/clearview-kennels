@@ -1,4 +1,4 @@
-const CACHE_NAME = "clearview-pwa-v5";
+const CACHE_NAME = "clearview-pwa-v6";
 
 const CORE_ASSETS = [
   "/",
@@ -8,6 +8,7 @@ const CORE_ASSETS = [
   "/styles.css",
   "/script.js",
   "/manifest.webmanifest",
+  "/install/",
   "/ck-icons/icon-192.webp",
   "/ck-icons/icon-512.webp"
 ];

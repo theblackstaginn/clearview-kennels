@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>Install Clearview Kennels</title>
+  <meta
+    name="description"
+    content="Install Clearview Kennels on your Android home screen."
+  />
+  <meta
+    name="robots"
+    content="noindex,follow"
+  />
+  <meta
+    name="theme-color"
+    content="#354735"
+  />
+
+  <link
+    rel="manifest"
+    href="/manifest.webmanifest?v=20261002-1"
+  />
+
+  <link
+    rel="icon"
+    type="image/webp"
+    href="/ck-icons/apple-touch-icon.webp"
+  />
+
+  <link
+    rel="apple-touch-icon"
+    href="/ck-icons/apple-touch-icon.webp"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Libre+Baskerville:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --forest: #354735;
+      --forest-deep: #273628;
+      --cream: #f4efe5;
+      --ink: #29291f;
+      --ink-soft: #615846;
+      --white: #fffdf8;
+      --serif: "Libre Baskerville", Georgia, serif;
+      --sans: "DM Sans", system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: grid;
+      min-height: 100dvh;
+      padding:
+        max(24px, env(safe-area-inset-top))
+        20px
+        max(24px, env(safe-area-inset-bottom));
+      place-items: center;
+      color: var(--ink);
+      background:
+        linear-gradient(
+          rgba(28, 39, 29, .48),
+          rgba(28, 39, 29, .58)
+        ),
+        url("/ck-assets/ck-mobile-bg.webp")
+          center / cover fixed no-repeat;
+      font-family: var(--sans);
+    }
+
+    .install-shell {
+      width: min(100%, 440px);
+    }
+
+    .install-card {
+      position: relative;
+      overflow: hidden;
+      padding: 30px 24px 24px;
+      border: 1px solid rgba(92,72,46,.22);
+      border-radius: 18px;
+      background:
+        linear-gradient(
+          rgba(247,242,232,.94),
+          rgba(247,242,232,.94)
+        ),
+        url("/ck-assets/ck-paper-mobile.webp")
+          center / cover no-repeat;
+      box-shadow:
+        0 24px 60px rgba(10,15,10,.3);
+      text-align: center;
+    }
+
+    .install-card::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      width: 56px;
+      height: 1px;
+      background: rgba(126,96,58,.48);
+      transform: translateX(-50%);
+    }
+
+    .eyebrow {
+      margin: 8px 0 10px;
+      color: var(--ink-soft);
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      color: var(--forest-deep);
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 8vw, 2.6rem);
+      font-weight: 400;
+      line-height: 1.08;
+    }
+
+    .install-copy {
+      max-width: 32ch;
+      margin: 0 auto 24px;
+      color: var(--ink-soft);
+      font-size: .96rem;
+      font-weight: 600;
+      line-height: 1.55;
+    }
+
+    .install-button {
+      width: 100%;
+      min-height: 54px;
+      padding: 14px 20px;
+      color: var(--white);
+      border: 1px solid var(--forest);
+      border-radius: 12px;
+      background: var(--forest);
+      box-shadow: 0 9px 18px rgba(41,41,31,.16);
+      font: inherit;
+      font-size: .76rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition:
+        background .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease,
+        opacity .2s ease;
+    }
+
+    .install-button:hover:not(:disabled) {
+      background: var(--forest-deep);
+      transform: translateY(-1px);
+      box-shadow: 0 11px 22px rgba(41,41,31,.2);
+    }
+
+    .install-button:disabled {
+      cursor: default;
+      opacity: .55;
+    }
+
+    .status {
+      min-height: 1.4em;
+      margin: 14px 0 0;
+      color: var(--ink-soft);
+      font-size: .76rem;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-top: 18px;
+      color: rgba(255,253,248,.88);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .home-link:hover {
+      color: #fff;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .install-button {
+        transition: none;
+      }
+
+      .install-button:hover:not(:disabled) {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="install-shell">
+    <section
+      class="install-card"
+      aria-labelledby="installTitle"
+    >
+      <p class="eyebrow">
+        Clearview Kennels
+      </p>
+
+      <h1 id="installTitle">
+        Add Clearview to your home screen
+      </h1>
+
+      <p class="install-copy">
+        Keep available puppies, updates, and contact info one tap away.
+      </p>
+
+      <button
+        id="installButton"
+        class="install-button"
+        type="button"
+        disabled
+      >
+        Preparing install...
+      </button>
+
+      <p
+        id="installStatus"
+        class="status"
+        role="status"
+        aria-live="polite"
+      >
+        Open this page in Chrome on Android.
+      </p>
+    </section>
+
+    <div style="text-align:center">
+      <a
+        class="home-link"
+        href="/"
+      >
+        Back to Clearview Kennels
+      </a>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      const installButton =
+        document.getElementById(
+          "installButton"
+        );
+
+      const installStatus =
+        document.getElementById(
+          "installStatus"
+        );
+
+      const isAndroid =
+        /Android/i.test(
+          navigator.userAgent || ""
+        );
+
+      const isStandalone =
+        window.matchMedia(
+          "(display-mode: standalone)"
+        ).matches ||
+        window.navigator.standalone === true;
+
+      let deferredPrompt = null;
+
+      if ("serviceWorker" in navigator) {
+        window.addEventListener(
+          "load",
+          () => {
+            navigator.serviceWorker
+              .register("/service-worker.js")
+              .catch(() => {});
+          }
+        );
+      }
+
+      function showReadyState() {
+        installButton.disabled = false;
+        installButton.textContent =
+          "Install Clearview App";
+        installStatus.textContent =
+          "Tap the button once. Android will handle the rest.";
+      }
+
+      function showManualAndroidHelp() {
+        installButton.disabled = false;
+        installButton.textContent =
+          "How to install";
+        installStatus.textContent =
+          "Chrome has not offered the install yet.";
+      }
+
+      if (isStandalone) {
+        installButton.hidden = true;
+        installStatus.textContent =
+          "Clearview is already installed on this device.";
+        return;
+      }
+
+      if (!isAndroid) {
+        installButton.disabled = false;
+        installButton.textContent =
+          "How to add Clearview";
+        installStatus.textContent =
+          "This one-tap install link is designed for Android Chrome.";
+      }
+
+      window.addEventListener(
+        "beforeinstallprompt",
+        event => {
+          event.preventDefault();
+          deferredPrompt = event;
+          showReadyState();
+        }
+      );
+
+      window.addEventListener(
+        "appinstalled",
+        () => {
+          deferredPrompt = null;
+          installButton.hidden = true;
+          installStatus.textContent =
+            "Clearview is installed. Look for the Clearview icon on your home screen.";
+        }
+      );
+
+      installButton.addEventListener(
+        "click",
+        async () => {
+          if (deferredPrompt) {
+            try {
+              deferredPrompt.prompt();
+
+              const choice =
+                await deferredPrompt.userChoice;
+
+              if (
+                choice &&
+                choice.outcome === "accepted"
+              ) {
+                installStatus.textContent =
+                  "Installing Clearview...";
+              } else {
+                installStatus.textContent =
+                  "No problem. Tap Install Clearview App whenever you're ready.";
+              }
+            } catch (error) {
+              showManualAndroidHelp();
+            } finally {
+              deferredPrompt = null;
+            }
+
+            return;
+          }
+
+          if (isAndroid) {
+            installStatus.innerHTML =
+              "In Chrome, tap <strong>⋮</strong> in the upper-right, then <strong>Install app</strong> or <strong>Add to Home screen</strong>.";
+          } else {
+            installStatus.innerHTML =
+              "On iPhone, open this page in Safari, tap <strong>Share</strong>, then <strong>Add to Home Screen</strong>.";
+          }
+        }
+      );
+
+      if (isAndroid) {
+        window.setTimeout(
+          () => {
+            if (!deferredPrompt) {
+              showManualAndroidHelp();
+            }
+          },
+          3500
+        );
+      }
+    })();
+  </script>
+</body>
+</html>
