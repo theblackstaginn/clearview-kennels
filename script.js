@@ -1201,3 +1201,312 @@ function initializePuppyWelcomeModal() {
   }
 
 }
+
+/* =========================================
+   PWA + PULL TO REFRESH
+   ========================================= */
+
+(function initClearviewPwa() {
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .catch(() => {
+          /* The site still works normally if registration fails. */
+        });
+    });
+  }
+
+  const touchCapable =
+    "ontouchstart" in window ||
+    navigator.maxTouchPoints > 0;
+
+  if (!touchCapable) {
+    return;
+  }
+
+  document.documentElement.style.overscrollBehaviorY =
+    "contain";
+
+  const style =
+    document.createElement("style");
+
+  style.textContent = `
+    #clearview-pull-refresh {
+      position: fixed;
+      z-index: 2000;
+      top: max(12px, env(safe-area-inset-top));
+      left: 50%;
+      display: inline-flex;
+      min-height: 42px;
+      padding: 9px 15px;
+      align-items: center;
+      gap: 8px;
+      color: #354735;
+      background: rgba(250, 247, 240, .96);
+      border: 1px solid rgba(53, 71, 53, .18);
+      border-radius: 999px;
+      box-shadow: 0 8px 22px rgba(31, 36, 26, .16);
+      font: 700 12px/1.2 "DM Sans", system-ui, sans-serif;
+      letter-spacing: .02em;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(-50%, -70px);
+      transition:
+        transform .18s ease,
+        opacity .18s ease;
+    }
+
+    #clearview-pull-refresh .pull-refresh-icon {
+      display: inline-block;
+      font-size: 18px;
+      line-height: 1;
+      transform: rotate(0deg);
+    }
+
+    #clearview-pull-refresh.refreshing .pull-refresh-icon {
+      animation:
+        clearview-refresh-spin .7s linear infinite;
+    }
+
+    @keyframes clearview-refresh-spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #clearview-pull-refresh {
+        transition: none;
+      }
+
+      #clearview-pull-refresh.refreshing .pull-refresh-icon {
+        animation: none;
+      }
+    }
+  `;
+
+  document.head.appendChild(style);
+
+  const indicator =
+    document.createElement("div");
+
+  indicator.id =
+    "clearview-pull-refresh";
+
+  indicator.setAttribute(
+    "role",
+    "status"
+  );
+
+  indicator.setAttribute(
+    "aria-live",
+    "polite"
+  );
+
+  indicator.innerHTML = `
+    <span
+      class="pull-refresh-icon"
+      aria-hidden="true"
+    >&#8635;</span>
+    <span class="pull-refresh-label">
+      Pull to refresh
+    </span>
+  `;
+
+  document.body.appendChild(indicator);
+
+  const label =
+    indicator.querySelector(
+      ".pull-refresh-label"
+    );
+
+  const threshold = 74;
+  const maxTravel = 86;
+
+  let tracking = false;
+  let pulling = false;
+  let startX = 0;
+  let startY = 0;
+  let currentPull = 0;
+
+  function resetIndicator() {
+    indicator.classList.remove(
+      "refreshing"
+    );
+
+    indicator.style.opacity = "0";
+    indicator.style.transform =
+      "translate(-50%, -70px)";
+
+    label.textContent =
+      "Pull to refresh";
+
+    tracking = false;
+    pulling = false;
+    currentPull = 0;
+  }
+
+  document.addEventListener(
+    "touchstart",
+    event => {
+      if (
+        window.scrollY > 0 ||
+        event.touches.length !== 1
+      ) {
+        tracking = false;
+        return;
+      }
+
+      if (
+        event.target.closest(
+          "input, textarea, select, button, a, [contenteditable='true']"
+        )
+      ) {
+        tracking = false;
+        return;
+      }
+
+      const touch =
+        event.touches[0];
+
+      startX = touch.clientX;
+      startY = touch.clientY;
+
+      tracking = true;
+      pulling = false;
+      currentPull = 0;
+    },
+    {
+      passive: true
+    }
+  );
+
+  document.addEventListener(
+    "touchmove",
+    event => {
+      if (
+        !tracking ||
+        event.touches.length !== 1
+      ) {
+        return;
+      }
+
+      const touch =
+        event.touches[0];
+
+      const deltaX =
+        touch.clientX - startX;
+
+      const deltaY =
+        touch.clientY - startY;
+
+      if (
+        deltaY <= 0 ||
+        Math.abs(deltaX) >
+          Math.abs(deltaY)
+      ) {
+        if (pulling) {
+          resetIndicator();
+        }
+
+        return;
+      }
+
+      if (window.scrollY > 0) {
+        resetIndicator();
+        return;
+      }
+
+      pulling = true;
+      currentPull = deltaY;
+
+      event.preventDefault();
+
+      const travel =
+        Math.min(
+          maxTravel,
+          deltaY * .48
+        );
+
+      const progress =
+        Math.min(
+          1,
+          deltaY / threshold
+        );
+
+      indicator.style.opacity =
+        String(
+          .35 + progress * .65
+        );
+
+      indicator.style.transform =
+        `translate(-50%, ${travel - 58}px)`;
+
+      label.textContent =
+        deltaY >= threshold
+          ? "Release to refresh"
+          : "Pull to refresh";
+    },
+    {
+      passive: false
+    }
+  );
+
+  function finishPull() {
+    if (
+      !tracking ||
+      !pulling
+    ) {
+      resetIndicator();
+      return;
+    }
+
+    if (
+      currentPull >= threshold
+    ) {
+      tracking = false;
+      pulling = false;
+
+      indicator.classList.add(
+        "refreshing"
+      );
+
+      indicator.style.opacity =
+        "1";
+
+      indicator.style.transform =
+        "translate(-50%, 0)";
+
+      label.textContent =
+        "Refreshing...";
+
+      window.setTimeout(
+        () => {
+          window.location.reload();
+        },
+        180
+      );
+
+      return;
+    }
+
+    resetIndicator();
+  }
+
+  document.addEventListener(
+    "touchend",
+    finishPull,
+    {
+      passive: true
+    }
+  );
+
+  document.addEventListener(
+    "touchcancel",
+    resetIndicator,
+    {
+      passive: true
+    }
+  );
+})();
