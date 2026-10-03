@@ -1599,7 +1599,7 @@ function initializePuppyWelcomeModal() {
     "clearview-install-banner-dismissed-at";
 
   const dismissForMs =
-    14 * 24 * 60 * 60 * 1000;
+    2 * 24 * 60 * 60 * 1000;
 
   function wasRecentlyDismissed() {
     try {
