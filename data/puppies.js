@@ -51,7 +51,7 @@ const puppies = [
     birthDate: "2026-08-08",
     readyDate: "",
 
-    price: null,
+    price: 3000,
 
     status: "available",
 
@@ -96,7 +96,7 @@ const puppies = [
     birthDate: "2026-08-08",
     readyDate: "",
 
-    price: null,
+    price: 2250,
 
     status: "available",
 
