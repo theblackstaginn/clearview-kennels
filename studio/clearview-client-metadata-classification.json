@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "client": "Clearview Kennels",
+  "website": "https://clearviewkennels.com/",
+  "studio": "Lace & Leather Arcane Studio",
+  "studio_website": "https://laceleatherarcane.com",
+  "audit_date": "2026-10-20",
+  "rules": {
+    "client_owned_site_art": {
+      "paths": [
+        "ck-assets/ck-mobile-bg.webp",
+        "ck-assets/ck-modal-card-mobile.webp",
+        "ck-assets/ck-modal-card.webp",
+        "ck-assets/ck-paper-mobile.webp",
+        "ck-assets/ck-paper-web.webp",
+        "ck-assets/ck-web-bg.webp",
+        "ck-assets/clearview-story-bg-mobile.webp",
+        "ck-assets/clearview-story-bg.webp",
+        "ck-assets/testimony-card.webp",
+        "ck-buttons/about-btn.webp",
+        "ck-buttons/ask-a-question-btn.webp",
+        "ck-buttons/ask-about-transport-btn.webp",
+        "ck-buttons/call-btn.webp",
+        "ck-buttons/contact-btn.webp",
+        "ck-buttons/contact-clearview.webp",
+        "ck-buttons/how-it-works-btn.webp",
+        "ck-buttons/meet-all-puppies-btn.webp",
+        "ck-buttons/meet-the-pups-btn.webp",
+        "ck-buttons/next-btn.webp",
+        "ck-buttons/our-breeds-btn.webp",
+        "ck-buttons/our-story-btn.webp",
+        "ck-buttons/prev-btn.webp",
+        "ck-buttons/puppies-btn.webp",
+        "ck-buttons/puppy-app-btn.webp",
+        "ck-buttons/send-app-btn.webp",
+        "ck-buttons/send-mess-btn.webp",
+        "ck-buttons/start-an-app-btn.webp",
+        "ck-buttons/talk-with-clearview-btn.webp",
+        "ck-buttons/view-all-pups-btn.webp",
+        "ck-buttons/view-cavaliers-btn.webp",
+        "ck-buttons/view-cavapoos-btn.webp",
+        "ck-buttons/view-the-app-btn.webp",
+        "ck-buttons/whos-available-btn.webp",
+        "ck-icons/apple-touch-icon.webp",
+        "ck-icons/favicon.webp",
+        "ck-icons/icon-192.webp",
+        "ck-icons/icon-512.webp"
+      ],
+      "creator": "Lace & Leather Arcane Studio",
+      "owner": "Clearview Kennels",
+      "rights": "Copyright 2026 Clearview Kennels",
+      "credit": "Lace & Leather Arcane Studio (artwork production, design, and preparation)"
+    },
+    "client_provided_photography": {
+      "paths": [
+        "ck-parents/amber.webp",
+        "ck-parents/peanut.webp",
+        "ck-puppies/choc-chip.webp",
+        "ck-puppies/zoro.webp"
+      ],
+      "creator_policy": "preserve_existing_creator_if_any; otherwise leave Creator unset",
+      "owner": "Clearview Kennels",
+      "rights": "Copyright 2026 Clearview Kennels",
+      "credit": "Lace & Leather Arcane Studio (editing and web preparation only)"
+    },
+    "third_party_brand_composite": {
+      "paths": [
+        "ck-buttons/cashapp-btn.webp",
+        "ck-buttons/venmo-btn.webp"
+      ],
+      "ownership_policy": "Do not set Creator, Rights, or Owner fields for the composite because it contains a third-party platform mark.",
+      "credit": "Lace & Leather Arcane Studio (layout and web preparation)",
+      "rights_note": "Underlying trademark/logo rights remain with the respective platform owner."
+    }
+  },
+  "total_images": 43
+}
