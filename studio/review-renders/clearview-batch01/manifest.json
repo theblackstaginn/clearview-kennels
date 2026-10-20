@@ -1,0 +1,50 @@
+[
+  {
+    "path": "ck-assets/ck-mobile-bg.webp",
+    "render": "studio/review-renders/clearview-batch01/ck-mobile-bg_webp-pair.webp"
+  },
+  {
+    "path": "ck-assets/ck-modal-card-mobile.webp",
+    "render": "studio/review-renders/clearview-batch01/ck-modal-card-mobile_webp-pair.webp"
+  },
+  {
+    "path": "ck-assets/ck-modal-card.webp",
+    "render": "studio/review-renders/clearview-batch01/ck-modal-card_webp-pair.webp"
+  },
+  {
+    "path": "ck-assets/ck-paper-mobile.webp",
+    "render": "studio/review-renders/clearview-batch01/ck-paper-mobile_webp-pair.webp"
+  },
+  {
+    "path": "ck-assets/ck-paper-web.webp",
+    "render": "studio/review-renders/clearview-batch01/ck-paper-web_webp-pair.webp"
+  },
+  {
+    "path": "ck-assets/ck-web-bg.webp",
+    "render": "studio/review-renders/clearview-batch01/ck-web-bg_webp-pair.webp"
+  },
+  {
+    "path": "ck-assets/clearview-story-bg-mobile.webp",
+    "render": "studio/review-renders/clearview-batch01/clearview-story-bg-mobile_webp-pair.webp"
+  },
+  {
+    "path": "ck-assets/clearview-story-bg.webp",
+    "render": "studio/review-renders/clearview-batch01/clearview-story-bg_webp-pair.webp"
+  },
+  {
+    "path": "ck-assets/testimony-card.webp",
+    "render": "studio/review-renders/clearview-batch01/testimony-card_webp-pair.webp"
+  },
+  {
+    "path": "ck-buttons/about-btn.webp",
+    "render": "studio/review-renders/clearview-batch01/about-btn_webp-pair.webp"
+  },
+  {
+    "path": "ck-buttons/ask-a-question-btn.webp",
+    "render": "studio/review-renders/clearview-batch01/ask-a-question-btn_webp-pair.webp"
+  },
+  {
+    "path": "ck-buttons/ask-about-transport-btn.webp",
+    "render": "studio/review-renders/clearview-batch01/ask-about-transport-btn_webp-pair.webp"
+  }
+]
