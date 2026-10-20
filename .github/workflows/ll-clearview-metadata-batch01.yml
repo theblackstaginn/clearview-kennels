@@ -1,0 +1,301 @@
+name: Clearview client metadata batch 01
+
+on:
+  push:
+    branches:
+      - ll-client-metadata-batch01-20261020
+    paths:
+      - ".github/workflows/ll-clearview-metadata-batch01.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout staging branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validators
+        shell: bash
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y libimage-exiftool-perl
+          python -m pip install --disable-pip-version-check "Pillow==11.3.0"
+
+      - name: Stage up to twelve ownership-safe metadata edits
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib, json, subprocess
+          from pathlib import Path
+          from PIL import Image
+
+          ROOT=Path(".").resolve()
+          classification=json.loads((ROOT/"studio/clearview-client-metadata-classification.json").read_text())
+          ledger_path=ROOT/"studio/clearview-client-metadata-ledger.json"
+          summary_path=ROOT/"studio/clearview-client-metadata-last-result.json"
+          ledger=json.loads(ledger_path.read_text()) if ledger_path.exists() else {
+              "schema_version":1,
+              "client":"Clearview Kennels",
+              "studio":"Lace & Leather Arcane Studio",
+              "records":{}
+          }
+
+          CLIENT="Clearview Kennels"
+          CLIENT_SITE="https://clearviewkennels.com/"
+          STUDIO="Lace & Leather Arcane Studio"
+          SITE_ART_CREDIT=STUDIO+" (artwork production, design, and preparation)"
+          PHOTO_CREDIT=STUDIO+" (editing and web preparation only)"
+          THIRD_CREDIT=STUDIO+" (layout and web preparation)"
+          RIGHTS="Copyright 2026 Clearview Kennels"
+          BATCH_LIMIT=12
+          markers=(b"c2pa",b"jumbf",b"content credentials",b"contentcredentials")
+          credit_fields=("XMP-dc:Creator","EXIF:Artist","IPTC:By-line","XMP-dc:Rights",
+                         "EXIF:Copyright","IPTC:CopyrightNotice","XMP-xmpRights:Owner",
+                         "XMP-photoshop:Credit")
+
+          def digest(data):
+              return hashlib.sha256(data).hexdigest()
+
+          def metadata(path):
+              p=subprocess.run(["exiftool","-j","-G1","-a","-s",str(path)],capture_output=True,text=True,check=True)
+              rows=json.loads(p.stdout)
+              return rows[0] if rows else {}
+
+          def has_credentials(raw,meta):
+              low=raw.lower()
+              return any(m in low for m in markers) or any(
+                  "c2pa" in k.lower() or "jumbf" in k.lower() or "contentcredential" in k.lower()
+                  for k in meta
+              )
+
+          def image_info(path):
+              with Image.open(path) as im:
+                  if getattr(im,"n_frames",1)!=1:
+                      raise RuntimeError(f"Multiframe image refused: {path}")
+                  im.load()
+                  rgba=im.convert("RGBA")
+                  alpha=rgba.getchannel("A")
+                  profile=im.info.get("icc_profile") or b""
+                  if isinstance(profile,str): profile=profile.encode()
+                  return {
+                      "format":im.format,
+                      "size":list(im.size),
+                      "frames":1,
+                      "pixel_sha256":digest(rgba.tobytes()),
+                      "alpha_sha256":digest(alpha.tobytes()),
+                      "icc_sha256":digest(profile),
+                  }
+
+          def webp_payload(raw):
+              if not (raw.startswith(b"RIFF") and raw[8:12]==b"WEBP"):
+                  raise ValueError("Not a WebP")
+              parts=[]
+              cursor=12
+              content_tags={b"VP8 ",b"VP8L",b"ALPH",b"ANIM",b"ANMF"}
+              while cursor+8<=len(raw):
+                  tag=raw[cursor:cursor+4]
+                  count=int.from_bytes(raw[cursor+4:cursor+8],"little")
+                  end=cursor+8+count
+                  if end>len(raw): raise ValueError("Truncated WebP")
+                  if tag in content_tags: parts.append(raw[cursor:end])
+                  cursor=end+(count%2)
+              if not parts: raise RuntimeError("No encoded picture payload")
+              return digest(b"".join(parts))
+
+          def values(meta,names):
+              return {n:meta.get(n) for n in names}
+
+          groups=classification["rules"]
+          ordered=[]
+          for cls in ("client_owned_site_art","client_provided_photography","third_party_brand_composite"):
+              for p in groups[cls]["paths"]:
+                  ordered.append((p,cls))
+
+          updated=[]
+          holds=[]
+          for rel,cls in ordered:
+              path=ROOT/rel
+              raw=path.read_bytes()
+              current=digest(raw)
+              prior=ledger["records"].get(rel)
+              if prior and prior.get("sha256")==current and prior.get("status") in {
+                  "verified_client_metadata","protected_provenance_preserved","review_required"
+              }:
+                  continue
+              if len(updated)>=BATCH_LIMIT:
+                  break
+
+              before_meta=metadata(path)
+              before_info=image_info(path)
+              if before_info["format"]!="WEBP":
+                  ledger["records"][rel]={"status":"review_required","reason":"unexpected_format","sha256":current}
+                  holds.append({"path":rel,"reason":"unexpected_format"})
+                  continue
+              if has_credentials(raw,before_meta):
+                  ledger["records"][rel]={"status":"protected_provenance_preserved","reason":"existing_authenticity_credentials","sha256":current}
+                  holds.append({"path":rel,"reason":"existing_authenticity_credentials"})
+                  continue
+
+              original_credit=values(before_meta,credit_fields)
+              dangerous={k:before_meta.get(k) for k in ("XMP-iptcExt:DigitalSourceType","XMP-xmpRights:UsageTerms","XMP-plus:LicensorName") if before_meta.get(k)}
+              if dangerous:
+                  ledger["records"][rel]={"status":"review_required","reason":"existing_provenance_or_license_field","sha256":current,"fields":dangerous}
+                  holds.append({"path":rel,"reason":"existing_provenance_or_license_field"})
+                  continue
+
+              # Any pre-existing ownership/creator claim is preserved unless it already names the approved client/studio.
+              conflicts=[]
+              for key,value in original_credit.items():
+                  if value in (None,""): continue
+                  text=", ".join(map(str,value)) if isinstance(value,list) else str(value)
+                  low=text.lower()
+                  if CLIENT.lower() not in low and STUDIO.lower() not in low:
+                      conflicts.append(key)
+              if conflicts:
+                  ledger["records"][rel]={"status":"review_required","reason":"preexisting_creator_or_rights_claim","sha256":current,"fields":conflicts}
+                  holds.append({"path":rel,"reason":"preexisting_creator_or_rights_claim"})
+                  continue
+
+              before_payload=webp_payload(raw)
+              stem=" ".join(Path(rel).stem.replace("-"," ").replace("_"," ").split())
+              cmd=["exiftool","-overwrite_original","-P"]
+
+              if cls=="client_owned_site_art":
+                  description=f"Clearview Kennels client-owned site artwork: {stem}. Created and prepared by Lace & Leather Arcane Studio."[:220]
+                  cmd += [
+                      f"-XMP-dc:Creator={STUDIO}",
+                      f"-XMP-dc:Rights={RIGHTS}",
+                      f"-XMP-xmpRights:Owner={CLIENT}",
+                      f"-XMP-dc:Description={description}",
+                      f"-XMP-photoshop:Credit={SITE_ART_CREDIT}",
+                      f"-XMP-xmpRights:WebStatement={CLIENT_SITE}",
+                  ]
+                  expected={
+                      "XMP-dc:Creator":STUDIO,"XMP-dc:Rights":RIGHTS,"XMP-xmpRights:Owner":CLIENT,
+                      "XMP-dc:Description":description,"XMP-photoshop:Credit":SITE_ART_CREDIT,
+                      "XMP-xmpRights:WebStatement":CLIENT_SITE,
+                  }
+              elif cls=="client_provided_photography":
+                  description=f"Clearview Kennels client-provided photograph: {stem}. Editing and web preparation by Lace & Leather Arcane Studio."[:220]
+                  cmd += [
+                      f"-XMP-dc:Rights={RIGHTS}",
+                      f"-XMP-xmpRights:Owner={CLIENT}",
+                      f"-XMP-dc:Description={description}",
+                      f"-XMP-photoshop:Credit={PHOTO_CREDIT}",
+                      f"-XMP-xmpRights:WebStatement={CLIENT_SITE}",
+                  ]
+                  expected={
+                      "XMP-dc:Rights":RIGHTS,"XMP-xmpRights:Owner":CLIENT,
+                      "XMP-dc:Description":description,"XMP-photoshop:Credit":PHOTO_CREDIT,
+                      "XMP-xmpRights:WebStatement":CLIENT_SITE,
+                  }
+              else:
+                  description=f"Clearview Kennels payment-interface composite: {stem}. Layout and web preparation by Lace & Leather Arcane Studio; underlying platform mark rights remain with the respective owner."[:240]
+                  cmd += [
+                      f"-XMP-dc:Description={description}",
+                      f"-XMP-photoshop:Credit={THIRD_CREDIT}",
+                  ]
+                  expected={"XMP-dc:Description":description,"XMP-photoshop:Credit":THIRD_CREDIT}
+
+              cmd.append(str(path))
+              p=subprocess.run(cmd,capture_output=True,text=True)
+              if p.returncode!=0 or "1 image files updated" not in p.stdout:
+                  path.write_bytes(raw)
+                  raise RuntimeError(f"ExifTool failed for {rel}: {p.stdout} {p.stderr}")
+
+              after_raw=path.read_bytes()
+              after_info=image_info(path)
+              after_payload=webp_payload(after_raw)
+              after_meta=metadata(path)
+              if before_info!=after_info or before_payload!=after_payload:
+                  path.write_bytes(raw)
+                  raise RuntimeError(f"Image content changed for {rel}")
+              if has_credentials(after_raw,after_meta):
+                  path.write_bytes(raw)
+                  raise RuntimeError(f"Unexpected authenticity marker after write: {rel}")
+              for key,value in expected.items():
+                  got=after_meta.get(key)
+                  if isinstance(got,list): got=", ".join(str(v) for v in got)
+                  if str(got or "")!=value:
+                      path.write_bytes(raw)
+                      raise RuntimeError(f"Metadata readback failed for {rel}: {key}")
+              if cls in ("client_provided_photography","third_party_brand_composite"):
+                  # Never turn L&L into the photographer or owner of third-party marks.
+                  for key in ("XMP-dc:Creator","EXIF:Artist","IPTC:By-line"):
+                      if after_meta.get(key)!=before_meta.get(key):
+                          path.write_bytes(raw)
+                          raise RuntimeError(f"Creator field changed for protected class {rel}: {key}")
+              if cls=="third_party_brand_composite":
+                  for key in ("XMP-dc:Rights","EXIF:Copyright","IPTC:CopyrightNotice","XMP-xmpRights:Owner"):
+                      if after_meta.get(key)!=before_meta.get(key):
+                          path.write_bytes(raw)
+                          raise RuntimeError(f"Rights field changed for third-party composite {rel}: {key}")
+
+              outsha=digest(after_raw)
+              ledger["records"][rel]={
+                  "status":"verified_client_metadata",
+                  "classification":cls,
+                  "source_sha256":current,
+                  "sha256":outsha,
+                  "format":"WEBP",
+                  "width":before_info["size"][0],
+                  "height":before_info["size"][1],
+                  "pixel_sha256":before_info["pixel_sha256"],
+                  "pixels_alpha_frames_profile_unchanged":True,
+                  "compressed_picture_data_unchanged":True,
+                  "client_owner":CLIENT if cls!="third_party_brand_composite" else None,
+                  "studio_credit":expected["XMP-photoshop:Credit"],
+                  "creator_claim":STUDIO if cls=="client_owned_site_art" else None,
+              }
+              updated.append(rel)
+              print("verified_client_metadata:",rel,flush=True)
+
+          ledger_path.parent.mkdir(parents=True,exist_ok=True)
+          ledger_path.write_text(json.dumps(ledger,indent=2,ensure_ascii=False,sort_keys=True)+"\n")
+          all_paths=[p for p,_ in ordered]
+          remaining=sum(
+              not (r:=ledger["records"].get(p)) or r.get("sha256")!=digest((ROOT/p).read_bytes())
+              for p in all_paths
+          )
+          summary={
+              "schema_version":1,
+              "client":CLIENT,
+              "eligible_images":len(all_paths),
+              "updated_this_run":len(updated),
+              "updated_paths":updated,
+              "holds_this_run":holds,
+              "remaining_unchecked":remaining,
+              "requires_manual_review":sum(r.get("status")=="review_required" for r in ledger["records"].values()),
+              "protected_provenance_preserved":sum(r.get("status")=="protected_provenance_preserved" for r in ledger["records"].values()),
+              "batch_complete":remaining==0,
+              "live_site_code_changed":False,
+              "safety":"Metadata-only edits require unchanged decoded pixels, alpha, ICC profile, frame count, and compressed WebP picture payload. Client photos never receive an L&L creator claim; third-party platform marks receive credit-only metadata."
+          }
+          summary_path.write_text(json.dumps(summary,indent=2,ensure_ascii=False)+"\n")
+          tmp=ROOT/".client-metadata-updated-paths.txt"
+          tmp.write_text("\n".join(updated)+"\n")
+          print(json.dumps(summary,indent=2))
+          PY
+
+      - name: Commit only staged metadata edits and audit records
+        shell: bash
+        run: |
+          git config user.name "L&L Client Metadata Bot"
+          git config user.email "actions@users.noreply.github.com"
+          while IFS= read -r path; do
+            [ -n "$path" ] && git add "$path"
+          done < .client-metadata-updated-paths.txt
+          git add studio/clearview-client-metadata-ledger.json studio/clearview-client-metadata-last-result.json
+          git commit -m "stage: Clearview metadata batch one pending visual review"
+          git push
