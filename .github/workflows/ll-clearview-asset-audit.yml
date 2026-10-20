@@ -1,0 +1,165 @@
+name: Clearview asset audit
+
+on:
+  push:
+    branches:
+      - ll-studio-asset-audit-20261020
+    paths:
+      - ".github/workflows/ll-clearview-asset-audit.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout audit branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install audit tools
+        shell: bash
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y libimage-exiftool-perl
+          python -m pip install --disable-pip-version-check "Pillow==11.3.0"
+
+      - name: Audit image metadata and build labeled review sheets
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib, json, math, subprocess
+          from pathlib import Path
+          from PIL import Image, ImageDraw, ImageOps
+
+          ROOT=Path(".").resolve()
+          image_paths=[
+              Path(p) for p in subprocess.check_output(
+                  ["git","ls-files","ck-assets","ck-buttons","ck-icons","ck-parents","ck-puppies"],
+                  text=True
+              ).splitlines()
+              if Path(p).suffix.lower() in {".png",".jpg",".jpeg",".webp"}
+          ]
+
+          def sha(raw):
+              return hashlib.sha256(raw).hexdigest()
+
+          def exif(path):
+              p=subprocess.run(["exiftool","-j","-G1","-a","-s",str(path)],capture_output=True,text=True,check=True)
+              rows=json.loads(p.stdout)
+              return rows[0] if rows else {}
+
+          markers=(b"c2pa",b"jumbf",b"content credentials",b"contentcredentials")
+          important=("creator","artist","credit","copyright","rights","licensor","usageterms",
+                     "digitalsourcetype","software","creatortool","c2pa","jumbf","contentcredential")
+          records=[]
+          for rel in image_paths:
+              path=ROOT/rel
+              raw=path.read_bytes()
+              meta=exif(path)
+              with Image.open(path) as im:
+                  im.load()
+                  rec={
+                      "path":rel.as_posix(),
+                      "sha256":sha(raw),
+                      "bytes":len(raw),
+                      "format":im.format,
+                      "mode":im.mode,
+                      "size":list(im.size),
+                      "has_alpha":"A" in im.getbands(),
+                      "authenticity_marker_detected":any(m in raw.lower() for m in markers) or any(("c2pa" in k.lower() or "jumbf" in k.lower() or "contentcredential" in k.lower()) for k in meta),
+                      "relevant_metadata":{}
+                  }
+              for k,v in sorted(meta.items()):
+                  nk=k.lower().replace("-","").replace("_","")
+                  if any(t in nk for t in important):
+                      rec["relevant_metadata"][k]=v
+              records.append(rec)
+
+          outdir=ROOT/"asset-audit"
+          sheetdir=outdir/"review-sheets"
+          sheetdir.mkdir(parents=True,exist_ok=True)
+
+          groups={
+              "ck-assets":[r for r in records if r["path"].startswith("ck-assets/")],
+              "ck-buttons-01":[r for r in records if r["path"].startswith("ck-buttons/")][:13],
+              "ck-buttons-02":[r for r in records if r["path"].startswith("ck-buttons/")][13:],
+              "ck-icons-parents-puppies":[r for r in records if r["path"].startswith(("ck-icons/","ck-parents/","ck-puppies/"))],
+          }
+
+          def checker(size,block=18):
+              bg=Image.new("RGB",size,(205,205,205))
+              d=ImageDraw.Draw(bg)
+              for y in range(0,size[1],block):
+                  for x in range(0,size[0],block):
+                      if ((x//block)+(y//block))%2:
+                          d.rectangle((x,y,min(x+block-1,size[0]-1),min(y+block-1,size[1]-1)),fill=(235,235,235))
+              return bg
+
+          for name,items in groups.items():
+              if not items:
+                  continue
+              cols=4
+              tile_w=300
+              img_h=230
+              label_h=52
+              rows=math.ceil(len(items)/cols)
+              sheet=Image.new("RGB",(cols*tile_w,rows*(img_h+label_h)),(32,32,32))
+              draw=ImageDraw.Draw(sheet)
+              for idx,r in enumerate(items):
+                  path=ROOT/r["path"]
+                  with Image.open(path) as im:
+                      im=ImageOps.exif_transpose(im).convert("RGBA")
+                      im.thumbnail((tile_w-18,img_h-18),Image.Resampling.LANCZOS)
+                      bg=checker((tile_w-8,img_h-8))
+                      x=(idx%cols)*tile_w+4
+                      y=(idx//cols)*(img_h+label_h)+4
+                      px=x+(tile_w-8-im.width)//2
+                      py=y+(img_h-8-im.height)//2
+                      bg.paste(im,(px-x,py-y),im)
+                      sheet.paste(bg,(x,y))
+                  label=Path(r["path"]).name
+                  draw.text((x+8,y+img_h+4),label,fill=(245,245,245))
+                  draw.text((x+8,y+img_h+23),f'{r["size"][0]}x{r["size"][1]} {r["mode"]}',fill=(190,190,190))
+              sheet.save(sheetdir/f"{name}.webp","WEBP",quality=90,method=6)
+
+          audit={
+              "schema_version":1,
+              "audit_date":"2026-10-20",
+              "repository":"theblackstaginn/clearview-kennels",
+              "purpose":"Read-only classification audit before client metadata retrofit. No image bytes modified.",
+              "image_count":len(records),
+              "images_modified":0,
+              "classification_policy":{
+                  "client_owned_site_art":"Client owns/rights; Lace & Leather Arcane Studio credited for artwork production/design/preparation.",
+                  "client_provided_photography":"Do not claim L&L as creator; client owns/rights; Lace & Leather Arcane Studio credited only for editing and preparation.",
+                  "protected_or_conflicting_provenance":"Do not overwrite; hold for manual provenance review."
+              },
+              "records":records,
+              "review_sheets":[str(p.relative_to(ROOT)) for p in sorted(sheetdir.glob("*.webp"))]
+          }
+          (outdir/"clearview-asset-audit-20261020.json").write_text(json.dumps(audit,indent=2,ensure_ascii=False,sort_keys=True)+"\n")
+          print(json.dumps({"image_count":len(records),"sheets":audit["review_sheets"],"protected":sum(r["authenticity_marker_detected"] for r in records)},indent=2))
+          PY
+
+      - name: Verify source images untouched
+        shell: bash
+        run: |
+          test -z "$(git status --short -- ck-assets ck-buttons ck-icons ck-parents ck-puppies)"
+
+      - name: Commit audit outputs only
+        shell: bash
+        run: |
+          git config user.name "L&L Client Asset Audit Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add asset-audit
+          git commit -m "audit: inventory Clearview client image assets for metadata retrofit"
+          git push
