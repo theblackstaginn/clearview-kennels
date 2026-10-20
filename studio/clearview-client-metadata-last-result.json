@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "client": "Clearview Kennels",
+  "eligible_images": 43,
+  "updated_this_run": 12,
+  "updated_paths": [
+    "ck-assets/ck-mobile-bg.webp",
+    "ck-assets/ck-modal-card-mobile.webp",
+    "ck-assets/ck-modal-card.webp",
+    "ck-assets/ck-paper-mobile.webp",
+    "ck-assets/ck-paper-web.webp",
+    "ck-assets/ck-web-bg.webp",
+    "ck-assets/clearview-story-bg-mobile.webp",
+    "ck-assets/clearview-story-bg.webp",
+    "ck-assets/testimony-card.webp",
+    "ck-buttons/about-btn.webp",
+    "ck-buttons/ask-a-question-btn.webp",
+    "ck-buttons/ask-about-transport-btn.webp"
+  ],
+  "holds_this_run": [],
+  "remaining_unchecked": 31,
+  "requires_manual_review": 0,
+  "protected_provenance_preserved": 0,
+  "batch_complete": false,
+  "live_site_code_changed": false,
+  "safety": "Metadata-only edits require unchanged decoded pixels, alpha, ICC profile, frame count, and compressed WebP picture payload. Client photos never receive an L&L creator claim; third-party platform marks receive credit-only metadata."
+}
