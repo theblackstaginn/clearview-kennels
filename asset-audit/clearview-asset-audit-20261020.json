@@ -1,0 +1,695 @@
+{
+  "audit_date": "2026-10-20",
+  "classification_policy": {
+    "client_owned_site_art": "Client owns/rights; Lace & Leather Arcane Studio credited for artwork production/design/preparation.",
+    "client_provided_photography": "Do not claim L&L as creator; client owns/rights; Lace & Leather Arcane Studio credited only for editing and preparation.",
+    "protected_or_conflicting_provenance": "Do not overwrite; hold for manual provenance review."
+  },
+  "image_count": 43,
+  "images_modified": 0,
+  "purpose": "Read-only classification audit before client metadata retrofit. No image bytes modified.",
+  "records": [
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 257094,
+      "format": "WEBP",
+      "has_alpha": false,
+      "mode": "RGB",
+      "path": "ck-assets/ck-mobile-bg.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "066e247a80e0c1f463ee75eebe2583c3cd06dc7dbb6e892cf160ccb0402122f1",
+      "size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 85352,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-assets/ck-modal-card-mobile.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "349092f8835a8a7dd680d0dee3163b2cb05b3bf69fdfa543ae2f2cb54e2b0e42",
+      "size": [
+        995,
+        1510
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 180398,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-assets/ck-modal-card.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "6d1570dfd29ec424faa3ae6f481c25b2f0f2953c55988d3b05192cc5e01b8331",
+      "size": [
+        1446,
+        953
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 96580,
+      "format": "WEBP",
+      "has_alpha": false,
+      "mode": "RGB",
+      "path": "ck-assets/ck-paper-mobile.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "e6d25464361ac7cfb03fa1bde05bfcfe1627dbea60f4b870bb31ef6c0cf70117",
+      "size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 116648,
+      "format": "WEBP",
+      "has_alpha": false,
+      "mode": "RGB",
+      "path": "ck-assets/ck-paper-web.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "b865caee861121b4b5d03428a5ac179e8835ea24b27ef9bf2c687f17b4c47408",
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 216952,
+      "format": "WEBP",
+      "has_alpha": false,
+      "mode": "RGB",
+      "path": "ck-assets/ck-web-bg.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "94e14bc75e8a3e98537ee635f2141b3a75766081a0c5538133e4c66a262b9837",
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 195382,
+      "format": "WEBP",
+      "has_alpha": false,
+      "mode": "RGB",
+      "path": "ck-assets/clearview-story-bg-mobile.webp",
+      "relevant_metadata": {},
+      "sha256": "d6de7d2dee63f1ce68f2422ed0bbca5c6f10dcfc551768efbefb979e2a08e9ae",
+      "size": [
+        864,
+        1536
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 134260,
+      "format": "WEBP",
+      "has_alpha": false,
+      "mode": "RGB",
+      "path": "ck-assets/clearview-story-bg.webp",
+      "relevant_metadata": {},
+      "sha256": "fc586fba8b85675c2c880b0046b4bafc229178a0d550f8484f03858d2be7a37d",
+      "size": [
+        2048,
+        768
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 39274,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-assets/testimony-card.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "dda0e7dd98e107ddb12e2ee5b885d3399896b233dd0ee16106361050b4d8ca32",
+      "size": [
+        982,
+        1380
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 8298,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/about-btn.webp",
+      "relevant_metadata": {},
+      "sha256": "7cd5018a4fea64bc047c143904a8cb8c833e470ddaca2c037eb71ea888f8ed2d",
+      "size": [
+        247,
+        113
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 14712,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/ask-a-question-btn.webp",
+      "relevant_metadata": {},
+      "sha256": "b764bf8803d3c715c3f185ca19d425a72279f697cb3c3988e092b6c359365143",
+      "size": [
+        447,
+        127
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 15216,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/ask-about-transport-btn.webp",
+      "relevant_metadata": {},
+      "sha256": "e603614e10bc81b71ebd1ebfcf4202683203cda54043c487735628ad4fa1f262",
+      "size": [
+        480,
+        127
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 221680,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/call-btn.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "9bc4a61c7d83b996a2e27d87e875154d48ca5aa8ce45193f9fcfe58af6eb2e60",
+      "size": [
+        2048,
+        720
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 449922,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/cashapp-btn.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "daeaa09f0f6a4724c55bfe8e3a911d8ba313f6a6f78e3404f42f695b2aae92f9",
+      "size": [
+        1160,
+        1119
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 9634,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/contact-btn.webp",
+      "relevant_metadata": {},
+      "sha256": "e7126bc5e0f34af982ffbfd04a481609f10c6f8dc85569a89f01e0c969d5bc0b",
+      "size": [
+        272,
+        115
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 12962,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/contact-clearview.webp",
+      "relevant_metadata": {},
+      "sha256": "0f0cdca6912fca85004f7dcaf8425d9c3b2338129849b885727e473179ce6fce",
+      "size": [
+        508,
+        127
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 10024,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/how-it-works-btn.webp",
+      "relevant_metadata": {},
+      "sha256": "713f916880fea3677ce7a53f33b534765503d526908c5b5a075d385e30658deb",
+      "size": [
+        336,
+        115
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 137418,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/meet-all-puppies-btn.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "7bbf649b3d8d65829d44e8d1ee2cc2764535873d916b233c24640def9904f31b",
+      "size": [
+        2162,
+        608
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 15724,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/meet-the-pups-btn.webp",
+      "relevant_metadata": {},
+      "sha256": "83fa3c6d8d237080c9a46d244634f55e9820c06b7e042491031d747b52004404",
+      "size": [
+        495,
+        125
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 79850,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/next-btn.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "9e6b4ed05c8d1ce7bcd7485902676ba1fa144250d1b6564e42c147d999f164ff",
+      "size": [
+        813,
+        734
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 11344,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/our-breeds-btn.webp",
+      "relevant_metadata": {},
+      "sha256": "83da577904b08a398a53f9690d71312985d1bfa1e3164707e164e1d63ca02730",
+      "size": [
+        314,
+        113
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 14504,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/our-story-btn.webp",
+      "relevant_metadata": {},
+      "sha256": "5da87685ffbaae94258b58e5ff15b6c762eab1e99a4565a5eba18d1c23aeef61",
+      "size": [
+        465,
+        125
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 78964,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/prev-btn.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "8703da1c5af1dcf9871b46170a79f7577e0c4f6075af39cb64493cec4e1f2cac",
+      "size": [
+        805,
+        726
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 138222,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/puppies-btn.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "4c5b967a4361b66ff4b44f9a6e477881570fcd0d31115d8d6d91631fcc4e5b61",
+      "size": [
+        1991,
+        608
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 14120,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/puppy-app-btn.webp",
+      "relevant_metadata": {},
+      "sha256": "015beeca86d4456a0837d7123288cd5755b28c357d9d78b3a081c037264c2c85",
+      "size": [
+        512,
+        124
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 61172,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/send-app-btn.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "2081a56cb46d9b530b926f5f814c449917cb03db5a1683b2830d067887d52094",
+      "size": [
+        1095,
+        593
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 59706,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/send-mess-btn.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "a7fd0f05f04987fd4ec1e01776a7b83c55bb59b5036be13877c1ef8172af6062",
+      "size": [
+        1061,
+        564
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 14216,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/start-an-app-btn.webp",
+      "relevant_metadata": {},
+      "sha256": "29f508ba73d31d84d9dcc7324672a669c8dcc4ecbc73aa68098e2492a3a431ba",
+      "size": [
+        497,
+        125
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 12744,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/talk-with-clearview-btn.webp",
+      "relevant_metadata": {},
+      "sha256": "5c767feca764fc8533e3513a8f466bdc9c324b9d1f6b81029caf1c0e33ec6253",
+      "size": [
+        487,
+        123
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 365338,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/venmo-btn.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "fc7a37e2af97ea75e3524672a0a74ab30f8a3d37eccd61ac26ddb296a7225222",
+      "size": [
+        1121,
+        1075
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 15870,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/view-all-pups-btn.webp",
+      "relevant_metadata": {},
+      "sha256": "ebaee5974c78a610dadab53cb8dc59fc91ceb6f5db2ed6e443a8fc7825a8e3a2",
+      "size": [
+        505,
+        125
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 13282,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/view-cavaliers-btn.webp",
+      "relevant_metadata": {},
+      "sha256": "79d06246dd130fae23fa1255d872337870fdf5e6fd0a50bf4064bb01940df9e2",
+      "size": [
+        463,
+        125
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 16320,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/view-cavapoos-btn.webp",
+      "relevant_metadata": {},
+      "sha256": "e6ce2fe135fff6794df7fc52ac6af0f8d5af2957139e4893f2ef11d4c2107105",
+      "size": [
+        491,
+        127
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 16258,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/view-the-app-btn.webp",
+      "relevant_metadata": {},
+      "sha256": "490de23cd3ae2510743273cef25e2166c9f0de010c61369f954bf38018467084",
+      "size": [
+        520,
+        127
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 128896,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-buttons/whos-available-btn.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "e9cc0ccf029ef2f03d3bda080ebaa62e734bb87bd6c028edc8e817cffaedb20a",
+      "size": [
+        2073,
+        453
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 17010,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-icons/apple-touch-icon.webp",
+      "relevant_metadata": {},
+      "sha256": "d6c3c263b070f117b921268e9f021c37466d02292dd7325d0f64bea28e41d07a",
+      "size": [
+        180,
+        178
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 458786,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-icons/favicon.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "3a95e70866dbc3f5200842c4ded53c77dbad0c90eea49d413fd0e3eff0e60867",
+      "size": [
+        1167,
+        1152
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 458786,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-icons/icon-192.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "3a95e70866dbc3f5200842c4ded53c77dbad0c90eea49d413fd0e3eff0e60867",
+      "size": [
+        1167,
+        1152
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 458786,
+      "format": "WEBP",
+      "has_alpha": true,
+      "mode": "RGBA",
+      "path": "ck-icons/icon-512.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "3a95e70866dbc3f5200842c4ded53c77dbad0c90eea49d413fd0e3eff0e60867",
+      "size": [
+        1167,
+        1152
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 148386,
+      "format": "WEBP",
+      "has_alpha": false,
+      "mode": "RGB",
+      "path": "ck-parents/amber.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "a8b0822fcc8b446b8319ba08b3291258db4a623827820696743d7c5302c83982",
+      "size": [
+        1116,
+        1410
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 174572,
+      "format": "WEBP",
+      "has_alpha": false,
+      "mode": "RGB",
+      "path": "ck-parents/peanut.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "425b124ad4ad404ff1f8edb34066aa9090d2789fc750ac4c084c18dcb3588825",
+      "size": [
+        1051,
+        1497
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 57250,
+      "format": "WEBP",
+      "has_alpha": false,
+      "mode": "RGB",
+      "path": "ck-puppies/choc-chip.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "1be660b73ca19dd7c7f26061e4105f687121a90dc668edee0d3c50a3a1950432",
+      "size": [
+        658,
+        1178
+      ]
+    },
+    {
+      "authenticity_marker_detected": false,
+      "bytes": 49662,
+      "format": "WEBP",
+      "has_alpha": false,
+      "mode": "RGB",
+      "path": "ck-puppies/zoro.webp",
+      "relevant_metadata": {
+        "ICC-header:ProfileCreator": "",
+        "ICC_Profile:ProfileCopyright": "Google Inc. 2016"
+      },
+      "sha256": "addeadf1f7fe4c1484615ea46c0e9a91464634566f4a5756b11d89f8a7994dd6",
+      "size": [
+        664,
+        1178
+      ]
+    }
+  ],
+  "repository": "theblackstaginn/clearview-kennels",
+  "review_sheets": [
+    "asset-audit/review-sheets/ck-assets.webp",
+    "asset-audit/review-sheets/ck-buttons-01.webp",
+    "asset-audit/review-sheets/ck-buttons-02.webp",
+    "asset-audit/review-sheets/ck-icons-parents-puppies.webp"
+  ],
+  "schema_version": 1
+}
